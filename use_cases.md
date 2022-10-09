@@ -38,14 +38,30 @@
 
 ### Fluxo normal:
 1. Administrador faz login
-2. Jogo apresenta menu inicial
+2. Jogo valida acesso e apresenta menu inicial
 3. Admin seleciona criação de campeonato
 4. Jogo pergunta pelo nome do campeonato ou se quer cancelar
 5. Administrador fornece nome
 6. Jogo mostra menu para pesquisa e selecionamento de circuitos ou para cancelamento
 7. Admin escolhe circuito(s) a adicionar
 8. Jogo guarda novo campeonato e questiona se quer voltar ao menu inicial ou criar outro campeonato
-9. Administrador escolhe uma das opções, voltando ou para o menu incial ou para o início do fluxo
+9. Administrador escolhe voltar ao menu inicial
+10. Jogo apresenta menu inicial
+
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+5.1. Administrador escolhe cancelar
+5.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3):
+6.1. Administrador escolhe cancelar
+6.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (4):
+9.1. Administrador escolhe criar outro campeonato
+9.2. Regressa a 4
 
 ---
 
@@ -67,11 +83,18 @@
 
 ### Fluxo normal:
 1. Administrador faz login
-2. Jogo apresenta menu inicial
+2. Jogo valida acesso e apresenta menu inicial
 3. Admin seleciona adição de campeonato(s)
 4. Jogo apresenta campeonatos indisponíveis na lista e pergunta por uma seleção ou se quer voltar
 5. Admin seleciona um campeonato
 6. Jogo torna campeonato disponível e volta ao menu de seleção
+ 
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+5.1. Administrador escolhe voltar
+5.2. Jogo apresenta menu inicial
 
 ---
 
@@ -93,11 +116,18 @@
 
 ### Fluxo normal:
 1. Administrador faz login
-2. Jogo apresenta menu inicial
+2. Jogo valida acesso e apresenta menu inicial
 3. Admin seleciona remoção de campeonatos disponíveis
 4. Jogo apresenta campeonatos disponíveis e pergunta por uma seleção ou se quer voltar
 5. Admin seleciona um campeonato
 6. Jogo torna campeonato indisponível e volta ao menu de seleção
+
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+5.1. Administrador escolhe voltar
+5.2. Jogo apresenta menu inicial
 
 ---
 
@@ -119,17 +149,32 @@
 
 ### Fluxo normal:
 1. Administrador faz login
-2. Jogo apresenta menu inicial
+2. Jogo valida acesso e apresenta menu inicial
 3. Administrador seleciona criação de circuito
 4. Jogo pergunta qual o nome do circuito ou se quer cancelar
 5. Administrador fornece nome
-6. Jogo pergunta pelo tamanho em km e pelo nº de curvas e chicanes
-7. Jogo apresenta lista de curvas e retas e pergunta pelo GDU de cada ou se quer cancelar
-8. Administrador especifica GDUs
+6. Jogo pergunta pelo tamanho em km e pelo nº de curvas e chicanes e pelos seus respetivos GDUs ou se quer cancelar
+8. Administrador fornece tamanho em km e nº de curvas e chicanes com os seus respetivos GDUs
 9. Jogo pergunta nº de voltas ou se quer cancelar
 10. Administrador especifica nº de voltas
 11. Jogo regista novo circuito e questiona se quer voltar ao menu inicial ou adicionar outro circuito
-12. Administrador escolhe uma das opções, voltando ou para o menu incial ou para o início do fluxo
+12. Administrador escolhe voltar ao menu inicial
+13. Jogo apresenta menu inicial
+
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+4.1. Administrador escolhe cancelar
+4.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3):
+8.1. Administrador escolhe cancelar
+8.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (4):
+12.1. Administrador escolhe criar outro circuito
+12.2. Regressa a 4
 
 ---
 
@@ -151,20 +196,48 @@
 
 ### Fluxo normal:
 1. Administrador faz login
-2. Jogo apresenta menu incial
-3. Administrador seleciona criação de de carros
-4. Jogo apresenta uma lista de caregorias disponíveis na atual versão do jogo
+2. Jogo valida acesso e apresenta menu inicial
+3. Administrador seleciona criação de carros
+4. Jogo apresenta uma lista de caregorias disponíveis na atual versão do jogo e pergunta se quer cancelar
 5. Administrador seleciona uma categoria
-6. Jogo pergunta pela marca e modelo do carro
+6. Jogo pergunta pela marca e modelo do carro ou se quer cancelar
 7. Administrador fornece marca e modelo
-8. Jogo questiona pela cilindrada e potência do motor de combustão
+8. Jogo questiona pela cilindrada e potência do motor de combustão ou se quer cancelar
 9. Administrador especifica cilindrada e potência do motor de combustão
-10. Jogo pergunta se o carro é híbrido, se sim indicar potência
+10. Jogo pergunta se o carro é híbrido, se sim indicar potência ou se quer cancelar
 11. Administrador indica potência se o carro for híbrido
-12. Jogo indaga pelo perfil aerodinâmico do carro
+12. Jogo pergunta pelo perfil aerodinâmico do carro ou se quer cancelar
 13. Administrador indica PAC
 14. Jogo regista novo carro e questiona se quer voltar ao menu inicial ou adicionar outro carro
-15. Administrador escolhe uma das opções, voltando ou para o menu incial ou para o início do fluxo
+15. Administrador escolhe voltar ao menu inicial
+16. Jogo apresenta menu inicial
+
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+5.1. Administrador escolhe cancelar
+5.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3):
+7.1. Administrador escolhe cancelar
+7.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (4):
+9.1. Administrador escolhe cancelar
+9.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (5):
+11.1. Administrador escolhe cancelar
+11.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (6):
+13.1. Administrador escolhe cancelar
+13.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (7):
+15.1. Administrador escolhe criar outro circuito
+15.2. Regressa a 4
 
 ---
 
@@ -185,14 +258,30 @@
 
 ### Fluxo normal:
 1. Administrador faz login
-2. Jogo apresenta menu inicial
+2. Jogo valida acesso e apresenta menu inicial
 3. Administrador seleciona criação de pilotos
-4. Jogo pergunta qual é o nome do piloto
+4. Jogo pergunta qual é o nome do piloto ou se quer cancelar
 5. Administrador indica o nome pretendido
-6. Jogo questiona qual os seus níveis de perícia no critério de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") dentro da escala pré-fornecida
+6. Jogo questiona qual os seus níveis de perícia no critério de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") dentro da escala pré-fornecida ou se quer cancelar
 7. Administrador indica os níveis de perícia em ambos os critérios
 8. Jogo regista novo piloto e questiona se quer voltar ao menu inicial ou adicionar outro piloto
-9. Administrador escolhe uma das opções, voltando ou para o menu incial ou para o início do fluxo
+9. Administrador escolhe voltar ao menu inicial
+10. Jogo apresenta menu inicial
+
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+5.1. Administrador escolhe cancelar
+5.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3):
+7.1. Administrador escolhe cancelar
+7.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (7):
+9.1. Administrador escolhe criar outro circuito
+9.2. Regressa a 4
 
 ---
 
@@ -212,13 +301,28 @@
 
 ### Fluxo normal:
 1. Jogador faz, ou não, login (administradores podem jogar como administrador também)
-2. Jogo demonstra uma lista de campeonatos disponíveis
+2. Jogo valida acesso e demonstra uma lista de campeonatos disponíveis ou se quer voltar ao menu inicial
 3. Jogador seleciona campeonato
-4. Jogo demonstra carros disponíveis para correr no campeonato
+4. Jogo demonstra carros disponíveis para correr no campeonato e pergunta se quer voltar atrás
 5. Jogador seleciona carro
-6. Jogo demonstra o conjunto de pilotos disponíveis possíveis
+6. Jogo demonstra o conjunto de pilotos disponíveis possíveis e pergunta se quer voltar atrás
 7. Jogador seleciona piloto pretendido
-8. Jogador espera outros jogadores selecionarem os seus respetivos carros e pilotos
+8. Jogador espera que outros jogadores selecionem os seus respetivos carros e pilotos
+
+### Fluxo de exceção (1):
+2.1. Jogo avisa sobre login inválido
+
+### Fluxo alternativo (2):
+3.1. Jogador escolhe voltar ao menu inicial
+3.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3):
+5.1. Jogador escolhe voltar atrás
+5.2. Regressa a 2
+
+### Fluxo alternativo (4):
+7.1. Jogador escolhe voltar atrás
+7.2. Regressa a 4
 
 ---
 
@@ -288,7 +392,7 @@
 
 ### Fluxo normal:
 1. Jogador seleciona iniciar corrida
-2. Jogo inicia a corrida
+2. Jogo inicia e simula a corrida
 3. Jogo simula a corrida
 4. Após cada segmento (curva/reta/chicane) o jogo atualiza situações do mesmo
 5. Jogo indica posições após cada volta
