@@ -2,9 +2,7 @@
 
 - ### Requisitos
 
-    - Criação de campeonato(s)
-    - Adição de campeonato à lista de campeonatos disponíveis
-    - Remoção de campeonato da lista de campeonatos disponíveis
+    - Campeonato(s)
     - Adição de circuito(s)
     - Adição de carro(s)
     - Adição de piloto(s)
@@ -19,13 +17,13 @@
 
 ---
 
-## Criação de campeonato(s)
+## Campeonato(s)
 
 ### Descrição:
-- Administrador cria um campeonato com um nome e circuito(s).
+- Administrador efetua ações relativas a campeonato(s).
 
 ### Cenários:
-1. O Artur faz login como administrador e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
+1. O Artur faz login como administrador, vai à opção campeonato e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
 2. O João não se lembra da palavra-passe e não consegue dar login como administrador.
 3. A Joana ao criar um capeonato escolhe um nome e esse nome já está a ser utilizado.
 
@@ -39,29 +37,39 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona criação de campeonato
-4. Jogo pergunta pelo nome do campeonato ou se quer cancelar
-5. Administrador fornece nome
-6. Jogo mostra menu para pesquisa e selecionamento de circuitos ou para cancelamento
-7. Admin escolhe circuito(s) a adicionar
-8. Jogo guarda novo campeonato e questiona se quer voltar ao menu inicial ou criar outro campeonato
-9. Administrador escolhe voltar ao menu inicial
-10. Jogo apresenta menu inicial
+3. Admin seleciona campeonato
+4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
+5. Administrador escolhe criar campeonato ou cancelar
+6. Jogo pergunta pelo nome do campeonato ou se quer cancelar
+7. Administrador fornece nome
+8. Jogo mostra menu para pesquisa e selecionamento de circuitos ou para cancelamento
+9. Admin escolhe circuito(s) a adicionar
+10. Jogo guarda novo campeonato e questiona se quer voltar ao menu anterior ou criar outro campeonato
+11. Administrador escolhe voltar ao menu inicial
+12. Jogo apresenta menu campeonato
 
 ### Fluxo de exceção (1):
 2.1. Jogo avisa sobre login inválido
 
 ### Fluxo alternativo (2):
-5.1. Administrador escolhe cancelar
-5.2. Jogo apresenta menu inicial
+4.1. Administrador escolhe voltar ao menu inicial
+4.2. Jogo apresenta menu inicial
 
 ### Fluxo alternativo (3):
-6.1. Administrador escolhe cancelar
-6.2. Jogo apresenta menu inicial
+4.1 Administrador escolhe adicionar campeonato
+4.2 Jogo vai para o menu de adicionar campeonato (especificado abaixo)
 
 ### Fluxo alternativo (4):
-9.1. Administrador escolhe criar outro campeonato
-9.2. Regressa a 4
+4.1 Administrador escolhe remover campeonato
+4.2 Jogo vai para o menu de adicionar campeonato (especificado abaixo)
+
+### Fluxo alternativo (5):
+6.1. Administrador escolhe cancelar
+6.2. Jogo apresenta menu campeonato
+
+### Fluxo alternativo (6):
+10.1. Administrador escolhe criar outro campeonato
+10.2. Regressa a 6
 
 ---
 
@@ -84,17 +92,31 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona adição de campeonato(s)
-4. Jogo apresenta campeonatos indisponíveis na lista e pergunta por uma seleção ou se quer voltar
-5. Admin seleciona um campeonato
-6. Jogo torna campeonato disponível e volta ao menu de seleção
+3. Administrador seleciona campeonato
+4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
+5. Administrador seleciona adição de campeonato(s)
+6. Jogo apresenta campeonatos indisponíveis na lista e pergunta por uma seleção ou se quer voltar
+7. Administrador seleciona um campeonato
+8. Jogo torna campeonato disponível e volta ao menu campeonato
  
 ### Fluxo de exceção (1):
 2.1. Jogo avisa sobre login inválido
 
 ### Fluxo alternativo (2):
-5.1. Administrador escolhe voltar
+5.1. Administrador escolhe voltar ao menu incial
 5.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3):
+5.1. Administrador escolhe criar campeonato
+5.2. Jogo apresenta menu criar campeonato (especificado acima)
+
+### Fluxo alternativo (4):
+5.1. Administrador escolhe remover campeonato
+5.2. Jogo apresenta menu remover campeonato (especificado abaixo)
+
+### Fluxo alternativo (5):
+7.1. Administrador escolhe voltar ao menu campeonato
+7.2. Jogo apresenta menu campeonato
 
 ---
 
@@ -117,17 +139,31 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona remoção de campeonatos disponíveis
-4. Jogo apresenta campeonatos disponíveis e pergunta por uma seleção ou se quer voltar
-5. Admin seleciona um campeonato
-6. Jogo torna campeonato indisponível e volta ao menu de seleção
+3. Administrador seleciona campeonato
+4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
+5. Administrador seleciona remoção de campeonato(s) disponíveis
+6. Jogo apresenta campeonatos disponíveis e pergunta por uma seleção ou se quer voltar
+7. Administrador seleciona um campeonato
+8. Jogo torna campeonato indisponível e volta ao menu campeonato
 
 ### Fluxo de exceção (1):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-5.1. Administrador escolhe voltar
-5.2. Jogo apresenta menu inicial
+### Fluxo de exceção (2):
+4.1. Administrador escolhe voltar ao menu inicial
+4.2. Jogo apresenta menu inicial
+
+### Fluxo de exceção (3):
+4.1. Administrador escolhe criar campeonata
+4.2. Jogo apresenta menu criar campeonato (especificado acima)
+
+### Fluxo de exceção (4):
+4.1. Administrador escolhe adicionar campeonato
+4.2. Jogo apresenta menu adicionar campeonato (especificado acima)
+
+### Fluxo alternativo (3):
+6.1. Administrador escolhe voltar
+6.2. Jogo apresenta menu campeonato
 
 ---
 
