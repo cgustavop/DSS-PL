@@ -24,8 +24,6 @@
 
 ### Cenários:
 1. O Artur faz login como administrador, vai à opção campeonato e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
-2. O João não se lembra da palavra-passe e não consegue dar login como administrador.
-
 
 ### Pré-condição:
 - Ser administrador
