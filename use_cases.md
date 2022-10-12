@@ -25,7 +25,7 @@
 ### Cenários:
 1. O Artur faz login como administrador, vai à opção campeonato e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
 2. O João não se lembra da palavra-passe e não consegue dar login como administrador.
-3. A Joana ao criar um capeonato escolhe um nome e esse nome já está a ser utilizado.
+
 
 ### Pré-condição:
 - Ser administrador
@@ -174,7 +174,6 @@
 
 ### Cenários:
 1. O José faz login no jogo como administrador e opta por adicionar um novo circuito. Indica como nome do novo circuito a adicionar “Gualtar Campus”. De seguida, indica que o mesmo tem 2Km, 9 curvas e 1 chicane. Com essa informação, o sistema calcula que o circuito tem 10 rectas e apresenta a lista de curvas e rectas de modo a que o José indique o grau de dificuldade de ultrapassagem (GDU) em cada uma. Para as rectas 1 e 6, e curvas 2 e 3, indica um GDU de possível. Para as rectas 4, 5, 7 e 8, e curvas 4, 5, 7 e 8, indica um GDU de impossível. Para os restantes, indica um GDU de difícil. Finalmente, regista o circuito, indicando que cada corrida deverá ter 10 voltas. O circuito passa a estar disponível para integrar campeonatos.
-2. O Gervásio ao criar um novo circuito escolhe um nome já existente.
 
 ### Pré-condição:
 - Ser administrador
@@ -221,7 +220,6 @@
 
 ### Cenários:
 1. O José faz login no jogo como administrador e opta por adicionar um novo carro. Começa por consultar as categorias disponíveis nesta versão do jogo ("C1", "C2", "GT", "SC", talvez categorias a ser adicionadas futuramente). O José opta pela categoria “C2” e, de seguida, indica a marca e modelo do carro: um Ferrari 488 GTE. O José sabe que a cilindrada é de 3902cm3 e a potência do motor de combustão de 661CV e fornece esses valores. Uma vez que o carro não é híbrido, não há lugar à indicação da potência do motor eléctrico. Finalmente, escolhe o perfil aerodinâmico do carro (PAC). Considerando as características do mesmo indica um valor de 0.21 e termina o registo do carro, que fica disponível para ser utilizado em jogos.
-2. O Analberto quer adicionar um carro, e durante o processo, após escolher a categoria pretendida e indicar a marca e o modelo, ao inserir a cilindrada e a potência o jogo verifica que os valores não estão dentro dessa categoria.
 
 ### Pré-condição:
 - Ser administrador
@@ -419,6 +417,7 @@
 ### Cenários:
 1. O Francisco tem a versão base do jogo, os cálculos são feitos em função das posições relativas dos carro, em cada ponto relevante do circuito (recta/curva/chicane).
 2. A Sara optou por um carro da categoria C1, híbrido, com downforce mínima, modo de motor agressivo, pneus macios e um piloto com SVA alto. Assim, durante a primeira volta consegue fazer uma ultrapassagem na curva 74. No entanto, na sétima volta, ao tentar uma ultrapassagem na chicane, acaba por sair de pista e ficar na última posição. Os pneus já não estavam em bom estado e acabou por não conseguir ultrapassar ninguém até ao final da corrida. Terminou em terceiro lugar pois o Manuel despistou-se na curva 1 durante a última volta. Nesta corrida nenhum carro sofreu uma avaria.
+3. O Asdrubal tem a versão premium do jogo, logo os cálculos são efetuado às posições relativas, posições esssas que desta vez são atualizadas em tempo real.
 
 ### Pré-condição:
 - Corrida configurada
