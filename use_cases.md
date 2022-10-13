@@ -2,9 +2,7 @@
 
 - ### Requisitos
 
-    - Criação de campeonato(s)
-    - Adição de campeonato à lista de campeonatos disponíveis
-    - Remoção de campeonato da lista de campeonatos disponíveis
+    - Campeonato(s)
     - Adição de circuito(s)
     - Adição de carro(s)
     - Adição de piloto(s)
@@ -19,18 +17,16 @@
 
 ---
 
-## Criação de campeonato(s)
+## Campeonato(s)
 
 ### Descrição:
-- Administrador cria um campeonato com um nome e circuito(s).
+- Administrador efetua ações relativas a campeonato(s).
 
 ### Cenários:
-1. O Artur faz login como administrador e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
-2. O João não se lembra da palavra-passe e não consegue dar login como administrador.
-3. A Joana ao criar um capeonato escolhe um nome e esse nome já está a ser utilizado.
+1. O Artur faz login como administrador, vai à opção campeonato e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
 
 ### Pré-condição:
-- Ser administrador
+- Administrador autenticado
 - Existência de circuitos
 
 ### Pós-condição:
@@ -39,29 +35,39 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona criação de campeonato
-4. Jogo pergunta pelo nome do campeonato ou se quer cancelar
-5. Administrador fornece nome
-6. Jogo mostra menu para pesquisa e selecionamento de circuitos ou para cancelamento
-7. Admin escolhe circuito(s) a adicionar
-8. Jogo guarda novo campeonato e questiona se quer voltar ao menu inicial ou criar outro campeonato
-9. Administrador escolhe voltar ao menu inicial
-10. Jogo apresenta menu inicial
+3. Admin seleciona campeonato
+4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
+5. Administrador escolhe criar campeonato ou cancelar
+6. Jogo pergunta pelo nome do campeonato ou se quer cancelar
+7. Administrador fornece nome
+8. Jogo mostra menu para pesquisa e selecionamento de circuitos ou para cancelamento
+9. Admin escolhe circuito(s) a adicionar
+10. Jogo guarda novo campeonato e questiona se quer voltar ao menu anterior ou criar outro campeonato
+11. Administrador escolhe voltar ao menu inicial
+12. Jogo apresenta menu campeonato
 
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa de login como administrador](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-5.1. Administrador escolhe cancelar
-5.2. Jogo apresenta menu inicial
+### Fluxo alternativo (2)[Voltar ao menu inicial](passo 4):
+4.1. Administrador escolhe voltar ao menu inicial
+4.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (3):
+### Fluxo alternativo (3)[Administrador escolhe adicionar campeonato](passo 4):
+4.1 Administrador escolhe adicionar campeonato
+4.2 Jogo vai para o menu de adicionar campeonato (especificado abaixo)
+
+### Fluxo alternativo (4)[Administrador escolhe remover campeonato](passo 4):
+4.1 Administrador escolhe remover campeonato
+4.2 Jogo vai para o menu de adicionar campeonato (especificado abaixo)
+
+### Fluxo alternativo (5)[Administrador escolhe cancelar criação de campeonato](passo 6):
 6.1. Administrador escolhe cancelar
-6.2. Jogo apresenta menu inicial
+6.2. Jogo apresenta menu campeonato
 
-### Fluxo alternativo (4):
-9.1. Administrador escolhe criar outro campeonato
-9.2. Regressa a 4
+### Fluxo alternativo (6)[Administrador escolhe criar outro campeonato](passo 10):
+10.1. Administrador escolhe criar outro campeonato
+10.2. Regressa a 6
 
 ---
 
@@ -75,7 +81,7 @@
 2. O João verifica que existem campeonatos criados que não estão na lista de campeonatos disponíveis e decide adicioná-los.
 
 ### Pré-condição:
-- Ser administrador
+- Administrador autenticado
 - Existência de campeonatos indisponíveis
 
 ### Pós-condição:
@@ -84,17 +90,31 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona adição de campeonato(s)
-4. Jogo apresenta campeonatos indisponíveis na lista e pergunta por uma seleção ou se quer voltar
-5. Admin seleciona um campeonato
-6. Jogo torna campeonato disponível e volta ao menu de seleção
+3. Administrador seleciona campeonato
+4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
+5. Administrador seleciona adição de campeonato(s)
+6. Jogo apresenta campeonatos indisponíveis na lista e pergunta por uma seleção ou se quer voltar
+7. Administrador seleciona um campeonato
+8. Jogo torna campeonato disponível e volta ao menu campeonato
  
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-5.1. Administrador escolhe voltar
+### Fluxo alternativo (2)[Voltar ao menu inicial](passo 5):
+5.1. Administrador escolhe voltar ao menu incial
 5.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (3)[Administrador escolhe criar campeonato]( passo 5):
+5.1. Administrador escolhe criar campeonato
+5.2. Jogo apresenta menu criar campeonato (especificado acima)
+
+### Fluxo alternativo (4)[Administrador escolhe remover campeonato](passo 5):
+5.1. Administrador escolhe remover campeonato
+5.2. Jogo apresenta menu remover campeonato (especificado abaixo)
+
+### Fluxo alternativo (5)[Administrador escolhe voltar ao menu campeonato](passo 7):
+7.1. Administrador escolhe voltar ao menu campeonato
+7.2. Jogo apresenta menu campeonato
 
 ---
 
@@ -108,7 +128,7 @@
 2. A Maria achou que o "CampeUMnato" tinha circuitos muito difíceis então decidiu remover dos campeonatos disponíveis o único campeonato.
 
 ### Pré-condição:
-- Ser administrador
+- Administrador autenticado
 - Existência de campeonatos disponíveis
 
 ### Pós-condição:
@@ -117,17 +137,31 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona remoção de campeonatos disponíveis
-4. Jogo apresenta campeonatos disponíveis e pergunta por uma seleção ou se quer voltar
-5. Admin seleciona um campeonato
-6. Jogo torna campeonato indisponível e volta ao menu de seleção
+3. Administrador seleciona campeonato
+4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
+5. Administrador seleciona remoção de campeonato(s) disponíveis
+6. Jogo apresenta campeonatos disponíveis e pergunta por uma seleção ou se quer voltar
+7. Administrador seleciona um campeonato
+8. Jogo torna campeonato indisponível e volta ao menu campeonato
 
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa de login como administrador](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-5.1. Administrador escolhe voltar
-5.2. Jogo apresenta menu inicial
+### Fluxo de exceção (2)[Voltar ao menu incial](passo 4):
+4.1. Administrador escolhe voltar ao menu inicial
+4.2. Jogo apresenta menu inicial
+
+### Fluxo de exceção (3)[Administrador escolhe criar campeonato](passo 4):
+4.1. Administrador escolhe criar campeonato
+4.2. Jogo apresenta menu criar campeonato (especificado acima)
+
+### Fluxo de exceção (4)[Administrador escolhe adicionar campeonato](passo 4):
+4.1. Administrador escolhe adicionar campeonato
+4.2. Jogo apresenta menu adicionar campeonato (especificado acima)
+
+### Fluxo alternativo (5)[Administrador escolhe voltar ao menu campeonato](passo 6):
+6.1. Administrador escolhe voltar
+6.2. Jogo apresenta menu campeonato
 
 ---
 
@@ -138,10 +172,9 @@
 
 ### Cenários:
 1. O José faz login no jogo como administrador e opta por adicionar um novo circuito. Indica como nome do novo circuito a adicionar “Gualtar Campus”. De seguida, indica que o mesmo tem 2Km, 9 curvas e 1 chicane. Com essa informação, o sistema calcula que o circuito tem 10 rectas e apresenta a lista de curvas e rectas de modo a que o José indique o grau de dificuldade de ultrapassagem (GDU) em cada uma. Para as rectas 1 e 6, e curvas 2 e 3, indica um GDU de possível. Para as rectas 4, 5, 7 e 8, e curvas 4, 5, 7 e 8, indica um GDU de impossível. Para os restantes, indica um GDU de difícil. Finalmente, regista o circuito, indicando que cada corrida deverá ter 10 voltas. O circuito passa a estar disponível para integrar campeonatos.
-2. O Gervásio ao criar um novo circuito escolhe um nome já existente.
 
 ### Pré-condição:
-- Ser administrador
+- Administrador autenticado
 - PC funcional com programa a correr
 
 ### Pós-condição:
@@ -150,7 +183,7 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona criação de circuito
+3. Administrador seleciona adição de circuito
 4. Jogo pergunta qual o nome do circuito ou se quer cancelar
 5. Administrador fornece nome
 6. Jogo pergunta pelo tamanho em km e pelo nº de curvas e chicanes e pelos seus respetivos GDUs ou se quer cancelar
@@ -161,19 +194,23 @@
 12. Administrador escolhe voltar ao menu inicial
 13. Jogo apresenta menu inicial
 
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
+### Fluxo alternativo (2)[Administrador escolhe cancelar adição de circuito](passo 4):
 4.1. Administrador escolhe cancelar
 4.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (3):
-8.1. Administrador escolhe cancelar
-8.2. Jogo apresenta menu inicial
+### Fluxo alternativo (3)[Administrador escolhe cancelar adição de circuito](passo 6):
+6.1. Administrador escolhe cancelar
+6.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (4):
-12.1. Administrador escolhe criar outro circuito
+### Fluxo alternativo (4)[Administrador escolhe cancelar adição de circuito](passo 9):
+9.1. Administrador escolhe cancelar
+9.2. Jogo apresenta menu inicial
+
+### Fluxo alternativo (5)[Administrador escolhe adicionar outro circuito](passo 12):
+12.1. Administrador escolhe adicionar outro circuito
 12.2. Regressa a 4
 
 ---
@@ -185,10 +222,9 @@
 
 ### Cenários:
 1. O José faz login no jogo como administrador e opta por adicionar um novo carro. Começa por consultar as categorias disponíveis nesta versão do jogo ("C1", "C2", "GT", "SC", talvez categorias a ser adicionadas futuramente). O José opta pela categoria “C2” e, de seguida, indica a marca e modelo do carro: um Ferrari 488 GTE. O José sabe que a cilindrada é de 3902cm3 e a potência do motor de combustão de 661CV e fornece esses valores. Uma vez que o carro não é híbrido, não há lugar à indicação da potência do motor eléctrico. Finalmente, escolhe o perfil aerodinâmico do carro (PAC). Considerando as características do mesmo indica um valor de 0.21 e termina o registo do carro, que fica disponível para ser utilizado em jogos.
-2. O Analberto quer adicionar um carro, e durante o processo, após escolher a categoria pretendida e indicar a marca e o modelo, ao inserir a cilindrada e a potência o jogo verifica que os valores não estão dentro dessa categoria.
 
 ### Pré-condição:
-- Ser administrador
+- Administrador autenticado
 - PC funcional com programa a correr
 
 ### Pós-condição:
@@ -212,32 +248,32 @@
 15. Administrador escolhe voltar ao menu inicial
 16. Jogo apresenta menu inicial
 
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-5.1. Administrador escolhe cancelar
-5.2. Jogo apresenta menu inicial
+### Fluxo alternativo (2)[Administrador escolhe cancelar adição de carro](passo 5):
+4.1. Administrador escolhe cancelar
+4.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (3):
-7.1. Administrador escolhe cancelar
-7.2. Jogo apresenta menu inicial
+### Fluxo alternativo (3)[Administrador escolhe cancelar adição de carro](passo 6):
+6.1. Administrador escolhe cancelar
+6.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (4):
-9.1. Administrador escolhe cancelar
-9.2. Jogo apresenta menu inicial
+### Fluxo alternativo (4)[Administrador escolhe cancelar adição de carro](passo 8):
+8.1. Administrador escolhe cancelar
+8.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (5):
-11.1. Administrador escolhe cancelar
-11.2. Jogo apresenta menu inicial
+### Fluxo alternativo (5)[Administrador escolhe cancelar adição de carro](passo 10):
+10.1. Administrador escolhe cancelar
+10.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (6):
-13.1. Administrador escolhe cancelar
-13.2. Jogo apresenta menu inicial
+### Fluxo alternativo (6)[Administrador escolhe cancelar adição de carro](passo 12):
+12.1. Administrador escolhe cancelar
+12.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (7):
-15.1. Administrador escolhe criar outro circuito
-15.2. Regressa a 4
+### Fluxo alternativo (6)[Administrador escolhe adicionar outro carro](passo 14):
+14.1. Administrador escolhe adicionar outro carro
+14.2. Regressa a 4
 
 ---
 
@@ -250,7 +286,7 @@
 1. O José faz login no jogo como administrador e decide adicionar um novo piloto. Começa por indicar que o nome será “Battery Voltar” e, de seguida, os seus níveis de perícia. No critério “Chuva vs. Tempo Seco” (CTS), indicou um valor de 0.6, indicando um ligeiro melhor desempenho em tempo seco. No critério “Segurança vs. Agressividade” (SVA), indicou um valor de 0.4, indicando que o piloto tende a arriscar pouco (logo terá alguma maior dificuldade em ultrapassar, mas menor probabilidade de se despistar). Finalmente, regista o piloto, que fica disponível.
 
 ### Pré-condição:
-- Ser administrador
+- Administrador autenticado
 - PC funcional com programa a correr
 
 ### Pós-condição:
@@ -259,7 +295,7 @@
 ### Fluxo normal:
 1. Administrador faz login
 2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona criação de pilotos
+3. Administrador seleciona adição de pilotos
 4. Jogo pergunta qual é o nome do piloto ou se quer cancelar
 5. Administrador indica o nome pretendido
 6. Jogo questiona qual os seus níveis de perícia no critério de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") dentro da escala pré-fornecida ou se quer cancelar
@@ -268,20 +304,20 @@
 9. Administrador escolhe voltar ao menu inicial
 10. Jogo apresenta menu inicial
 
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-5.1. Administrador escolhe cancelar
-5.2. Jogo apresenta menu inicial
+### Fluxo alternativo (2)[Administrador escolhe cancelar adição de piloto](passo 4):
+4.1. Administrador escolhe cancelar
+4.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (3):
-7.1. Administrador escolhe cancelar
-7.2. Jogo apresenta menu inicial
+### Fluxo alternativo (3)[Administrador escolhe cancelar adição de piloto](passo 6):
+6.1. Administrador escolhe cancelar
+6.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (7):
-9.1. Administrador escolhe criar outro circuito
-9.2. Regressa a 4
+### Fluxo alternativo (4)[Administrador escolhe adicionar outro piloto](passo 8):
+8.1. Administrador escolhe adicionar outro piloto
+8.2. Regressa a 4
 
 ---
 
@@ -301,28 +337,34 @@
 
 ### Fluxo normal:
 1. Jogador faz, ou não, login (administradores podem jogar como administrador também)
-2. Jogo valida acesso e demonstra uma lista de campeonatos disponíveis ou se quer voltar ao menu inicial
-3. Jogador seleciona campeonato
-4. Jogo demonstra carros disponíveis para correr no campeonato e pergunta se quer voltar atrás
-5. Jogador seleciona carro
-6. Jogo demonstra o conjunto de pilotos disponíveis possíveis e pergunta se quer voltar atrás
-7. Jogador seleciona piloto pretendido
-8. Jogador espera que outros jogadores selecionem os seus respetivos carros e pilotos
+2. Jogo valida acesso
+3. Jogador escolhe jogar campeonato
+5. Demonstra uma lista de campeonatos disponíveis ou se quer voltar ao menu inicial
+4. Jogador seleciona campeonato
+5. Jogo demonstra carros disponíveis para correr no campeonato e pergunta se quer voltar atrás ou cancelar
+6. Jogador seleciona carro
+7. Jogo demonstra o conjunto de pilotos disponíveis possíveis e pergunta se quer voltar atrás ou cancelar
+8. Jogador seleciona piloto pretendido
+9. Jogador espera que outros jogadores selecionem os seus respetivos carros e pilotos
 
-### Fluxo de exceção (1):
+### Fluxo de exceção (1)[Tentativa inválida de login](passo 2):
 2.1. Jogo avisa sobre login inválido
 
-### Fluxo alternativo (2):
-3.1. Jogador escolhe voltar ao menu inicial
-3.2. Jogo apresenta menu inicial
+### Fluxo alternativo (3)[](passo 5):
+5.1. Jogador escolhe voltar ao menu inicial
+5.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (3):
-5.1. Jogador escolhe voltar atrás
-5.2. Regressa a 2
+### Fluxo alternativo (3)[](passo 5):
+5.1. Jogador escolhe voltar ao menu inicial
+5.2. Jogo apresenta menu inicial
 
-### Fluxo alternativo (4):
+### Fluxo alternativo (4)[Jogador escolhe selecionar outro carro](passo 6):
 7.1. Jogador escolhe voltar atrás
 7.2. Regressa a 4
+
+### Fluxo alternativo (5)[Jogador escolhe selecionar voltar ao menu inicial](passo 6):
+8.1. Jogador escolhe cancelar
+8.2. Regressa a 2
 
 ---
 
@@ -383,6 +425,7 @@
 ### Cenários:
 1. O Francisco tem a versão base do jogo, os cálculos são feitos em função das posições relativas dos carro, em cada ponto relevante do circuito (recta/curva/chicane).
 2. A Sara optou por um carro da categoria C1, híbrido, com downforce mínima, modo de motor agressivo, pneus macios e um piloto com SVA alto. Assim, durante a primeira volta consegue fazer uma ultrapassagem na curva 74. No entanto, na sétima volta, ao tentar uma ultrapassagem na chicane, acaba por sair de pista e ficar na última posição. Os pneus já não estavam em bom estado e acabou por não conseguir ultrapassar ninguém até ao final da corrida. Terminou em terceiro lugar pois o Manuel despistou-se na curva 1 durante a última volta. Nesta corrida nenhum carro sofreu uma avaria.
+3. O Asdrubal tem a versão premium do jogo, logo os cálculos são efetuado às posições relativas de igual forma mas, essas posições são atualizadas em tempo real em qualquer parte/segmento da corrida.
 
 ### Pré-condição:
 - Corrida configurada
@@ -401,4 +444,8 @@
 8. Jogo simula próximas corridas até serem feitas todas as existentes do campeonato
 9. Jogo demonstra os rankings e volta ao menu inicial
 
+### Fluxo alternativo (1)[Versão premium do jogo - atualização](passo 4)
+4.1 O jogo atualiza as situações do mesmo em tempo real
 
+### Fluxo alternativo (2)[Versão premium do jogo - posições](passo 5)
+4.1 O jogo indica posições em tempo real
