@@ -16,6 +16,53 @@
     - Administrador
 
 ---
+## Criação da conta
+
+### Descrição:
+- Utilizador (Administrador ou Jogador) cria conta.
+
+### Cenários:
+1. O Artur quer criar uma conta como adminstrador e, assim sendo, escolhe a opção de criação de conta. Começa por selecionar se quer ser administrador ou jogador. Depois disso escolhe o nome "Artur" e, de seguida, define uma palavra-passe.
+2. O Jorge quer criar uma conta como jogador e, assim sendo, escolhe a opção de criação de conta. Começa por selecionar se quer ser administrador ou jogador. Depois disso escolhe o nome "Jorge" e, de seguida, define uma palavra-passe.
+
+### Pré-condição:
+- True (?)
+
+### Pós-condição:
+- Nova conta adicionado ao jogo.
+
+### Fluxo normal:
+1. Utilizador escolhe a sua função (Admin ou Jogador)
+2. Utilizador define um nome e uma palavra passe
+3. Sistema verifica disponibilidade do nome
+4. Sistema regista a conta
+
+### Fluxo alternativo (1)[Nome indisponível](passo 3):
+3.1 Sistema informa que o nome não está disponível
+3.2 Regressa a 2.
+
+## Login
+
+### Descrição:
+- Utilizador (Administrador ou Jogador) faz login na sua conta.
+
+### Cenários:
+1. O Artur quer fazer o login na sua conta. Começa por escolher a opção de login e posteriormente fornece o seu nome e palavra-passe ao jogo.
+
+### Pré-condição:
+- Existência da conta.
+
+### Pós-condição:
+- Utilizador autenticado.
+
+### Fluxo normal:
+1. Utilizador fornece um nome e uma palavra passe
+2. Sistema verifica validade dos dados
+3. Sistema autentica o login do utilizador
+
+### Fluxo alternativo (1)[Dados de login inválidos](passo 2): 
+2.1 Sistema informa que os dados de login são inválidos
+2.2 Regressa ao 1.
 
 ## Campeonato(s)
 
@@ -261,18 +308,18 @@
 - Corrida simulada
 
 ### Fluxo normal:
-1. Jogador seleciona iniciar corrida
-2. Sistema inicia e simula a corrida
-3. Sistema simula a corrida
-4. Após cada segmento (curva/reta/chicane) o sistema atualiza situações do mesmo
-5. Sistema indica posições após cada volta
-6. Sistema apresenta reultados no fim da corrida
-7. Sistema atribui pontos aos cadastrados, por posições e categorias somando para corridas futuras no mesmo campeonato
-8. Sistema simula próximas corridas até serem feitas todas as existentes do campeonato
-9. Sistema demonstra os rankings e volta ao menu inicial
+1. Sistema inicia a simulação da corrida
+2. Após cada segmento (curva/reta/chicane) o sistema atualiza situações do mesmo
+3. Sistema indica posições após cada volta
+4. Sistema apresenta reultados no fim da corrida
+5. Sistema atribui pontos aos cadastrados, por posições e categorias somando para corridas futuras no mesmo campeonato
+6. Sistema simula próximas corridas até serem feitas todas as existentes do campeonato
+7. Sistema demonstra os rankings e volta ao menu inicial
 
-### Fluxo alternativo (1)[Versão premium do jogo - atualização](passo 4)
-4.1 O jogo atualiza as situações do mesmo em tempo real
+### Fluxo alternativo (1)[Versão premium do jogo - atualização](passo 2)
+2.1 O jogo atualiza as situações do mesmo em tempo real
+2.2 Regressa ao 3
 
-### Fluxo alternativo (2)[Versão premium do jogo - posições](passo 5)
-4.1 O jogo indica posições em tempo real
+### Fluxo alternativo (2)[Versão premium do jogo - posições](passo 3)
+3.1 O jogo indica posições em tempo real
+3.2 Regressa ao 4
