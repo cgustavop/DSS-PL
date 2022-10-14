@@ -117,6 +117,7 @@
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
 2.1 Sistema informa que o nome não está disponível
 2.2 Regressa a 1.
+
 ---
 
 ## Adição de Carros
@@ -141,11 +142,12 @@
 5. Sistema verifica se a cilindrada se enquadra na categoria
 6. Administrador indica que o carro não é híbrido
 7. Administrador indica PAC
-8. Jogo regista novo carro
+8. Sistema regista novo carro
 
-### Fluxo de alternativo (1)[Carro é híbrido](passo 6):
-6.1 Administrador indica que o carro é híbrido e a potência do motor elétrico.
-6.2 Salta para 7.
+### Fluxo alternativo (1)[Carro é híbrido](passo 6):
+6.1 Administrador indica que o carro é híbrido.
+6.2 Administrador force a potência do motor elétrico
+6.3 Salta para 7.
 
 ---
 
@@ -165,31 +167,14 @@
 - Novo piloto adicionado ao jogo
 
 ### Fluxo normal:
-1. Administrador faz login
-2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona adição de pilotos
-4. Jogo pergunta qual é o nome do piloto ou se quer cancelar
-5. Administrador indica o nome pretendido
-6. Jogo questiona qual os seus níveis de perícia no critério de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") dentro da escala pré-fornecida ou se quer cancelar
-7. Administrador indica os níveis de perícia em ambos os critérios
-8. Jogo regista novo piloto e questiona se quer voltar ao menu inicial ou adicionar outro piloto
-9. Administrador escolhe voltar ao menu inicial
-10. Jogo apresenta menu inicial
+1. Administrador indica o nome do piloto
+2. Sistema verifica disponibilidade do nome do piloto
+3. Administrador indica os níveis de perícia nos critérios de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") 
+5. Sistema regista novo piloto
 
-### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
-2.1. Jogo avisa sobre login inválido
-
-### Fluxo alternativo (2)[Administrador escolhe cancelar adição de piloto](passo 4):
-4.1. Administrador escolhe cancelar
-4.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (3)[Administrador escolhe cancelar adição de piloto](passo 6):
-6.1. Administrador escolhe cancelar
-6.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (4)[Administrador escolhe adicionar outro piloto](passo 8):
-8.1. Administrador escolhe adicionar outro piloto
-8.2. Regressa a 4
+### Fluxo alternativo (1)[Nome indisponível](passo 2):
+2.1 Sistema informa que o nome não está disponível
+2.2 Regressa a 1.
 
 ---
 
@@ -199,93 +184,63 @@
 - Jogador joga sozinho ou com outros jogadores, escolhendo campeonato, carro e piloto
 
 ### Cenários:
-1. O Francisco e três amigos resolver jogar um campeonato de Racing Manager. O Francisco faz login como jogador, escolhe um campeonato e avalia os circuitos que o compõem. Como a maioria são circuitos rápidos, decide participar com um Ferrari 488 GTE (um carro da categoria C2). Escolhe como piloto Battery Voltas, por considerar ser um piloto equilibrado em termos de desempenho. Após inscrever-se, cada um dos amigos escolhe também o seu carro e piloto.
+1. O Francisco e três amigos resolveram jogar um campeonato de Racing Manager. O Francisco faz login como jogador, escolhe um campeonato e avalia os circuitos que o compõem. Como a maioria são circuitos rápidos, decide participar com um Ferrari 488 GTE (um carro da categoria C2). Escolhe como piloto Battery Voltas, por considerar ser um piloto equilibrado em termos de desempenho. Após inscrever-se, cada um dos amigos escolhe também o seu carro e piloto.
 
 ### Pré-condição:
-- PC funcional com programa a correr
+- True
 
 ### Pós-condição:
 - Campeonato configurado
 
 ### Fluxo normal:
-1. Jogador faz, ou não, login (administradores podem jogar como administrador também)
-2. Jogo valida acesso
-3. Jogador escolhe jogar campeonato
-5. Demonstra uma lista de campeonatos disponíveis ou se quer voltar ao menu inicial
-4. Jogador seleciona campeonato
-5. Jogo demonstra carros disponíveis para correr no campeonato e pergunta se quer voltar atrás ou cancelar
-6. Jogador seleciona carro
-7. Jogo demonstra o conjunto de pilotos disponíveis possíveis e pergunta se quer voltar atrás ou cancelar
-8. Jogador seleciona piloto pretendido
-9. Jogador espera que outros jogadores selecionem os seus respetivos carros e pilotos
+1. Jogador faz login
+2. Sistema autentica login
+3. Jogador seleciona campeonato, carpp e pitolo pretendido
+4. Jogador decide começar campeonato
+5. Sistema regista configuração de campeonato
 
-### Fluxo de exceção (1)[Tentativa inválida de login](passo 2):
-2.1. Jogo avisa sobre login inválido
+### Fluxo alternativo (1)[Não faz login](passo 1):
+1.1 Jogador não faz login
+1.2 Salta para 3
 
-### Fluxo alternativo (3)[](passo 5):
-5.1. Jogador escolhe voltar ao menu inicial
-5.2. Jogo apresenta menu inicial
+### Fluxo de exceção (2)[Tentativa inválida de login](passo 2):
+2.1.Jogo avisa sobre login inválido
+2.2 Sistema cancela configuração de corrida
 
-### Fluxo alternativo (3)[](passo 5):
-5.1. Jogador escolhe voltar ao menu inicial
-5.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (4)[Jogador escolhe selecionar outro carro](passo 6):
-7.1. Jogador escolhe voltar atrás
-7.2. Regressa a 4
-
-### Fluxo alternativo (5)[Jogador escolhe selecionar voltar ao menu inicial](passo 6):
-8.1. Jogador escolhe cancelar
-8.2. Regressa a 2
+### Fluxo alternativo (3)[](passo 4):
+4.1. Jogador escolhe adicionar outro jogador
+4.2. Regressa a 1
 
 ---
 
 ## Configurar Corrida(s)
 
 ### Descrição:
-- Jogador configura o carro para a corrida
+- Jogador(es) configura(m) o(s) carro(s) para a corrida
 
 ### Cenários:
-1. As condições da primeira corrida são apresentadas: o circuito é o “Gualtar Campus” e a situação meteorológica é de tempo seco (a outra possibilidade seria chuva). O Francisco sabe que cada um dos jogadores deve alterar a afinação do carro. Após a afinação a seu gosto, o Francisco escolhe pneus macios, o que permite ter melhor desempenho no início da corrida, à custa do desempenho no final. Dos três modos de funcionamento do motor (conservador, normal ou agressivo), o Francisco escolhe o agressivo, aumentado o desempenho do carro à custa de maior probabilidade de o motor ter uma avaria.
+1. As condições da primeira corrida são apresentadas: o circuito é o “Gualtar Campus” e a situação meteorológica é de tempo seco (a outra possibilidade seria chuva). O Francisco sabe que cada um dos jogadores deve alterar a afinação do carro. O Francisco decide alterar a afinação (possível por se tratar de um C2) e aumenta a downforce de 0.5 (valor neutro) para 0.7. Após a afinação a seu gosto, o Francisco escolhe pneus macios, o que permite ter melhor desempenho no início da corrida, à custa do desempenho no final. Dos três modos de funcionamento do motor (conservador, normal ou agressivo), o Francisco escolhe o agressivo, aumentado o desempenho do carro à custa de maior probabilidade de o motor ter uma avaria.
 
 ### Pré-condição:
 - Campeonato configurado
 
 ### Pós-condição:
-- Corrida(s) configurada(s)
+- Todos os jogadores ficam registados como "ready" e corrida está configurada
 
 ### Fluxo normal:
 1. Jogador escolhe fazer afinações ao seu carro
-2. Jogo apresenta o conjunto de afinações possíveis (repartido no use case abaixo)
-3. Jogador faz afinações
-4. Jogo demonstra pneus a escolher para a corrida
-5. Jogador escolhe o tipo de pneu que pretende
-6. Jogo pergunta qual o tipo de motor
-7. Jogador escolhe o tipo de motor
-8. Jogador espera que os outros jogadores terminem a sua configuração
+2. Jogador faz afinações e escolhe alterar ou não a downforce
+3. Jogador escolhe o tipo de pneu que pretende e o tipo de motor
+4. Sistema regista jogador como "ready"
+5. Sistema verifica que todos os jogadores estão prontos e regista configuração de corrida
 
----
+### Fluxo alternativo (1)[Não faz afinações](passo 1):
+1.1. Jogador escolhe não fazer afinações ao seu carro
+1.2. Salta para 3
 
-## Alteração de Afinação
-
-### Descrição:
-- Jogador afina o carro para a corrida
-
-### Cenários:
-1. O Francisco decide alterar a afinação (possível por se tratar de um C2) e aumenta a downforce de 0.5 (valor neutro) para 0.7.
-
-### Pré-condição:
-- Inicio da configuração da corrida
-
-### Pós-condição:
-- Afinção alterada
-
-### Fluxo normal:
-1. Jogador decidiu alterar as afinações do seu carro
-2. Jogo avisa que só pode efeturar X (nº voltas - 1) afinações
-3. Jogo disponibiliza as afinações possíveis
-4. Jogador altera afinações
-5. Jogo altera afinações e volta ao menu de configuração de corrida(s)
+### Fluxo alternativo (1)[Nem todos os jogadores estão registados como "ready"](passo 4):
+4.1. Sistema verifica que nem todos os jogadores estão registados como "ready"
+4.2. Regressa a 1
 
 ---
 
@@ -307,14 +262,14 @@
 
 ### Fluxo normal:
 1. Jogador seleciona iniciar corrida
-2. Jogo inicia e simula a corrida
-3. Jogo simula a corrida
-4. Após cada segmento (curva/reta/chicane) o jogo atualiza situações do mesmo
-5. Jogo indica posições após cada volta
-6. Jogo apresenta reultados no fim da corrida
-7. Jogo atribui pontos aos cadastrados, por posições e categorias somando para corridas futuras no mesmo campeonato
-8. Jogo simula próximas corridas até serem feitas todas as existentes do campeonato
-9. Jogo demonstra os rankings e volta ao menu inicial
+2. Sistema inicia e simula a corrida
+3. Sistema simula a corrida
+4. Após cada segmento (curva/reta/chicane) o sistema atualiza situações do mesmo
+5. Sistema indica posições após cada volta
+6. Sistema apresenta reultados no fim da corrida
+7. Sistema atribui pontos aos cadastrados, por posições e categorias somando para corridas futuras no mesmo campeonato
+8. Sistema simula próximas corridas até serem feitas todas as existentes do campeonato
+9. Sistema demonstra os rankings e volta ao menu inicial
 
 ### Fluxo alternativo (1)[Versão premium do jogo - atualização](passo 4)
 4.1 O jogo atualiza as situações do mesmo em tempo real
