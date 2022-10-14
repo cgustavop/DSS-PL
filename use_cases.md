@@ -19,11 +19,14 @@
 
 ## Campeonato(s)
 
+---
+## Criação de um campeonato
+
 ### Descrição:
-- Administrador efetua ações relativas a campeonato(s).
+- Administrador cria um campeonato.
 
 ### Cenários:
-1. O Artur faz login como administrador, vai à opção campeonato e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis. Depois de consultar a lista de campeonatos actualmente disponíveis para jogar, decide adicionar o "CampeUMnato à mesma, pelo que este fica imediatamente disponível para ser jogado.
+1. O Artur faz login como administrador, vai à opção campeonatos e adiciona um capeonato à lista de campeonatos disponíveis. Começa por lhe dar o nome "CampeUMnato". De seguida, escolhe os circuitos "Gualtar Campus", "Sta Tecla Bairro" e "Azurém Campus" da lista de circuitos disponíveis.
 
 ### Pré-condição:
 - Administrador autenticado
@@ -33,95 +36,43 @@
 - Novo campeonato adicionado ao jogo
 
 ### Fluxo normal:
-1. Administrador faz login
-2. Jogo valida acesso e apresenta menu inicial
-3. Admin seleciona campeonato
-4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
-5. Administrador escolhe criar campeonato ou cancelar
-6. Jogo pergunta pelo nome do campeonato ou se quer cancelar
-7. Administrador fornece nome
-8. Jogo mostra menu para pesquisa e selecionamento de circuitos ou para cancelamento
-9. Admin escolhe circuito(s) a adicionar
-10. Jogo guarda novo campeonato e questiona se quer voltar ao menu anterior ou criar outro campeonato
-11. Administrador escolhe voltar ao menu inicial
-12. Jogo apresenta menu campeonato
+1. Administrador fornece nome do campeonato
+2. Sistema verifica disponibilidade do nome
+3. Sistema apresenta circuitos existentes
+4. Admin escolhe circuito(s) a adicionar
+5. Sistema regista o campeonato
 
-### Fluxo de exceção (1)[Tentativa de login como administrador](passo 2):
-2.1. Jogo avisa sobre login inválido
-
-### Fluxo alternativo (2)[Voltar ao menu inicial](passo 4):
-4.1. Administrador escolhe voltar ao menu inicial
-4.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (3)[Administrador escolhe adicionar campeonato](passo 4):
-4.1 Administrador escolhe adicionar campeonato
-4.2 Jogo vai para o menu de adicionar campeonato (especificado abaixo)
-
-### Fluxo alternativo (4)[Administrador escolhe remover campeonato](passo 4):
-4.1 Administrador escolhe remover campeonato
-4.2 Jogo vai para o menu de adicionar campeonato (especificado abaixo)
-
-### Fluxo alternativo (5)[Administrador escolhe cancelar criação de campeonato](passo 6):
-6.1. Administrador escolhe cancelar
-6.2. Jogo apresenta menu campeonato
-
-### Fluxo alternativo (6)[Administrador escolhe criar outro campeonato](passo 10):
-10.1. Administrador escolhe criar outro campeonato
-10.2. Regressa a 6
-
----
+### Fluxo alternativo (1)[Nome indisponível](passo 2):
+2.1 Sistema informa que o nome não está disponível
+2.2 Regressa a 1.
 
 ## Adição de um campeonato à lista de campeonatos disponíveis
 
 ### Descrição:
-- Administrador adiciona campeonatos disponiveis a ser jogados pelos jogadores
+- Administrador disponibiliza campeonato aos jogadores
 
 ### Cenários:
-1. O Artur após ter criado o "CampeUMnato" decide adicioná-lo à lista de campeonatos disponíveis.
-2. O João verifica que existem campeonatos criados que não estão na lista de campeonatos disponíveis e decide adicioná-los.
+1. Após ter criado o "CampeUMnato", o Artur decide adicioná-lo à lista de campeonatos disponíveis.
+2. O João verifica que existem campeonatos que não estão na lista de campeonatos disponíveis e decide adicioná-los.
 
 ### Pré-condição:
-- Administrador autenticado
-- Existência de campeonatos indisponíveis
+- Administrador autenticado.
+- Existência de campeonatos indisponíveis.
 
 ### Pós-condição:
-- Novo campeonato disponível aos jogadores
+- Novo campeonato disponível aos jogadores.
 
 ### Fluxo normal:
-1. Administrador faz login
-2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona campeonato
-4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
-5. Administrador seleciona adição de campeonato(s)
-6. Jogo apresenta campeonatos indisponíveis na lista e pergunta por uma seleção ou se quer voltar
-7. Administrador seleciona um campeonato
-8. Jogo torna campeonato disponível e volta ao menu campeonato
- 
-### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
-2.1. Jogo avisa sobre login inválido
-
-### Fluxo alternativo (2)[Voltar ao menu inicial](passo 5):
-5.1. Administrador escolhe voltar ao menu incial
-5.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (3)[Administrador escolhe criar campeonato]( passo 5):
-5.1. Administrador escolhe criar campeonato
-5.2. Jogo apresenta menu criar campeonato (especificado acima)
-
-### Fluxo alternativo (4)[Administrador escolhe remover campeonato](passo 5):
-5.1. Administrador escolhe remover campeonato
-5.2. Jogo apresenta menu remover campeonato (especificado abaixo)
-
-### Fluxo alternativo (5)[Administrador escolhe voltar ao menu campeonato](passo 7):
-7.1. Administrador escolhe voltar ao menu campeonato
-7.2. Jogo apresenta menu campeonato
+1. Sistema apresenta campeonatos indisponíveis.
+2. Administrador seleciona um campeonato a disponibilizar.
+3. Sistema atualiza campeonato como disponível.
 
 ---
 
-## Remoção de campeonato(s) da lista de campeonatos disponíveis
+## Remoção de um campeonato da lista de campeonatos disponíveis
 
 ### Descrição:
-- Administrador remove campeonato(s) disponiveis a ser jogados pelos jogadores
+- Administrador torna um campeonato indisponível para os jogadores
 
 ### Cenários:
 1. O Alberto reparou que existiam dois campeonatos com os mesmos circuitos mas diferentes nomes, o "CampeUMnato" e o "CampEInato" então decidiu remover da lista de campeonatos disponíveis o "CampeUMnato".
@@ -135,84 +86,37 @@
 - Novo campeonato indisponível aos jogadores
 
 ### Fluxo normal:
-1. Administrador faz login
-2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona campeonato
-4. Jogo apresenta lista de campeonatos e as opções criar campeonato, adicionar ou remover campeonato à lista de disponíveis ou voltar ao menu inicial
-5. Administrador seleciona remoção de campeonato(s) disponíveis
-6. Jogo apresenta campeonatos disponíveis e pergunta por uma seleção ou se quer voltar
-7. Administrador seleciona um campeonato
-8. Jogo torna campeonato indisponível e volta ao menu campeonato
-
-### Fluxo de exceção (1)[Tentativa de login como administrador](passo 2):
-2.1. Jogo avisa sobre login inválido
-
-### Fluxo de exceção (2)[Voltar ao menu incial](passo 4):
-4.1. Administrador escolhe voltar ao menu inicial
-4.2. Jogo apresenta menu inicial
-
-### Fluxo de exceção (3)[Administrador escolhe criar campeonato](passo 4):
-4.1. Administrador escolhe criar campeonato
-4.2. Jogo apresenta menu criar campeonato (especificado acima)
-
-### Fluxo de exceção (4)[Administrador escolhe adicionar campeonato](passo 4):
-4.1. Administrador escolhe adicionar campeonato
-4.2. Jogo apresenta menu adicionar campeonato (especificado acima)
-
-### Fluxo alternativo (5)[Administrador escolhe voltar ao menu campeonato](passo 6):
-6.1. Administrador escolhe voltar
-6.2. Jogo apresenta menu campeonato
+1. Sistema apresenta campeonatos disponíveis.
+2. Administrador seleciona um campeonato a indisponibilizar.
+3. Sistema atualiza campeonato como indisponível.
 
 ---
 
-## Adição de Circuitos
+## Criar um Circuitos
 
 ### Descrição:
-- Administrador adiciona um circuito ao jogo, indicando o tamanho, curvas e chicanes, o grau de ultrapassagem dos segmentos e o nº de voltas
+- Administrador cria um circuito no jogo, indicando o tamanho, curvas e chicanes, o grau de ultrapassagem dos segmentos e o nº de voltas
 
 ### Cenários:
 1. O José faz login no jogo como administrador e opta por adicionar um novo circuito. Indica como nome do novo circuito a adicionar “Gualtar Campus”. De seguida, indica que o mesmo tem 2Km, 9 curvas e 1 chicane. Com essa informação, o sistema calcula que o circuito tem 10 rectas e apresenta a lista de curvas e rectas de modo a que o José indique o grau de dificuldade de ultrapassagem (GDU) em cada uma. Para as rectas 1 e 6, e curvas 2 e 3, indica um GDU de possível. Para as rectas 4, 5, 7 e 8, e curvas 4, 5, 7 e 8, indica um GDU de impossível. Para os restantes, indica um GDU de difícil. Finalmente, regista o circuito, indicando que cada corrida deverá ter 10 voltas. O circuito passa a estar disponível para integrar campeonatos.
 
 ### Pré-condição:
 - Administrador autenticado
-- PC funcional com programa a correr
 
 ### Pós-condição:
 - Novo circuito adicionado ao jogo
 
 ### Fluxo normal:
-1. Administrador faz login
-2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona adição de circuito
-4. Jogo pergunta qual o nome do circuito ou se quer cancelar
-5. Administrador fornece nome
-6. Jogo pergunta pelo tamanho em km e pelo nº de curvas e chicanes e pelos seus respetivos GDUs ou se quer cancelar
-8. Administrador fornece tamanho em km e nº de curvas e chicanes com os seus respetivos GDUs
-9. Jogo pergunta nº de voltas ou se quer cancelar
-10. Administrador especifica nº de voltas
-11. Jogo regista novo circuito e questiona se quer voltar ao menu inicial ou adicionar outro circuito
-12. Administrador escolhe voltar ao menu inicial
-13. Jogo apresenta menu inicial
+1. Administrador fornece nome, tamanho em km, nº de curvas, nº de chicanes e nº voltas
+2. Sistema verifica disponibilidade do nome do circuito
+3. Sistema calcula nº de retas
+4. Sistema apresenta lista de curvas e retas (segmentos da pista)
+5. Administrador fornece GDU's para cada segmento
+6. Sistema regista novo circuito
 
-### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
-2.1. Jogo avisa sobre login inválido
-
-### Fluxo alternativo (2)[Administrador escolhe cancelar adição de circuito](passo 4):
-4.1. Administrador escolhe cancelar
-4.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (3)[Administrador escolhe cancelar adição de circuito](passo 6):
-6.1. Administrador escolhe cancelar
-6.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (4)[Administrador escolhe cancelar adição de circuito](passo 9):
-9.1. Administrador escolhe cancelar
-9.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (5)[Administrador escolhe adicionar outro circuito](passo 12):
-12.1. Administrador escolhe adicionar outro circuito
-12.2. Regressa a 4
-
+### Fluxo alternativo (1)[Nome indisponível](passo 2):
+2.1 Sistema informa que o nome não está disponível
+2.2 Regressa a 1.
 ---
 
 ## Adição de Carros
@@ -225,55 +129,23 @@
 
 ### Pré-condição:
 - Administrador autenticado
-- PC funcional com programa a correr
 
 ### Pós-condição:
 - Novo carro adicionado ao jogo
 
 ### Fluxo normal:
-1. Administrador faz login
-2. Jogo valida acesso e apresenta menu inicial
-3. Administrador seleciona criação de carros
-4. Jogo apresenta uma lista de caregorias disponíveis na atual versão do jogo e pergunta se quer cancelar
-5. Administrador seleciona uma categoria
-6. Jogo pergunta pela marca e modelo do carro ou se quer cancelar
-7. Administrador fornece marca e modelo
-8. Jogo questiona pela cilindrada e potência do motor de combustão ou se quer cancelar
-9. Administrador especifica cilindrada e potência do motor de combustão
-10. Jogo pergunta se o carro é híbrido, se sim indicar potência ou se quer cancelar
-11. Administrador indica potência se o carro for híbrido
-12. Jogo pergunta pelo perfil aerodinâmico do carro ou se quer cancelar
-13. Administrador indica PAC
-14. Jogo regista novo carro e questiona se quer voltar ao menu inicial ou adicionar outro carro
-15. Administrador escolhe voltar ao menu inicial
-16. Jogo apresenta menu inicial
+1. Sistema apresenta as categorias disponíveis
+2. Administrador escolhe uma categoria
+3. Administrador fornece marca e modelo
+4. Administrador especifica cilindrada e potência do motor de combustão
+5. Sistema verifica se a cilindrada se enquadra na categoria
+6. Administrador indica que o carro não é híbrido
+7. Administrador indica PAC
+8. Jogo regista novo carro
 
-### Fluxo de exceção (1)[Tentativa inválida de login como administrador](passo 2):
-2.1. Jogo avisa sobre login inválido
-
-### Fluxo alternativo (2)[Administrador escolhe cancelar adição de carro](passo 5):
-4.1. Administrador escolhe cancelar
-4.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (3)[Administrador escolhe cancelar adição de carro](passo 6):
-6.1. Administrador escolhe cancelar
-6.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (4)[Administrador escolhe cancelar adição de carro](passo 8):
-8.1. Administrador escolhe cancelar
-8.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (5)[Administrador escolhe cancelar adição de carro](passo 10):
-10.1. Administrador escolhe cancelar
-10.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (6)[Administrador escolhe cancelar adição de carro](passo 12):
-12.1. Administrador escolhe cancelar
-12.2. Jogo apresenta menu inicial
-
-### Fluxo alternativo (6)[Administrador escolhe adicionar outro carro](passo 14):
-14.1. Administrador escolhe adicionar outro carro
-14.2. Regressa a 4
+### Fluxo de alternativo (1)[Carro é híbrido](passo 6):
+6.1 Administrador indica que o carro é híbrido e a potência do motor elétrico.
+6.2 Salta para 7.
 
 ---
 
