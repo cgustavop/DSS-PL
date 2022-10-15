@@ -14,32 +14,54 @@
 
     - Jogador
     - Administrador
+    - Gestor
 
 ---
-## Criação da conta
+## Criação da conta de Administrador
 
 ### Descrição:
-- Utilizador (Administrador ou Jogador) cria conta.
+- Gestor cria uma conta para um administrador.
 
 ### Cenários:
-1. O Artur quer criar uma conta como adminstrador e, assim sendo, escolhe a opção de criação de conta. Começa por selecionar se quer ser administrador ou jogador. Depois disso escolhe o nome "Artur" e, de seguida, define uma palavra-passe.
-2. O Jorge quer criar uma conta como jogador e, assim sendo, escolhe a opção de criação de conta. Começa por selecionar se quer ser administrador ou jogador. Depois disso escolhe o nome "Jorge" e, de seguida, define uma palavra-passe.
+1. O Manuel (Gestor) quer criar uma conta para um administrador. Fornece o nome "Jorge" e, de seguida, define uma palavra-passe.
 
 ### Pré-condição:
-- True (?)
+- True 
 
 ### Pós-condição:
-- Nova conta adicionado ao jogo.
+- Nova conta de Administrador adicionado ao jogo.
 
 ### Fluxo normal:
-1. Utilizador escolhe a sua função (Admin ou Jogador)
-2. Utilizador define um nome e uma palavra passe
-3. Sistema verifica disponibilidade do nome
-4. Sistema regista a conta
+1. Gestor fornece nome e palavra-passe
+2. Sistema verifica disponibilidade do nome
+3. Sistema regista a conta
 
-### Fluxo alternativo (1)[Nome indisponível](passo 3):
-3.1 Sistema informa que o nome não está disponível
-3.2 Regressa a 2.
+### Fluxo alternativo (1)[Nome indisponível](passo 2):
+2.1 Sistema informa que o nome não está disponível
+2.2 Regressa a 1.
+
+## Criação da conta de Jogador
+
+### Descrição:
+- Jogador cria conta.
+
+### Cenários:
+1. O Jorge quer criar uma conta como jogador. Começa por escolher o seu nome ("Jorge") e, de seguida, define uma palavra-passe.
+
+### Pré-condição:
+- True 
+
+### Pós-condição:
+- Nova conta de Jogador adicionada ao jogo.
+
+### Fluxo normal:
+1. Utilizador define um nome e uma palavra passe
+2. Sistema verifica disponibilidade do nome
+3. Sistema regista a conta
+
+### Fluxo alternativo (1)[Nome indisponível](passo 2):
+2.1 Sistema informa que o nome não está disponível
+2.2 Regressa a 1.
 
 ## Login
 
@@ -50,19 +72,20 @@
 1. O Artur quer fazer o login na sua conta. Começa por escolher a opção de login e posteriormente fornece o seu nome e palavra-passe ao jogo.
 
 ### Pré-condição:
-- Existência da conta.
+- True
 
 ### Pós-condição:
-- Utilizador autenticado.
+- Utilizador autenticado (Administrador ou jogador)
 
 ### Fluxo normal:
 1. Utilizador fornece um nome e uma palavra passe
 2. Sistema verifica validade dos dados
-3. Sistema autentica o login do utilizador
+3. Sistema verifica que o utilizador é um jogador
+4. Sistema autentica o login do utilizador como jogador 
 
-### Fluxo alternativo (1)[Dados de login inválidos](passo 2): 
-2.1 Sistema informa que os dados de login são inválidos
-2.2 Regressa ao 1.
+### Fluxo alternativo (1)[Dados de login de admin] (passo 3)
+3.1 Sistema verifica que o utilizador é um admin
+3.2 Sistema autentica o login do utilizador como admin.
 
 ## Campeonato(s)
 
