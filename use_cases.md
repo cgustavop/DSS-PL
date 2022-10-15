@@ -29,12 +29,12 @@
 - True 
 
 ### Pós-condição:
-- Nova conta de Administrador adicionado ao jogo.
+- Nova conta de Administrador adicionada ao sistema.
 
 ### Fluxo normal:
 1. Gestor fornece nome e palavra-passe
 2. Sistema verifica disponibilidade do nome
-3. Sistema regista a conta
+3. Sistema regista a conta como "administrador"
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
 2.1 Sistema informa que o nome não está disponível
@@ -57,7 +57,7 @@
 ### Fluxo normal:
 1. Utilizador define um nome e uma palavra passe
 2. Sistema verifica disponibilidade do nome
-3. Sistema regista a conta
+3. Sistema regista a conta como "jogador"
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
 2.1 Sistema informa que o nome não está disponível
@@ -75,17 +75,17 @@
 - True
 
 ### Pós-condição:
-- Utilizador autenticado (Administrador ou jogador)
+- Utilizador autenticado (como "administrador" ou "jogador")
 
 ### Fluxo normal:
 1. Utilizador fornece um nome e uma palavra passe
 2. Sistema verifica validade dos dados
-3. Sistema verifica que o utilizador é um jogador
-4. Sistema autentica o login do utilizador como jogador 
+3. Sistema verifica que o utilizador é um "jogador"
+4. Sistema autentica o login do utilizador como "jogador"
 
 ### Fluxo alternativo (1)[Dados de login de admin] (passo 3)
-3.1 Sistema verifica que o utilizador é um admin
-3.2 Sistema autentica o login do utilizador como admin.
+3.1 Sistema verifica que o utilizador é um "administrador"
+3.2 Sistema autentica o login do utilizador como "administrador".
 
 ## Campeonato(s)
 
