@@ -2,6 +2,7 @@
 
 - ### Requisitos
 
+    - Conta(s)
     - Campeonato(s)
     - Adição de circuito(s)
     - Adição de carro(s)
@@ -15,6 +16,8 @@
     - Jogador
     - Administrador
     - Gestor
+
+## Conta(s)
 
 ---
 ## Criação da conta de Administrador
@@ -162,10 +165,10 @@
 
 ---
 
-## Criar um Circuitos
+## Adição de um circuito
 
 ### Descrição:
-- Administrador cria um circuito no jogo, indicando o tamanho, curvas e chicanes, o grau de ultrapassagem dos segmentos e o nº de voltas
+- Administrador adiciona um circuito no jogo, indicando o tamanho, curvas e chicanes, o grau de ultrapassagem dos segmentos e o nº de voltas
 
 ### Cenários:
 1. O José faz login no jogo como administrador e opta por adicionar um novo circuito. Indica como nome do novo circuito a adicionar “Gualtar Campus”. De seguida, indica que o mesmo tem 2Km, 9 curvas e 1 chicane. Com essa informação, o sistema calcula que o circuito tem 10 rectas e apresenta a lista de curvas e rectas de modo a que o José indique o grau de dificuldade de ultrapassagem (GDU) em cada uma. Para as rectas 1 e 6, e curvas 2 e 3, indica um GDU de possível. Para as rectas 4, 5, 7 e 8, e curvas 4, 5, 7 e 8, indica um GDU de impossível. Para os restantes, indica um GDU de difícil. Finalmente, regista o circuito, indicando que cada corrida deverá ter 10 voltas. O circuito passa a estar disponível para integrar campeonatos.
@@ -190,7 +193,7 @@
 
 ---
 
-## Adição de Carros
+## Adição de um carro
 
 ### Descrição:
 - Administrador adiciona um carro ao jogo, indicando categoria, marca, modelo, cilindrada, potências do(s) motor(es) e o perfil aerodinâmico
@@ -221,7 +224,7 @@
 
 ---
 
-## Adição de Pilotos
+## Adição de um piloto
 
 ### Descrição:
 - Administrador adiciona um piloto ao jogo, indicando nome e níveis de perícia
@@ -248,7 +251,7 @@
 
 ---
 
-## Configurar Campeonato
+## Configuraração de um campeonato
 
 ### Descrição:
 - Jogador joga sozinho ou com outros jogadores, escolhendo campeonato, carro e piloto
@@ -263,11 +266,15 @@
 - Campeonato configurado
 
 ### Fluxo normal:
-1. Jogador faz login
+1. Jogador faz autenticação com versão base do jogo
 2. Sistema autentica login
 3. Jogador seleciona campeonato, carpp e pitolo pretendido
 4. Jogador decide começar campeonato
 5. Sistema regista configuração de campeonato
+
+### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
+1.1 Jogador faz login com conta premium
+1.2 Salta para 2
 
 ### Fluxo alternativo (1)[Não faz login](passo 1):
 1.1 Jogador não faz login
@@ -283,7 +290,7 @@
 
 ---
 
-## Configurar Corrida(s)
+## Configuraração de uma corrida
 
 ### Descrição:
 - Jogador(es) configura(m) o(s) carro(s) para a corrida
@@ -314,7 +321,7 @@
 
 ---
 
-## Simulação de Corrida(s)
+## Simulação da Corrida
 
 ### Descrição:
 - Jogo simula a corrida
