@@ -222,6 +222,10 @@
 6.2 Administrador force a potência do motor elétrico
 6.3 Salta para 7.
 
+### Fluxo alternativo (2)[Cilindrada não se enquadra na categoria](passo 5):
+5.1 Sistema verifica que a cilindrada não se enquadra na categoria.
+5.2 Volta para 4.
+
 ---
 
 ## Adição de um piloto
@@ -243,18 +247,23 @@
 1. Administrador indica o nome do piloto
 2. Sistema verifica disponibilidade do nome do piloto
 3. Administrador indica os níveis de perícia nos critérios de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") 
+4. Sistema verifica que os dados de íveis de perícia estão válidos
 5. Sistema regista novo piloto
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
 2.1 Sistema informa que o nome não está disponível
 2.2 Regressa a 1.
 
+### Fluxo alternativo (2)[Níveis de perícia inválidos](passo 4):
+4.1 Sistema informa que os dados são inválidos
+4.2 Regressa a 3.
+
 ---
 
-## Configuraração de um campeonato
+## Configuração de um campeonato
 
 ### Descrição:
-- Jogador joga sozinho ou com outros jogadores, escolhendo campeonato, carro e piloto
+- Jogador configura um novo campeonato, escolhendo campeonato, carro e piloto
 
 ### Cenários:
 1. O Francisco e três amigos resolveram jogar um campeonato de Racing Manager. O Francisco faz login como jogador, escolhe um campeonato e avalia os circuitos que o compõem. Como a maioria são circuitos rápidos, decide participar com um Ferrari 488 GTE (um carro da categoria C2). Escolhe como piloto Battery Voltas, por considerar ser um piloto equilibrado em termos de desempenho. Após inscrever-se, cada um dos amigos escolhe também o seu carro e piloto.
@@ -268,9 +277,46 @@
 ### Fluxo normal:
 1. Jogador faz autenticação com versão base do jogo
 2. Sistema autentica login
-3. Jogador seleciona campeonato, carpp e pitolo pretendido
-4. Jogador decide começar campeonato
+3. Jogador seleciona campeonato, jogador escolhe carro e pitolo pretendido 
 5. Sistema regista configuração de campeonato
+6. Jogador começa campeonato
+
+### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
+1.1 Jogador faz login com conta premium
+1.2 Salta para 2
+
+### Fluxo alternativo (2)[Não faz login](passo 1):
+1.1 Jogador não faz login
+1.2 Salta para 3
+
+### Fluxo de exceção (3)[Tentativa inválida de login](passo 2):
+2.1.Jogo avisa sobre login inválido
+2.2 Sistema cancela configuração de corrida
+
+
+---
+
+## Registo num campeonato
+
+### Descrição:
+- Jogador regista-se num campeonato configurado, escolhendo campeonato, carro e piloto
+
+### Cenários:
+1. O Francisco e três amigos resolveram jogar um campeonato de Racing Manager. O Francisco faz login como jogador, escolhe um campeonato e avalia os circuitos que o compõem. Como a maioria são circuitos rápidos, decide participar com um Ferrari 488 GTE (um carro da categoria C2). Escolhe como piloto Battery Voltas, por considerar ser um piloto equilibrado em termos de desempenho. Após inscrever-se, cada um dos amigos escolhe também o seu carro e piloto.
+
+### Pré-condição:
+- Campeonato configurado
+
+### Pós-condição:
+- Jogador registado
+
+### Fluxo normal:
+1. Jogador faz autenticação com versão base do jogo
+2. Sistema autentica login
+4. Sistema mostra campeonatos configurados
+3. Jogador seleciona campeonato, carro e pitolo pretendido
+4. Sistema verifica dados
+5. Sistema regista o jogador no campeonato
 
 ### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
 1.1 Jogador faz login com conta premium
@@ -290,7 +336,7 @@
 
 ---
 
-## Configuraração de uma corrida
+## Preparação para a corrida
 
 ### Descrição:
 - Jogador(es) configura(m) o(s) carro(s) para a corrida
@@ -299,25 +345,20 @@
 1. As condições da primeira corrida são apresentadas: o circuito é o “Gualtar Campus” e a situação meteorológica é de tempo seco (a outra possibilidade seria chuva). O Francisco sabe que cada um dos jogadores deve alterar a afinação do carro. O Francisco decide alterar a afinação (possível por se tratar de um C2) e aumenta a downforce de 0.5 (valor neutro) para 0.7. Após a afinação a seu gosto, o Francisco escolhe pneus macios, o que permite ter melhor desempenho no início da corrida, à custa do desempenho no final. Dos três modos de funcionamento do motor (conservador, normal ou agressivo), o Francisco escolhe o agressivo, aumentado o desempenho do carro à custa de maior probabilidade de o motor ter uma avaria.
 
 ### Pré-condição:
-- Campeonato configurado
+- Jogador presente no campeonato que foi começado
 
 ### Pós-condição:
-- Todos os jogadores ficam registados como "ready" e corrida está configurada
+- Jogador registado como pronto para corrida
 
 ### Fluxo normal:
 1. Jogador escolhe fazer afinações ao seu carro
 2. Jogador faz afinações e escolhe alterar ou não a downforce
 3. Jogador escolhe o tipo de pneu que pretende e o tipo de motor
-4. Sistema regista jogador como "ready"
-5. Sistema verifica que todos os jogadores estão prontos e regista configuração de corrida
+4. Sistema regista jogador como pronto
 
 ### Fluxo alternativo (1)[Não faz afinações](passo 1):
 1.1. Jogador escolhe não fazer afinações ao seu carro
 1.2. Salta para 3
-
-### Fluxo alternativo (1)[Nem todos os jogadores estão registados como "ready"](passo 4):
-4.1. Sistema verifica que nem todos os jogadores estão registados como "ready"
-4.2. Regressa a 1
 
 ---
 
@@ -332,7 +373,7 @@
 3. O Asdrubal tem a versão premium do jogo, logo os cálculos são efetuado às posições relativas de igual forma mas, essas posições são atualizadas em tempo real em qualquer parte/segmento da corrida.
 
 ### Pré-condição:
-- Corrida configurada
+- Corrida com todos os jogadores prontos
 
 ### Pós-condição:
 - Corrida simulada
@@ -341,10 +382,10 @@
 1. Sistema inicia a simulação da corrida
 2. Após cada segmento (curva/reta/chicane) o sistema atualiza situações do mesmo
 3. Sistema indica posições após cada volta
-4. Sistema apresenta reultados no fim da corrida
-5. Sistema atribui pontos aos cadastrados, por posições e categorias somando para corridas futuras no mesmo campeonato
+4. Sistema apresenta resultados no fim da corrida
+5. Sistema atribui pontos a cada jogador, por posições e categorias somando para corridas futuras no mesmo campeonato
 6. Sistema simula próximas corridas até serem feitas todas as existentes do campeonato
-7. Sistema demonstra os rankings e volta ao menu inicial
+7. Sistema mostra os rankings
 
 ### Fluxo alternativo (1)[Versão premium do jogo - atualização](passo 2)
 2.1 O jogo atualiza as situações do mesmo em tempo real
@@ -353,3 +394,7 @@
 ### Fluxo alternativo (2)[Versão premium do jogo - posições](passo 3)
 3.1 O jogo indica posições em tempo real
 3.2 Regressa ao 4
+
+### Fluxo alternativo (3)[Jogador faz login para guardar os pontos obtidos](passo 7)
+7.1 Jogador faz login
+7.2 Sistema contabiliza os pontos obtidos no ranking da sua conta
