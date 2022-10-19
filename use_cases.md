@@ -98,7 +98,7 @@
 ## Login
 
 ### Descrição:
-- Utilizador (Administrador ou Jogador) faz login na sua conta.
+- Guest (Administrador ou Jogador) faz login na sua conta.
 
 ### Cenários:
 1. O Artur quer fazer o login na sua conta. Começa por escolher a opção de login e posteriormente fornece o seu nome e palavra-passe ao jogo.
