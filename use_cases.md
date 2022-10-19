@@ -209,22 +209,35 @@
 
 ### Fluxo normal:
 1. Sistema apresenta as categorias disponíveis
-2. Administrador escolhe uma categoria
-3. Administrador fornece marca e modelo
-4. Administrador especifica cilindrada e potência do motor de combustão
-5. Sistema verifica se a cilindrada se enquadra na categoria
-6. Administrador indica que o carro não é híbrido
+2. Administrador escolhe categoria, marca, modelo, cilindrada e potência
+3. Sistema verifica que o carro é C1 e necessita de fiabilidade (e pode ser híbrido)
+4. Administrador indica que carro não é híbrido
+5. Administrador indica fiabilidade
+6. Sistema verifica fiabilidade
 7. Administrador indica PAC
-8. Sistema regista novo carro
+8. Sistema regista carro e este fica disponível para jogar
 
-### Fluxo alternativo (1)[Carro é híbrido](passo 6):
-6.1 Administrador indica que o carro é híbrido.
-6.2 Administrador force a potência do motor elétrico
-6.3 Salta para 7.
+### Fluxo alternativo (1)[Carro é SC](passo 3):
+3.1 Sistema verifica que o carro é SC
+3.2 Regressa a 5
 
-### Fluxo alternativo (2)[Cilindrada não se enquadra na categoria](passo 5):
+### Fluxo alternativo (2)[Carro é C2](passo 3):
+3.1 Sistema verifica que o carro é C2
+3.2 Regressa a 4
+
+
+### Fluxo alternativo (3)[Carro é GT](passo 3):
+3.1 Sistema verifica que o carro é GT
+3.2 Regressa a 4
+
+### Fluxo alternativo (4)[Carro é C2 híbrido](passo 4):
+4.1 Administrador indica que carro é híbrido
+4.2 Administrador indica potência do motor elétrico
+4.3 Regressa para 5.
+
+### Fluxo alternativo (5)[Cilindrada não se enquadra na categoria](passo 2):
 5.1 Sistema verifica que a cilindrada não se enquadra na categoria.
-5.2 Volta para 4.
+5.2 Regressa para 4.
 
 ---
 
@@ -283,11 +296,11 @@
 
 ### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
 1.1 Jogador faz login com conta premium
-1.2 Salta para 2
+1.2 Regressa para 2
 
 ### Fluxo alternativo (2)[Não faz login](passo 1):
 1.1 Jogador não faz login
-1.2 Salta para 3
+1.2 Regressa para 3
 
 ### Fluxo de exceção (3)[Tentativa inválida de login](passo 2):
 2.1.Jogo avisa sobre login inválido
@@ -314,17 +327,17 @@
 1. Jogador faz autenticação com versão base do jogo
 2. Sistema autentica login
 4. Sistema mostra campeonatos configurados
-3. Jogador seleciona campeonato, carro e pitolo pretendido
+3. Jogador seleciona campeonato, carro e p pretendido
 4. Sistema verifica dados
 5. Sistema regista o jogador no campeonato
 
 ### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
 1.1 Jogador faz login com conta premium
-1.2 Salta para 2
+1.2 Regressa para 2
 
 ### Fluxo alternativo (1)[Não faz login](passo 1):
 1.1 Jogador não faz login
-1.2 Salta para 3
+1.2 Regressa para 3
 
 ### Fluxo de exceção (2)[Tentativa inválida de login](passo 2):
 2.1.Jogo avisa sobre login inválido
@@ -352,13 +365,17 @@
 
 ### Fluxo normal:
 1. Jogador escolhe fazer afinações ao seu carro
-2. Jogador faz afinações e escolhe alterar ou não a downforce
-3. Jogador escolhe o tipo de pneu que pretende e o tipo de motor
+2. Jogador faz afinações
+3. Jogador escolhe o tipo de pneu que pretende e se motor é híbrido ou não
 4. Sistema regista jogador como pronto
 
 ### Fluxo alternativo (1)[Não faz afinações](passo 1):
 1.1. Jogador escolhe não fazer afinações ao seu carro
-1.2. Salta para 3
+1.2. Regressa para 3
+
+### Fluxo alternativo (2)[Escolha de motor](passo 3):
+3.1 Jogador não consegue escolher tipo de motor se o carro for de categoria SC
+3.2 Regressa para 4
 
 ---
 
