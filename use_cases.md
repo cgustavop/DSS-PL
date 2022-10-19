@@ -282,7 +282,6 @@
 
 ### Pré-condição:
 - Administrador autenticado
-- PC funcional com programa a correr
 
 ### Pós-condição:
 - Novo piloto adicionado ao jogo
@@ -316,66 +315,18 @@
 - True
 
 ### Pós-condição:
-- Campeonato configurado
-
-### Fluxo normal:
-1. Jogador faz autenticação com versão base do jogo
-2. Sistema autentica login
-3. Jogador seleciona campeonato, jogador escolhe carro e pitolo pretendido 
-5. Sistema regista configuração de campeonato
-6. Jogador começa campeonato
-
-### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
-1.1 Jogador faz login com conta premium
-1.2 Regressa para 2
-
-### Fluxo alternativo (2)[Não faz login](passo 1):
-1.1 Jogador não faz login
-1.2 Regressa para 3
-
-### Fluxo de exceção (3)[Tentativa inválida de login](passo 2):
-2.1.Jogo avisa sobre login inválido
-2.2 Sistema cancela configuração de corrida
-
----
-
-## Registo num campeonato
-
-### Descrição:
-- Jogador regista-se num campeonato configurado, escolhendo campeonato, carro e piloto
-
-### Cenários:
-1. O Francisco e três amigos resolveram jogar um campeonato de Racing Manager. O Francisco faz login como jogador, escolhe um campeonato e avalia os circuitos que o compõem. Como a maioria são circuitos rápidos, decide participar com um Ferrari 488 GTE (um carro da categoria C2). Escolhe como piloto Battery Voltas, por considerar ser um piloto equilibrado em termos de desempenho. Após inscrever-se, cada um dos amigos escolhe também o seu carro e piloto.
-
-### Pré-condição:
-- Campeonato configurado
-
-### Pós-condição:
 - Jogador registado
 
 ### Fluxo normal:
-1. Jogador faz autenticação com versão base do jogo
-2. Sistema autentica login
-4. Sistema mostra campeonatos configurados
-3. Jogador seleciona campeonato, carro e p pretendido
-4. Sistema verifica dados
-5. Sistema regista o jogador no campeonato
+1. Jogador seleciona campeonato
+2. Jogador seleciona carro e piloto pretendido
+3. Sistema verifica dados
+4. Sistema regista o jogador no campeonato
+5. Jogador decide começar campeonato
 
-### Fluxo alternativo (1)[Jogador autentica-se com versão premium do jogo](passo 1):
-1.1 Jogador faz login com conta premium
-1.2 Regressa para 2
-
-### Fluxo alternativo (1)[Não faz login](passo 1):
-1.1 Jogador não faz login
-1.2 Regressa para 3
-
-### Fluxo de exceção (2)[Tentativa inválida de login](passo 2):
-2.1.Jogo avisa sobre login inválido
-2.2 Sistema cancela configuração de corrida
-
-### Fluxo alternativo (3)[](passo 4):
-4.1. Jogador escolhe adicionar outro jogador
-4.2. Regressa a 1
+### Fluxo alternativo (1)[Adicionar outro jogador](passo 5):
+5.1. Jogador escolhe adicionar outro jogador
+5.2. Regressa a 2
 
 ---
 
@@ -388,7 +339,7 @@
 1. As condições da primeira corrida são apresentadas: o circuito é o “Gualtar Campus” e a situação meteorológica é de tempo seco (a outra possibilidade seria chuva). O Francisco sabe que cada um dos jogadores deve alterar a afinação do carro. O Francisco decide alterar a afinação (possível por se tratar de um C2) e aumenta a downforce de 0.5 (valor neutro) para 0.7. Após a afinação a seu gosto, o Francisco escolhe pneus macios, o que permite ter melhor desempenho no início da corrida, à custa do desempenho no final. Dos três modos de funcionamento do motor (conservador, normal ou agressivo), o Francisco escolhe o agressivo, aumentado o desempenho do carro à custa de maior probabilidade de o motor ter uma avaria.
 
 ### Pré-condição:
-- Jogador presente no campeonato que foi começado
+- Campeonato configurado
 
 ### Pós-condição:
 - Jogador registado como pronto para corrida
@@ -419,7 +370,8 @@
 2. A Sara optou por um carro da categoria C1, híbrido, com downforce mínima, modo de motor agressivo, pneus macios e um piloto com SVA alto. Assim, durante a primeira volta consegue fazer uma ultrapassagem na curva 74. No entanto, na sétima volta, ao tentar uma ultrapassagem na chicane, acaba por sair de pista e ficar na última posição. Os pneus já não estavam em bom estado e acabou por não conseguir ultrapassar ninguém até ao final da corrida. Terminou em terceiro lugar pois o Manuel despistou-se na curva 1 durante a última volta. Nesta corrida nenhum carro sofreu uma avaria.
 
 ### Pré-condição:
-- Corrida com todos os jogadores prontos e jogador registado no sistema como "jogador base" ou não ter efetuado login
+- Corrida com todos os jogadores prontos 
+- Jogador registado no sistema como "jogador base" ou não ter efetuado login
 
 ### Pós-condição:
 - Corrida simulada
@@ -451,7 +403,8 @@
 2. A Sara optou por um carro da categoria C1, híbrido, com downforce mínima, modo de motor agressivo, pneus macios e um piloto com SVA alto. Assim, durante a primeira volta consegue fazer uma ultrapassagem na curva 74. No entanto, na sétima volta, ao tentar uma ultrapassagem na chicane, acaba por sair de pista e ficar na última posição. Os pneus já não estavam em bom estado e acabou por não conseguir ultrapassar ninguém até ao final da corrida. Terminou em terceiro lugar pois o Manuel despistou-se na curva 1 durante a última volta. Nesta corrida nenhum carro sofreu uma avaria.
 
 ### Pré-condição:
-- Corrida com todos os jogadores prontos e jogador registado no sistema como "jogador premium"
+- Corrida com todos os jogadores prontos 
+- Jogador registado no sistema como "jogador premium"
 
 ### Pós-condição:
 - Corrida simulada
