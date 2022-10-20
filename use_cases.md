@@ -385,13 +385,18 @@
 4. Sistema apresenta resultados no fim da corrida
 5. Sistema atribui pontos a cada jogador, por posições e categorias somando para corridas futuras no mesmo campeonato
 6. Sistema simula próximas corridas até serem feitas todas as existentes do campeonato
-7. Jogador escolhe não fazer login
-8. Sistema mostra os rankings
+7. Sistema verifica que jogador não está autenticado
+8. Jogador escolhe fazer login
+9. Sistema contabiliza os pontos obtidos no ranking da sua conta 
+10. Sistema mostra os rankings
 
-### Fluxo alternativo (3)[Jogador faz login para guardar os pontos obtidos](passo 7)
-7.1 Jogador faz login  
-7.2 Sistema contabiliza os pontos obtidos no ranking da sua conta  
-7.3 Regressa a 8
+### Fluxo alternativo (1)[Jogador já está autenticado](passo 7)
+7.1 Sistema verifica que jogador já está autenticado
+7.2 Regressa a 9
+
+### Fluxo alternativo (2)[Jogador não faz login](passo 8)
+8.1 Jogador não faz login  
+8.2 Regressa a 10
 
 ---
 
