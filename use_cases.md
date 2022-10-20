@@ -13,10 +13,11 @@
 
 - ### Atores
 
-    - Jogador
-    - Administrador
     - Gestor
-
+    - Administrador
+    - Jogador
+    - Guest
+    
 ## Conta(s)
 
 ---
@@ -115,7 +116,7 @@
 3. Sistema verifica que o utilizador é um "jogador"
 4. Sistema autentica o login do utilizador como "jogador"
 
-### Fluxo alternativo (1)[Dados de login de admin] (passo 3)
+### Fluxo alternativo (1)[Dados de login de administrador] (passo 3)
 3.1 Sistema verifica que o utilizador é um "administrador"
 3.2 Sistema autentica o login do utilizador como "administrador".
 
