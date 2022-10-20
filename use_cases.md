@@ -391,7 +391,7 @@
 10. Sistema mostra os rankings
 
 ### Fluxo alternativo (1)[Jogador já está autenticado](passo 7)
-7.1 Sistema verifica que jogador já está autenticado
+7.1 Sistema verifica que jogador já está autenticado  
 7.2 Regressa a 9
 
 ### Fluxo alternativo (2)[Jogador não faz login](passo 8)
