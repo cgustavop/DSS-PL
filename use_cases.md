@@ -291,7 +291,7 @@
 1. Administrador indica o nome do piloto
 2. Sistema verifica disponibilidade do nome do piloto
 3. Administrador indica os níveis de perícia nos critérios de CTS ("Chuva vs. Tempo Seco") e SVA ("Segurança vs Agressividade") 
-4. Sistema verifica que os dados de íveis de perícia estão válidos
+4. Sistema verifica que os dados de níveis de perícia estão válidos
 5. Sistema regista novo piloto
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
