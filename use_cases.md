@@ -1,24 +1,27 @@
-# Use Cases
+# Especificação dos Use Cases
 
-- ### Requisitos
+## Use Cases
+- Criação da conta de Administrador
+- Criação da conta de Jogador Base
+- Criação da conta de Jogador Premium
+- Login
+- Criação de um campeonato
+- Adição de um campeonato à lista de campeonatos disponíveis
+- Remoção de um campeonato à lista de campeonatos disponíveis
+- Adição de um circuito
+- Adição de um carro
+- Adição de um piloto
+- Configuração de um campeonato
+- Preparação para a corrida
+- Simulação da Corrida Base
+- Simulação da Corrida Premium
 
-    - Conta(s)
-    - Campeonato(s)
-    - Adição de circuito(s)
-    - Adição de carro(s)
-    - Adição de piloto(s)
-    - Registo num campeonato
-    - Alteração de afinação
-    - Começo da corrida
+## Atores
 
-- ### Atores
-
-    - Gestor
-    - Administrador
-    - Jogador
-    - Guest
-    
-## Conta(s)
+- Gestor
+- Administrador
+- Jogador
+- Guest
 
 ---
 ## Criação da conta de Administrador
@@ -119,8 +122,6 @@
 ### Fluxo alternativo (1)[Dados de login de administrador] (passo 3)
 3.1 Sistema verifica que o utilizador é um "administrador"  
 3.2 Sistema autentica o login do utilizador como "administrador".
-
-## Campeonato(s)
 
 ---
 
