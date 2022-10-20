@@ -412,8 +412,8 @@
 
 ### Fluxo normal:
 1. Sistema inicia a simulação da corrida
-2. O jogo atualiza as situações do mesmo em tempo real
-3. O jogo indica posições em tempo real
+2. Sistema atualiza as situações do mesmo em tempo real
+3. Sistema indica posições em tempo real
 4. Sistema apresenta resultados no fim da corrida
 5. Sistema atribui pontos a cada jogador, por posições e categorias somando para corridas futuras no mesmo campeonato
 6. Sistema simula próximas corridas até serem feitas todas as existentes do campeonato
