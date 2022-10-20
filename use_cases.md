@@ -49,7 +49,7 @@
 ## Criação da conta de Jogador Base
 
 ### Descrição:
-- Jogador cria conta.
+- Guest cria conta.
 
 ### Cenários:
 1. O Jorge quer criar uma conta como jogador base. Começa por escolher o seu nome ("Jorge") e, de seguida, define uma palavra-passe.
@@ -61,7 +61,7 @@
 - Nova conta de Jogador Base adicionada ao jogo.
 
 ### Fluxo normal:
-1. Utilizador define um nome e uma palavra passe
+1. Guest define um nome e uma palavra passe
 2. Sistema verifica disponibilidade do nome
 3. Sistema regista a conta como "jogador base"
 
@@ -74,7 +74,7 @@
 ## Criação da conta de Jogador Premium
 
 ### Descrição:
-- Jogador cria conta.
+- Guest cria conta.
 
 ### Cenários:
 1. O Jorge quer criar uma conta como jogador premium. Começa por escolher o seu nome ("Jorge") e, de seguida, define uma palavra-passe.
@@ -86,7 +86,7 @@
 - Nova conta de Jogador Premium adicionada ao jogo.
 
 ### Fluxo normal:
-1. Utilizador define um nome e uma palavra passe
+1. Guest define um nome e uma palavra passe
 2. Sistema verifica disponibilidade do nome
 3. Sistema regista a conta como "jogador premium"
 
