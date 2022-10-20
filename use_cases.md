@@ -41,7 +41,7 @@
 3. Sistema regista a conta como "administrador"
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
-2.1 Sistema informa que o nome não está disponível
+2.1 Sistema informa que o nome não está disponível  
 2.2 Regressa a 1.
 
 ---
