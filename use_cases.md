@@ -66,7 +66,7 @@
 3. Sistema regista a conta como "jogador base"
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
-2.1 Sistema informa que o nome não está disponível
+2.1 Sistema informa que o nome não está disponível \
 2.2 Regressa a 1.
 
 ---
@@ -91,7 +91,7 @@
 3. Sistema regista a conta como "jogador premium"
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
-2.1 Sistema informa que o nome não está disponível
+2.1 Sistema informa que o nome não está disponível \
 2.2 Regressa a 1.
 
 ---
@@ -117,7 +117,7 @@
 4. Sistema autentica o login do utilizador como "jogador"
 
 ### Fluxo alternativo (1)[Dados de login de administrador] (passo 3)
-3.1 Sistema verifica que o utilizador é um "administrador"
+3.1 Sistema verifica que o utilizador é um "administrador" \
 3.2 Sistema autentica o login do utilizador como "administrador".
 
 ## Campeonato(s)
@@ -147,7 +147,7 @@
 5. Sistema regista o campeonato
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
-2.1 Sistema informa que o nome não está disponível
+2.1 Sistema informa que o nome não está disponível \
 2.2 Regressa a 1.
 
 ---
@@ -221,7 +221,7 @@
 6. Sistema regista novo circuito
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
-2.1 Sistema informa que o nome não está disponível
+2.1 Sistema informa que o nome não está disponível \
 2.2 Regressa a 1.
 
 ---
@@ -251,24 +251,24 @@
 8. Sistema regista carro e este fica disponível para jogar
 
 ### Fluxo alternativo (1)[Carro é SC](passo 3):
-3.1 Sistema verifica que o carro é SC
+3.1 Sistema verifica que o carro é SC \
 3.2 Regressa a 5
 
 ### Fluxo alternativo (2)[Carro é C2](passo 3):
-3.1 Sistema verifica que o carro é C2
+3.1 Sistema verifica que o carro é C2 \
 3.2 Regressa a 4
 
 ### Fluxo alternativo (3)[Carro é GT](passo 3):
-3.1 Sistema verifica que o carro é GT
+3.1 Sistema verifica que o carro é GT \
 3.2 Regressa a 4
 
 ### Fluxo alternativo (4)[Carro é C2 híbrido](passo 4):
-4.1 Administrador indica que carro é híbrido
-4.2 Administrador indica potência do motor elétrico
+4.1 Administrador indica que carro é híbrido \
+4.2 Administrador indica potência do motor elétrico \
 4.3 Regressa para 5.
 
 ### Fluxo alternativo (5)[Cilindrada não se enquadra na categoria](passo 2):
-5.1 Sistema verifica que a cilindrada não se enquadra na categoria.
+5.1 Sistema verifica que a cilindrada não se enquadra na categoria. \
 5.2 Regressa para 4.
 
 ---
@@ -295,11 +295,11 @@
 5. Sistema regista novo piloto
 
 ### Fluxo alternativo (1)[Nome indisponível](passo 2):
-2.1 Sistema informa que o nome não está disponível
+2.1 Sistema informa que o nome não está disponível \
 2.2 Regressa a 1.
 
 ### Fluxo alternativo (2)[Níveis de perícia inválidos](passo 4):
-4.1 Sistema informa que os dados são inválidos
+4.1 Sistema informa que os dados são inválidos \
 4.2 Regressa a 3.
 
 ---
@@ -326,7 +326,7 @@
 5. Jogador decide começar campeonato
 
 ### Fluxo alternativo (1)[Adicionar outro jogador](passo 5):
-5.1. Jogador escolhe adicionar outro jogador
+5.1. Jogador escolhe adicionar outro jogador \
 5.2. Regressa a 2
 
 ---
@@ -352,11 +352,11 @@
 4. Sistema regista jogador como pronto
 
 ### Fluxo alternativo (1)[Não faz afinações](passo 1):
-1.1. Jogador escolhe não fazer afinações ao seu carro
+1.1. Jogador escolhe não fazer afinações ao seu carro \
 1.2. Regressa para 3
 
 ### Fluxo alternativo (2)[Escolha de motor](passo 3):
-3.1 Jogador não consegue escolher tipo de motor se o carro for de categoria SC
+3.1 Jogador não consegue escolher tipo de motor se o carro for de categoria SC \
 3.2 Regressa para 4
 
 ---
@@ -388,8 +388,8 @@
 8. Sistema mostra os rankings
 
 ### Fluxo alternativo (3)[Jogador faz login para guardar os pontos obtidos](passo 7)
-7.1 Jogador faz login
-7.2 Sistema contabiliza os pontos obtidos no ranking da sua conta
+7.1 Jogador faz login \
+7.2 Sistema contabiliza os pontos obtidos no ranking da sua conta \
 7.3 Regressa a 8
 
 ---
