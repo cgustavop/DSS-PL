@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.function.Consumer;
+
 public interface ISubSimulaçao {
 
 	public void registarJogador(Campeonato aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto);
