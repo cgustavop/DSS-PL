@@ -1,5 +1,5 @@
 public class Corrida {
-	public SubCampeonatos__Circuito _circuito;
+	public SubCampeonatosFacade _circuito;
 	public DadosJogador _dadosJogador;
 
 	public DadosJogador getDadosJogador(String aJogadorID) {

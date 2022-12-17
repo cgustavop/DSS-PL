@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 public class CampeonatoAtivo {
 	private int _nCorridaAtual;
-	public SubCampeonatos__Campeonato _campeonato;
+	public SubCampeonatosFacade _campeonato;
 	public JogadorAtivoDAO _jogadorAtivoMap;
 	public ArrayList<DadosJogador> _listOrdPos = new ArrayList<DadosJogador>();
 

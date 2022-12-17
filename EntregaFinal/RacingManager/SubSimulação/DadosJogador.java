@@ -1,7 +1,7 @@
 public class DadosJogador {
 	private String _jogadorID;
-	public SubCarros__Carro _carro;
-	public SubPilotos__Piloto _piloto;
+	public SubCarroFacade _carro;
+	public SubPilotoFacade _piloto;
 
 	public int hashCode() {
 		int lHashCode = 0;

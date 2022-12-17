@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class CorridaPremium extends Corrida {
 	public ArrayList<EstadoPremium> _listaEstados = new ArrayList<EstadoPremium>();
