@@ -1,4 +1,4 @@
-public class SubCampeonatosFacade implements ISubCampeonatos {
+	public class SubCampeonatosFacade implements ISubCampeonatos {
 	private CampeonatoDAO _campeonatos;
 	private CircuitoDAO _circuitos;
 
