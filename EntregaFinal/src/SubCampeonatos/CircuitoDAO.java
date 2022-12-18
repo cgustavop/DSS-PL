@@ -100,9 +100,10 @@ public class CircuitoDAO implements Map<String,Circuito> {
 			return true;
 		} else if (aObject instanceof CircuitoDAO) {
 			CircuitoDAO lCircuitoDAOObject = (CircuitoDAO) aObject;
-			boolean lEquals = true;
-			return lEquals;
+			for(Entry<String, Circuito> c : lCircuitoDAOObject.entrySet()){
+				if(!this.entrySet().contains(c)) return false;
+			}
 		}
-		return false;
+		return true;
 	}
 }

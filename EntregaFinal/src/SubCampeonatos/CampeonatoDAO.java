@@ -100,13 +100,13 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
 	}
 
 	@Override
-	public Collection<Circuito> values() {
+	public Collection<Campeonato> values() {
 		//FIXME: check db
 		return this._campeonatos.values();
 	}
 
 	@Override
-	public Set<Entry<String, Circuito>> entrySet() {
+	public Set<Entry<String, Campeonato>> entrySet() {
 		//FIXME: check db
 		return this._campeonatos.entrySet();
 	}
@@ -116,9 +116,13 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
 			return true;
 		} else if (aObject instanceof CampeonatoDAO) {
 			CampeonatoDAO lCampeonatoDAOObject = (CampeonatoDAO) aObject;
-			boolean lEquals = true;
-			return lEquals;
+			for(Campeonato c : lCampeonatoDAOObject.getCampeonatosDisponiveis()){
+				if(!getCampeonatosDisponiveis().contains(c)) return false;
+			}
+			for(Campeonato c : lCampeonatoDAOObject.getCampeonatosIndisponiveis()){
+				if(!getCampeonatosIndisponiveis().contains(c)) return false;
+			}
 		}
-		return false;
+		return true;
 	}
 }
