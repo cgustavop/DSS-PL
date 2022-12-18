@@ -1,5 +1,6 @@
 package EntregaFinal.src.UI;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -143,6 +144,7 @@ public class TextUI {
                 this.model.registarCircuito(new Circuito(name,curves,chicanes,laps)); 
                 System.out.println("Circuito adicionado com sucesso!");
             }
+
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -161,18 +163,20 @@ public class TextUI {
                 int i = 0;
                 Campeonato campeonato = new Campeonato(name,false);
                 while(i<nr_circuitos){
-                    int dimension = campeonato.getCircuitos().size();
+                    int dimension = campeonato.get_circuitos().size();
                     System.out.println(circuitos.toString());
                     String option = this.scin.nextLine();
                     for(Circuito c:circuitos){
-                        if(c.getNome().equals(option)){
+                        if(c.get_nome().equals(option)){
                             campeonato.addCircuito(option);
                             break;
                         }
                     }
-                    if(campeonato.getCircuitos().size()>dimension) i++;
+                    if(campeonato.get_circuitos().size()>dimension) i++;
                     else System.out.println("Nome de circuito inexistente!");       
                 }
+                this.model.registarCampeonato(campeonato);
+                System.out.println("Campeonato criado com sucesso!");
             }
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
@@ -181,6 +185,31 @@ public class TextUI {
 
     private void adicionarCarro(){
         try{
+            System.out.println("Bem vindo à adição de carros!");
+            System.out.println("Insira o marca do carro a adicionar!");
+            String marca = this.scin.nextLine();
+            System.out.println("Insira um modelo de " + marca + "!");
+            String model = this.scin.nextLine();
+            System.out.println("Insira a potência de " + marca + " " + model + "!");
+            Integer power = this.scin.nextInt();
+            String categoria;
+            while(true){
+                System.out.println("Insira a categoria que pretende inserir " + marca + " " + model + "!");
+                categoria = this.scin.nextLine();
+                if(this.model.categoriaValida(categoria)) break;
+                else System.out.println("Categoria inválida, tente novamente...");
+            }
+            System.out.println("Insira a cilindrade de " + marca + " " + model + "!");
+            Integer cilindrada = this.scin.nextInt();
+            if(this.model.cilindradaValida(cilindrada, categoria)){
+                System.out.println("Insira a fiabilidade de " + marca + " " + model + "!");
+                Integer fiabilidade = this.scin.nextInt();
+                if(this.model.fiabilidadeValida(fiabilidade)){
+                    this.model.registarCarro(new Carro(marca,model,power,categoria,cilindrada,fiabilidade));
+                    System.out.println("Carro adicionado com sucesso!");
+                }
+
+            }
 
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
@@ -189,7 +218,18 @@ public class TextUI {
 
     private void adicionarPiloto(){
         try{
-
+            System.out.println("Bem vindo à adição de pilotos!");
+            System.out.println("Insira o nome do piloto a adicionar!");
+            String name = this.scin.nextLine();
+            if(this.model.nomePilotoDisponivel(name)){
+                System.out.println("Insira os níveis de perícia!");
+                System.out.println("Chuva vs. Tempo Seco (0<=x<=1)");
+                Float cts = this.scin.nextFloat();
+                System.out.println("Segurança vs. Agressividade (0<=x<=1)");
+                Float sva = this.scin.nextFloat();
+                this.model.registarPiloto(new Piloto(name,cts,sva)); 
+                System.out.println("Piloto adicionado com sucesso!");
+            }
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -197,7 +237,22 @@ public class TextUI {
 
     private void disponibilizarCampeonato(){
         try{
-
+            System.out.println("Insira o nome do campeonato que pretende disponibilizar!");
+            List<String> campeonatos = new ArrayList<>();
+            for(Campeonato c: this.model.campeonatosIndisponiveis()){
+                campeonatos.add(c.get_nome());
+            }
+            System.out.println(campeonatos.toString());
+            String name = this.scin.nextLine();
+            while(true){
+                if(campeonatos.contains(name)){
+                    for(Campeonato c:this.model.campeonatosIndisponiveis()){
+                        if(c.get_nome().equals(name)) this.model.disponibilizarCampeonato(c);
+                    }
+                    break;
+                } else System.out.println("Nome inválido, tente novamente...");
+            }
+            System.out.println("Campeonato " + name + " disponibilizado com sucesso!");
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -205,7 +260,22 @@ public class TextUI {
 
     private void indisponibilizarCampeonato(){
         try{
-
+            System.out.println("Insira o nome do campeonato que pretende indisponibilizar!");
+            List<String> campeonatos = new ArrayList<>();
+            for(Campeonato c: this.model.campeonatosDisponiveis()){
+                campeonatos.add(c.get_nome());
+            }
+            System.out.println(campeonatos.toString());
+            String name = this.scin.nextLine();
+            while(true){
+                if(campeonatos.contains(name)){
+                    for(Campeonato c:this.model.campeonatosDisponiveis()){
+                        if(c.get_nome().equals(name)) this.model.indisponibilizarCampeonato(c);
+                    }
+                    break;
+                } else System.out.println("Nome inválido, tente novamente...");
+            }
+            System.out.println("Campeonato " + name + " indiponibilizado com sucesso!");
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -213,7 +283,8 @@ public class TextUI {
 
     private void voltarMenu(){
         try{
-
+            System.out.println("Voltando ao menu principal, saíndo de modo administrador...");
+            this.main_menu.run();
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -221,7 +292,7 @@ public class TextUI {
 
     private void play(){
         try{
-
+            // TODO: To be implemented
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
