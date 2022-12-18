@@ -6,7 +6,53 @@ public class Campeonato {
 	private String _nome;
 	private Integer _nr_circuitos;
 	private Boolean _disponibilidade;
-	private ArrayList<CircuitoDAO> _circuitos = new ArrayList<CircuitoDAO>();
+	private ArrayList<CircuitoDAO> _circuitos;
+
+	public Campeonato(){
+		this._nome = "";
+		this._nr_circuitos = 0;
+		this._disponibilidade = false;
+		this._circuitos = new ArrayList<>();
+	}
+
+	public Campeonato(String nome, Boolean disponibilidade){
+		this._nome = nome;
+		this._nr_circuitos = 0;
+		this._disponibilidade = disponibilidade;
+		this._circuitos = new ArrayList<>();
+	}
+
+	public void set_circuitos(ArrayList<CircuitoDAO> _circuitos) {
+		this._circuitos = _circuitos;
+	}
+
+	public void set_disponibilidade(Boolean _disponibilidade) {
+		this._disponibilidade = _disponibilidade;
+	}
+
+	public void set_nome(String _nome) {
+		this._nome = _nome;
+	}
+
+	public void set_nr_circuitos(Integer _nr_circuitos) {
+		this._nr_circuitos = _nr_circuitos;
+	}
+
+	public ArrayList<CircuitoDAO> get_circuitos() {
+		return _circuitos;
+	}
+
+	public Boolean get_disponibilidade() {
+		return _disponibilidade;
+	}
+
+	public String get_nome() {
+		return _nome;
+	}
+
+	public Integer get_nr_circuitos() {
+		return _nr_circuitos;
+	}
 
 	public void addCircuito(String aNome) {
 		throw new UnsupportedOperationException();

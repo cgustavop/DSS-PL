@@ -1,77 +1,51 @@
 package EntregaFinal.src.SubCampeonatos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubCampeonatosFacade implements ISubCampeonatos {
 	private CampeonatoDAO _campeonatos;
 	private CircuitoDAO _circuitos;
 
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._campeonatos != null ) {
-			lHashCode += this._campeonatos.hashCode();
-		}
-		if ( this._circuitos != null ) {
-			lHashCode += this._circuitos.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
-	}
-
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof SubCampeonatosFacade) {
-			SubCampeonatosFacade lSubCampeonatosFacadeObject = (SubCampeonatosFacade) aObject;
-			boolean lEquals = true;
-			lEquals &= ((this._campeonatos == lSubCampeonatosFacadeObject._campeonatos)
-				|| (this._campeonatos != null && this._campeonatos.equals(lSubCampeonatosFacadeObject._campeonatos)));
-			lEquals &= ((this._circuitos == lSubCampeonatosFacadeObject._circuitos)
-				|| (this._circuitos != null && this._circuitos.equals(lSubCampeonatosFacadeObject._circuitos)));
-			return lEquals;
-		}
-		return false;
-	}
-
 	public Boolean nomeCampeonatoDisponivel(String aNome) {
-		throw new UnsupportedOperationException();
+		return this._campeonatos.containsKey(aNome);
 	}
 
 	public Boolean nomeCircuitoDisponivel(String aNome) {
-		throw new UnsupportedOperationException();
+		return this._circuitos.containsKey(aNome);
 	}
 
 	public void registarCircuito(Circuito aCircuito) {
-		throw new UnsupportedOperationException();
+		this._circuitos.put(aCircuito.get_nome(),aCircuito);
 	}
 
 	public List<Circuito> circuitosExistentes() {
-		throw new UnsupportedOperationException();
+		return new ArrayList<>(this._circuitos.values());
 	}
 
 	public void registarCampeonato(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+		this._campeonatos.put(aCampeonato.get_nome(),aCampeonato);
 	}
 
 	public List<Campeonato> campeonatosIndisponiveis() {
-		throw new UnsupportedOperationException();
+		return this._campeonatos.getCampeonatosIndisponiveis();
 	}
 
 	public void disponibilizarCampeonato(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+		aCampeonato.set_disponibilidade(true);
+		this._campeonatos.put(aCampeonato.get_nome(), aCampeonato);
 	}
 
 	public List<Campeonato> campeonatosDisponiveis() {
-		throw new UnsupportedOperationException();
+		return this._campeonatos.getCampeonatosDisponiveis();
 	}
 
 	public void indisponibilizarCampeonato(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+		aCampeonato.set_disponibilidade(false);
+		this._campeonatos.put(aCampeonato.get_nome(), aCampeonato);
 	}
 
 	public Integer calcularRetas(Integer aNrCurvas, Integer aNrChicanes) {
-		throw new UnsupportedOperationException();
+		return aNrChicanes + aNrCurvas;
 	}
 }

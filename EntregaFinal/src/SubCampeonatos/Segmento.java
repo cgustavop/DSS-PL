@@ -6,6 +6,42 @@ public class Segmento {
 	private String _gDU;
 	private String _tipo;
 
+	public Segmento(){
+		this._tamanho = (float) 0.0;
+		this._gDU = "";
+		this._tipo = "";
+	}
+
+	public Segmento(Float tamanho, String gdu, String tipo){
+		this._tamanho = tamanho;
+		this._gDU = gdu;
+		this._tipo = tipo;
+	}
+
+	public void set_gDU(String _gDU) {
+		this._gDU = _gDU;
+	}
+
+	public void set_tamanho(Float _tamanho) {
+		this._tamanho = _tamanho;
+	}
+
+	public void set_tipo(String _tipo) {
+		this._tipo = _tipo;
+	}
+
+	public String get_gDU() {
+		return _gDU;
+	}
+
+	public Float get_tamanho() {
+		return _tamanho;
+	}
+
+	public String get_tipo() {
+		return _tipo;
+	}
+
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( this._tamanho != null ) {

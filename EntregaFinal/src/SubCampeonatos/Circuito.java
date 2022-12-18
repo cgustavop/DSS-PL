@@ -9,6 +9,74 @@ public class Circuito {
 	private Integer _nr_chicanes;
 	private ArrayList<Segmento> _segmentos = new ArrayList<Segmento>();
 	public TempoMetereologico _tempo_metereologico;
+	
+	public Circuito(){
+		this._nome = "";
+		this._nr_chicanes = 0;
+		this._nr_curvas = 0;
+		this._nr_voltas = 0;
+		this._tempo_metereologico = TempoMetereologico.Seco;
+		this._segmentos = new ArrayList<>();
+	}
+
+	public Circuito(String nome, Integer curvas, Integer chicanes, Integer voltas){
+		this._nome = nome;
+		this._nr_curvas = curvas;
+		this._nr_chicanes = chicanes;
+		this._nr_voltas = voltas;
+		this._tempo_metereologico = TempoMetereologico.Seco;
+		this._segmentos = new ArrayList<>();
+	}
+
+	public void set_nome(String _nome) {
+		this._nome = _nome;
+	}
+
+	public void set_nr_voltas(Integer _nr_voltas) {
+		this._nr_voltas = _nr_voltas;
+	}
+
+	public void set_nr_curvas(Integer _nr_curvas) {
+		this._nr_curvas = _nr_curvas;
+	}
+
+	public void set_nr_chicanes(Integer _nr_chicanes) {
+		this._nr_chicanes = _nr_chicanes;
+	}
+
+	public void set_segmentos(ArrayList<Segmento> _segmentos) {
+		this._segmentos = _segmentos;
+	}
+
+	public void set_segmentos(Segmento _segmento){ this._segmentos.add(_segmento); }
+
+	public void set_tempo_metereologico(TempoMetereologico _tempo_metereologico) {
+		this._tempo_metereologico = _tempo_metereologico;
+	}
+
+	public String get_nome() {
+		return _nome;
+	}
+
+	public Integer get_nr_voltas() {
+		return _nr_voltas;
+	}
+
+	public Integer get_nr_curvas() {
+		return _nr_curvas;
+	}
+
+	public Integer get_nr_chicanes() {
+		return _nr_chicanes;
+	}
+
+	public ArrayList<Segmento> get_segmentos() {
+		return _segmentos;
+	}
+
+	public TempoMetereologico get_tempo_metereologico() {
+		return _tempo_metereologico;
+	}
 
 	public int hashCode() {
 		int lHashCode = 0;
