@@ -5,6 +5,42 @@ public class Piloto {
 	private Float _cts;
 	private Float _sva;
 
+	public Piloto(){
+		this._nome = "";
+		this._cts = (float) 0.0;
+		this._sva = (float) 0.0;
+	}
+
+	public Piloto(String nome, Float cts, Float sva){
+		this._nome = nome;
+		this._cts = cts;
+		this._sva = sva;
+	}
+
+	public void set_nome(String _nome) {
+		this._nome = _nome;
+	}
+
+	public void set_cts(Float _cts) {
+		this._cts = _cts;
+	}
+
+	public void set_sva(Float _sva) {
+		this._sva = _sva;
+	}
+
+	public String get_nome() {
+		return _nome;
+	}
+
+	public Float get_cts() {
+		return _cts;
+	}
+
+	public Float get_sva() {
+		return _sva;
+	}
+
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( this._nome != null ) {
