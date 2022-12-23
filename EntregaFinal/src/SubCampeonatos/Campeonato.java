@@ -22,6 +22,13 @@ public class Campeonato {
 		this._circuitos = new ArrayList<>();
 	}
 
+	public Campeonato(String nome, Integer nr_circuitos, Boolean disponibilidade){
+		this._nome = nome;
+		this._nr_circuitos = nr_circuitos;
+		this._disponibilidade = disponibilidade;
+		this._circuitos = new ArrayList<>();
+	}
+
 	public void set_circuitos(ArrayList<CircuitoDAO> _circuitos) {
 		this._circuitos = _circuitos;
 	}

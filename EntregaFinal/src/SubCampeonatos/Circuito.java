@@ -19,7 +19,7 @@ public class Circuito {
 		this._segmentos = new ArrayList<>();
 	}
 
-	public Circuito(String nome, Integer curvas, Integer chicanes, Integer voltas){
+	public Circuito(String nome, Integer voltas, Integer curvas, Integer chicanes){
 		this._nome = nome;
 		this._nr_curvas = curvas;
 		this._nr_chicanes = chicanes;

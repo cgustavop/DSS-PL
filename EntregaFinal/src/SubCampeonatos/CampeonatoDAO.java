@@ -1,18 +1,39 @@
 package EntregaFinal.src.SubCampeonatos;
 
+import EntregaFinal.src.data.*;
+
+import java.sql.*;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class CampeonatoDAO implements Map<String,Campeonato> {
 
-	private Map<String,Campeonato> _campeonatos = new HashMap<>();
+	private static CampeonatoDAO singleton = null;
 
-	public Map<String, Campeonato> get_campeonatos() {
-		return this._campeonatos;
+	private CampeonatoDAO(){
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()) {
+            String sql = "CREATE TABLE IF NOT EXISTS campeonatos (" +
+                    "Nome varchar(45) NOT NULL PRIMARY KEY," +
+                    "Nr_circuitos int DEFAULT 0," +
+                    "Disponibilidade boolean DEFAULT false)";
+            stm.executeUpdate(sql);
+        } catch (SQLException e) {
+            // Erro a criar tabela...
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
 	}
+
+	public static CampeonatoDAO getInstance() {
+        if (CampeonatoDAO.singleton == null) {
+            CampeonatoDAO.singleton = new CampeonatoDAO();
+        }
+        return CampeonatoDAO.singleton;
+    }
 
 	public List<Campeonato> getCampeonatosDisponiveis() {
 		throw new UnsupportedOperationException();
@@ -22,107 +43,151 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
 		throw new UnsupportedOperationException();
 	}
 
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
-	}
-
 	@Override
 	public int size() {
-		if(isEmpty()) return 0;
-		// FIXME: count in db
-		return 0;
+		int i = 0;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT count(*) FROM campeonatos")) {
+            if(rs.next()) {
+                i = rs.getInt(1);
+            }
+        }
+        catch (Exception e) {
+            // Erro a criar tabela...
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return i;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		if(this._campeonatos.isEmpty()) return true;
-		// FIXME: check in db
-		return true;
+		return this.size() == 0;
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
-		if(this._campeonatos.containsKey(key)) return true;
-		// FIXME: check in db
-		return false;
+		boolean r;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs =
+                     stm.executeQuery("SELECT Nome FROM campeonatos WHERE Nome='"+key.toString()+"'")) {
+             r = rs.next();
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return r;
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		if(this._campeonatos.containsValue(value)) return true;
-		// FIXME: check in db
-		return false;
+		Campeonato a = (Campeonato) value;
+        return this.containsKey(a.get_nome());
 	}
 
 	@Override
 	public Campeonato get(Object key) {
-		if(this._campeonatos.containsKey(key)) return this._campeonatos.get(key);
-		Campeonato c = new Campeonato();
-		// FIXME: get from db
-		return c;
+		Campeonato a = null;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT * FROM campeonatos WHERE Nome='"+key+"'")) {
+            if (rs.next()) {  // A chave existe na tabela
+                a = new Campeonato(rs.getString("Nome"),
+                            Integer.parseInt(rs.getString("Nr_circuitos")),
+                        Boolean.parseBoolean(rs.getString("Disponibilidade")));
+            }
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return a;
 	}
 
 	@Override
 	public Campeonato put(String key, Campeonato value) {
-		this._campeonatos.put(key, value);
-		//FIXME: inset into db
-		return value;
+		Campeonato res = null;
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()) {
+            try(PreparedStatement pstm = conn.prepareStatement("INSERT INTO campeonatos(Nome,Nr_circuitos,Disponibilidade)" + "VALUES (?,?,?)")) {
+                pstm.setString(1,value.get_nome());
+                pstm.setString(2,String.valueOf(value.get_nr_circuitos()));
+                pstm.setString(3,String.valueOf(value.get_disponibilidade()));
+                pstm.execute();
+            }
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
 	}
 
 	@Override
 	public Campeonato remove(Object key) {
-		this._campeonatos.remove(key);
-		//FIXME: remove from db
-		return get(key);
+		Campeonato a = this.get(key);
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()){
+            // apagar o aluno
+            stm.executeUpdate("DELETE FROM campeonatos WHERE Num='"+key+"'");
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return a;
 	}
 
 	@Override
 	public void putAll(Map<? extends String, ? extends Campeonato> m) {
-		for(String s:m.keySet()){
-			put(s,m.get(s));
-		}
+		for(Campeonato a : m.values()) {
+            this.put(a.get_nome(), a);
+        }
 	}
 
 	@Override
 	public void clear() {
-		this._campeonatos.clear();
-		//FIXME: clear db
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()) {
+            stm.executeUpdate("UPDATE campeonatos SET Campeonato=NULL");
+            stm.executeUpdate("TRUNCATE campeonatos");
+        } catch (SQLException e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
 	}
 
 	@Override
 	public Set<String> keySet() {
-		//FIXME: check db
-		return this._campeonatos.keySet();
+		throw new NullPointerException("Not implemented!");
 	}
 
 	@Override
 	public Collection<Campeonato> values() {
-		//FIXME: check db
-		return this._campeonatos.values();
+		Collection<Campeonato> res = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT Nome FROM campeonatos")) { // ResultSet com os nomes de todos os campeonatos
+            while (rs.next()) {
+                String idt = rs.getString("Nome"); // Obtemos um nome de campeonato do ResultSet
+                Campeonato a = this.get(idt);                    // Utilizamos o get para construir os campeonatos
+                res.add(a);                                 // Adiciona o campeonato ao resultado.
+            }
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
 	}
 
 	@Override
 	public Set<Entry<String, Campeonato>> entrySet() {
-		//FIXME: check db
-		return this._campeonatos.entrySet();
+		throw new NullPointerException("public Set<Map.Entry<String,Campeonato>> entrySet() not implemented!");
 	}
 
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof CampeonatoDAO) {
-			CampeonatoDAO lCampeonatoDAOObject = (CampeonatoDAO) aObject;
-			for(Campeonato c : lCampeonatoDAOObject.getCampeonatosDisponiveis()){
-				if(!getCampeonatosDisponiveis().contains(c)) return false;
-			}
-			for(Campeonato c : lCampeonatoDAOObject.getCampeonatosIndisponiveis()){
-				if(!getCampeonatosIndisponiveis().contains(c)) return false;
-			}
-		}
-		return true;
-	}
 }
