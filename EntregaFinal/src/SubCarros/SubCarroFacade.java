@@ -5,22 +5,41 @@ public class SubCarroFacade implements ISubCarro {
 
 	@Override
 	public boolean categoriaValida(String aC) {
+		if(aC == "C1" || aC == "c1" || aC == "C2"|| aC == "c2" || aC == "GT" || aC == "gt" || aC == "SC" || aC == "sc")
+			return true;
 		return false;
 	}
 
 	@Override
 	public boolean fiabilidadeValida(int aF) {
+		if(0 < aF && aF < 100)
+			return true;
 		return false;
 	}
 
 	@Override
 	public void registarCarro(Carro aCarro) {
-
+		String id = String.valueOf(_carros.size());
+		aCarro.set_iD(id);
+		this._carros.put(id,aCarro);
 	}
 
 	@Override
 	public boolean cilindradaValida(int aCilindrada, String aCategoria) {
-		return false;
+		boolean b = false;
+		if((aCategoria == "C1" || aCategoria == "c1") && (aCilindrada == 6000) )
+			b = true;
+
+		if((aCategoria == "C2" || aCategoria == "c2") && (2000 <= aCilindrada) && (aCilindrada <= 4000))
+			b = true;
+
+		if((aCategoria == "GT" || aCategoria == "gt") && (3000 <= aCilindrada) && (aCilindrada <= 5000))
+			b = true;
+
+		if((aCategoria == "SC" || aCategoria == "sc") && (aCilindrada == 2500) )
+			b = true;
+
+		return b;
 	}
 
 	public int hashCode() {

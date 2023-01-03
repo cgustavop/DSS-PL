@@ -5,12 +5,12 @@ public class C1H extends C1 implements Hibrido {
 
 	@Override
 	public int getPotenciaMotorEletrico() {
-		return 0;
+		return _motor_eletrico;
 	}
 
 	@Override
 	public void setPotenciaMotorEletrico(int potencia) {
-
+		this._motor_eletrico = potencia;
 	}
 
 	public int hashCode() {
