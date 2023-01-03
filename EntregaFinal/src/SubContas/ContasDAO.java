@@ -1,87 +1,184 @@
 package EntregaFinal.src.SubContas;
 
+import java.sql.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class ContasDAO implements Map<String,Conta> {
 
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
+	private static ContasDAO singleton = null;
+
+	private ContasDAO(){
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement()) {
+			String sql = "CREATE TABLE IF NOT EXISTS contas (" +
+					"Nome varchar(45) NOT NULL PRIMARY KEY," +
+					"Password varchar(45) NOT NULL," +
+					"Tipo userType DEFAULT JogadorBase)"+
+					"Pontos int DEFAULT 0,";
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// Erro a criar tabela...
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
 		}
-		return lHashCode;
+	}
+
+	public static ContasDAO getInstance() {
+		if (ContasDAO.singleton == null) {
+			ContasDAO.singleton = new ContasDAO();
+		}
+		return ContasDAO.singleton;
 	}
 
 	@Override
 	public int size() {
-		return 0;
+		int i = 0;
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement();
+			 ResultSet rs = stm.executeQuery("SELECT count(*) FROM contas")) {
+			if(rs.next()) {
+				i = rs.getInt(1);
+			}
+		}
+		catch (Exception e) {
+			// Erro a criar tabela...
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
+		return i;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return false;
+		return this.size() == 0;
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
-		return false;
+		boolean r;
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement();
+			 ResultSet rs =
+					 stm.executeQuery("SELECT Nome FROM contas WHERE Nome='"+key.toString()+"'")) {
+			r = rs.next();
+		} catch (SQLException e) {
+			// Database error!
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
+		return r;
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		return false;
+		Conta c = (Conta) value;
+		return this.containsKey(c.get_nome());
 	}
 
 	@Override
 	public Conta get(Object key) {
-		return null;
+		Conta a = null;
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement();
+			 ResultSet rs = stm.executeQuery("SELECT * FROM contas WHERE Nome='"+key+"'")) {
+			if (rs.next()) {  // A chave existe na tabela
+				a = new Conta(rs.getString("Nome"),
+						rs.getString("Password"),
+						userType.valueOf(rs.getString("Tipo")),
+						Integer.parseInt(rs.getString("Pontos")));
+			}
+		} catch (SQLException e) {
+			// Database error!
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
+		return a;
 	}
 
 	@Override
 	public Conta put(String key, Conta value) {
-		return null;
+		Conta res = null;
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement()) {
+			try(PreparedStatement pstm = conn.prepareStatement("INSERT INTO contas(Nome,Password,Tipo,Pontos)" + "VALUES (?,?,?,?)")) {
+				pstm.setString(1,value.get_nome());
+				pstm.setString(2,value.get_password());
+				pstm.setString(3,String.valueOf(value.get_type()));
+				pstm.setString(4,String.valueOf(value.get_pontos()));
+				pstm.execute();
+			}
+		} catch (SQLException e) {
+			// Database error!
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
+		return res;
 	}
 
 	@Override
 	public Conta remove(Object key) {
-		return null;
+		Conta a = this.get(key);
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement()){
+
+			stm.executeUpdate("DELETE FROM contas WHERE Nome='"+key+"'");
+		} catch (Exception e) {
+			// Database error!
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
+		return a;
 	}
 
 	@Override
 	public void putAll(Map<? extends String, ? extends Conta> m) {
-
+		for(Conta a : m.values()) {
+			this.put(a.get_nome(), a);
+		}
 	}
 
 	@Override
 	public void clear() {
-
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement()) {
+			stm.executeUpdate("UPDATE contas SET Contas=NULL");
+			stm.executeUpdate("TRUNCATE contas");
+		} catch (SQLException e) {
+			// Database error!
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
 	}
 
 	@Override
 	public Set<String> keySet() {
-		return null;
+		throw new NullPointerException("Not implemented!");
 	}
 
 	@Override
 	public Collection<Conta> values() {
-		return null;
+		Collection<Conta> res = new HashSet<>();
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+			 Statement stm = conn.createStatement();
+			 ResultSet rs = stm.executeQuery("SELECT Nome FROM contas")) { // ResultSet com os nomes de todos as contas
+			while (rs.next()) {
+				String idt = rs.getString("Nome"); // Obtemos um nome de conta do ResultSet
+				Conta a = this.get(idt);                    // Utilizamos o get para construir as contas
+				res.add(a);                                 // Adiciona a conta ao resultado.
+			}
+		} catch (Exception e) {
+			// Database error!
+			e.printStackTrace();
+			throw new NullPointerException(e.getMessage());
+		}
+		return res;
 	}
 
 	@Override
 	public Set<Entry<String, Conta>> entrySet() {
-		return null;
-	}
-
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof ContasDAO) {
-			ContasDAO lContasDAOObject = (ContasDAO) aObject;
-			boolean lEquals = true;
-			return lEquals;
-		}
-		return false;
+		throw new NullPointerException("public Set<Map.Entry<String,Campeonato>> entrySet() not implemented!");
 	}
 }

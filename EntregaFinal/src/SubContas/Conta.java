@@ -6,6 +6,59 @@ public class Conta {
 	private userType _type;
 	private Integer _pontos;
 
+	public Conta(){
+		this._nome = "";
+		this._password = "";
+		this._type = userType.JogadorBase;
+		this._pontos = 0;
+	}
+
+	public Conta(String nome, String pass, userType tipo) {
+		this._nome = nome;
+		this._password = pass;
+		this._type = tipo;
+		this._pontos = 0;
+	}
+
+	public Conta(String nome, String pass, userType tipo, Integer pontos) {
+		this._nome = nome;
+		this._password = pass;
+		this._type = tipo;
+		this._pontos = pontos;
+	}
+
+	public String get_nome() {
+		return _nome;
+	}
+
+	public String get_password() {
+		return _password;
+	}
+
+	public userType get_type() {
+		return _type;
+	}
+
+	public Integer get_pontos() {
+		return _pontos;
+	}
+
+	public void set_nome(String _nome) {
+		this._nome = _nome;
+	}
+
+	public void set_password(String _password) {
+		this._password = _password;
+	}
+
+	public void set_type(userType _type) {
+		this._type = _type;
+	}
+
+	public void set_pontos(Integer _pontos) {
+		this._pontos = _pontos;
+	}
+
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( this._nome != null ) {
