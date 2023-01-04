@@ -1,18 +1,9 @@
 package EntregaFinal.src.SubPilotos;
 
+import EntregaFinal.src.data.PilotoDAO;
+
 public class SubPilotoFacade implements ISubPiloto {
 	private PilotoDAO _pilotos;
-
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._pilotos != null ) {
-			lHashCode += this._pilotos.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
-	}
 
 	public boolean equals(Object aObject) {
 		if (this == aObject) {
@@ -28,14 +19,14 @@ public class SubPilotoFacade implements ISubPiloto {
 	}
 
 	public boolean nomePilotoDisponivel(String aNome) {
-		throw new UnsupportedOperationException();
+		return this._pilotos.containsKey(aNome);
 	}
 
 	public boolean niveisPericiaValidos(float aCts, float aSva) {
-		throw new UnsupportedOperationException();
+		return (aCts >= 0.0 && aCts <= 1) && (aSva >= 0.0 && aSva <= 1.0);
 	}
 
 	public void registarPiloto(Piloto aPiloto) {
-		throw new UnsupportedOperationException();
+		this._pilotos.put(aPiloto.get_nome(),aPiloto);
 	}
 }

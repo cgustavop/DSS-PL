@@ -1,4 +1,9 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
+
+import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
+import EntregaFinal.src.data.JogadorAtivoDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,39 @@ public class CampeonatoAtivo {
 		this._campeonato = camp;
 		this._jogadorAtivoMap = JogadorAtivoDAO.getInstance();
 		this.id = idCount++;
+	}
+
+
+	public Campeonato get_campeonato() {
+		return _campeonato;
+	}
+
+	public JogadorAtivoDAO get_jogadorAtivoMap() {
+		return _jogadorAtivoMap;
+	}
+
+	public List<List<DadosJogador>> get_listOrdPos() {
+		return _listOrdPos;
+	}
+
+	public int get_nCorridaAtual() {
+		return _nCorridaAtual;
+	}
+
+	public void set_campeonato(Campeonato _campeonato) {
+		this._campeonato = _campeonato;
+	}
+
+	public void set_jogadorAtivoMap(JogadorAtivoDAO _jogadorAtivoMap) {
+		this._jogadorAtivoMap = _jogadorAtivoMap;
+	}
+
+	public void set_listOrdPos(List<List<DadosJogador>> _listOrdPos) {
+		this._listOrdPos = _listOrdPos;
+	}
+
+	public void set_nCorridaAtual(int _nCorridaAtual) {
+		this._nCorridaAtual = _nCorridaAtual;
 	}
 
 	public CorridaBase simularCorridaBase() {

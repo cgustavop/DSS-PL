@@ -3,6 +3,9 @@ package EntregaFinal.src.SubCampeonatos;
 import java.util.ArrayList;
 import java.util.List;
 
+import EntregaFinal.src.data.CircuitoDAO;
+import EntregaFinal.src.data.CampeonatoDAO;
+
 public class SubCampeonatosFacade implements ISubCampeonatos {
 	private CampeonatoDAO _campeonatos;
 	private CircuitoDAO _circuitos;

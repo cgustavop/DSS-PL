@@ -1,12 +1,15 @@
 package EntregaFinal.src.SubCampeonatos;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import EntregaFinal.src.data.CircuitoDAO;
 
 public class Campeonato {
 	private String _nome;
 	private Integer _nr_circuitos;
 	private Boolean _disponibilidade;
-	private ArrayList<CircuitoDAO> _circuitos;
+	private List<Circuito> _circuitos;
 
 	public Campeonato(){
 		this._nome = "";
@@ -19,17 +22,15 @@ public class Campeonato {
 		this._nome = nome;
 		this._nr_circuitos = 0;
 		this._disponibilidade = disponibilidade;
-		this._circuitos = new ArrayList<>();
 	}
 
 	public Campeonato(String nome, Integer nr_circuitos, Boolean disponibilidade){
 		this._nome = nome;
 		this._nr_circuitos = nr_circuitos;
 		this._disponibilidade = disponibilidade;
-		this._circuitos = new ArrayList<>();
 	}
 
-	public void set_circuitos(ArrayList<CircuitoDAO> _circuitos) {
+	public void set_circuitos(ArrayList<Circuito> _circuitos) {
 		this._circuitos = _circuitos;
 	}
 
@@ -45,8 +46,8 @@ public class Campeonato {
 		this._nr_circuitos = _nr_circuitos;
 	}
 
-	public ArrayList<CircuitoDAO> get_circuitos() {
-		return _circuitos;
+	public List<Circuito> get_circuitos() {
+		return this._circuitos;
 	}
 
 	public Boolean get_disponibilidade() {
@@ -62,7 +63,7 @@ public class Campeonato {
 	}
 
 	public void addCircuito(String aNome) {
-		throw new UnsupportedOperationException();
+		this._circuitos.add(CircuitoDAO.getInstance().get(aNome));
 	}
 
 	public int hashCode() {

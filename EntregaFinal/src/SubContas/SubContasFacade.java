@@ -1,31 +1,31 @@
 package EntregaFinal.src.SubContas;
 
+import EntregaFinal.src.data.ContasDAO;
+
 public class SubContasFacade implements ISubContas {
 	private ContasDAO _contas;
 
-	@Override
 	public boolean nomeDisponivel(String aNome) {
-		return false;
+		return this._contas.containsKey(aNome);
 	}
 
-	@Override
 	public void registarConta(String aNome, String aPassword, userType aType) {
-
+		this._contas.put(aNome, new Conta(aNome,aPassword,aType));
 	}
 
-	@Override
 	public boolean validarConta(String aNome, String aPassword) {
-		return false;
+		if(_contas.containsKey(aNome) && _contas.get(aNome).get_password()==aPassword) return true;
+		else return false;
 	}
 
-	@Override
 	public userType autenticarConta(String aNome) {
-		return null;
+		return _contas.get(aNome).get_type();
 	}
 
-	@Override
 	public void atribuirPontos(String aNome, Integer aPontos) {
-
+		Conta c = _contas.get(aNome);
+		int p = c.get_pontos() + aPontos;
+		c.set_pontos(p);
 	}
 
 	public int hashCode() {

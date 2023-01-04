@@ -1,4 +1,7 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
+
+import EntregaFinal.src.SubCarros.SubCarroFacade;
+import EntregaFinal.src.SubPilotos.SubPilotoFacade;
 
 import EntregaFinal.src.SubCarros.SubCarroFacade;
 import EntregaFinal.src.SubPilotos.SubPilotoFacade;
@@ -8,6 +11,30 @@ public class DadosJogador {
 	public SubCarroFacade _carro;
 	public SubPilotoFacade _piloto;
 
+	public void set_jogadorID(String _jogadorID) {
+		this._jogadorID = _jogadorID;
+	}
+
+	public String get_jogadorID() {
+		return _jogadorID;
+	}
+
+	public void set_carro(SubCarroFacade _carro) {
+		this._carro = _carro;
+	}
+
+	public void set_piloto(SubPilotoFacade _piloto) {
+		this._piloto = _piloto;
+	}
+
+	public SubCarroFacade get_carro() {
+		return _carro;
+	}
+
+	public SubPilotoFacade get_piloto() {
+		return _piloto;
+	}
+	
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( this._jogadorID != null ) {

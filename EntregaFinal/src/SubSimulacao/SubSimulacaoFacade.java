@@ -1,4 +1,9 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
+
+import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
+import EntregaFinal.src.data.CampeonatoAtivoDAO;
 
 import java.util.List;
 import java.util.Map;
@@ -8,25 +13,15 @@ import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 
-public class SubSimulaçao implements ISubSimulaçao {
+
+public class SubSimulacaoFacade implements ISubSimulacao {
 	public CampeonatoAtivoDAO _campeonatoMap = CampeonatoAtivoDAO.getInstance();
-
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._campeonatoMap != null ) {
-			lHashCode += this._campeonatoMap.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
-	}
-
+	
 	public boolean equals(Object aObject) {
 		if (this == aObject) {
 			return true;
-		} else if (aObject instanceof SubSimulaçao) {
-			SubSimulaçao lSubSimulaçaoObject = (SubSimulaçao) aObject;
+		} else if (aObject instanceof SubSimulacaoFacade) {
+			SubSimulacaoFacade lSubSimulaçaoObject = (SubSimulacaoFacade) aObject;
 			boolean lEquals = true;
 			lEquals &= ((this._campeonatoMap == lSubSimulaçaoObject._campeonatoMap)
 				|| (this._campeonatoMap != null && this._campeonatoMap.equals(lSubSimulaçaoObject._campeonatoMap)));
