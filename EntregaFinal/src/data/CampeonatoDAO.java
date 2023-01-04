@@ -3,15 +3,17 @@ package EntregaFinal.src.data;
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class CampeonatoDAO implements Map<String,Campeonato> {
 
-	private static CampeonatoDAO singleton = null;
+    private static CampeonatoDAO singleton = null;
 
 	private CampeonatoDAO(){
 		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
@@ -36,11 +38,19 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
     }
 
 	public List<Campeonato> getCampeonatosDisponiveis() {
-		throw new UnsupportedOperationException();
+        List<Campeonato> camps = new ArrayList<>();
+        for(Campeonato c: values()){
+            if (c.get_disponibilidade()) camps.add(c);
+        }
+        return camps;
 	}
 
 	public List<Campeonato> getCampeonatosIndisponiveis() {
-		throw new UnsupportedOperationException();
+		List<Campeonato> camps = new ArrayList<>();
+        for(Campeonato c: values()){
+            if (!c.get_disponibilidade()) camps.add(c);
+        }
+        return camps;
 	}
 
 	@Override
@@ -131,7 +141,7 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
 		Campeonato a = this.get(key);
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()){
-            // apagar o aluno
+            // apagar o campeonato
             stm.executeUpdate("DELETE FROM campeonatos WHERE Num='"+key+"'");
         } catch (Exception e) {
             // Database error!

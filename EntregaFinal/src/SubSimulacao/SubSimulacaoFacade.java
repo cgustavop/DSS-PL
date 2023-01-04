@@ -8,13 +8,14 @@ import EntregaFinal.src.data.CampeonatoAtivoDAO;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class SubSimulacao implements ISubSimulacao {
+public class SubSimulacaoFacade implements ISubSimulacao {
 	public CampeonatoAtivoDAO _campeonatoMap;
+	
 	public boolean equals(Object aObject) {
 		if (this == aObject) {
 			return true;
-		} else if (aObject instanceof SubSimulacao) {
-			SubSimulacao lSubSimulaçaoObject = (SubSimulacao) aObject;
+		} else if (aObject instanceof SubSimulacaoFacade) {
+			SubSimulacaoFacade lSubSimulaçaoObject = (SubSimulacaoFacade) aObject;
 			boolean lEquals = true;
 			lEquals &= ((this._campeonatoMap == lSubSimulaçaoObject._campeonatoMap)
 				|| (this._campeonatoMap != null && this._campeonatoMap.equals(lSubSimulaçaoObject._campeonatoMap)));

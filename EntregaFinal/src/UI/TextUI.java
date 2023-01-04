@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import EntregaFinal.src.*;
+import EntregaFinal.src.IRacingManager;
+import EntregaFinal.src.RacingManagerFacade;
 
 // Needed imports once diagrams were chosen to be like this
 import EntregaFinal.src.SubCarros.*;

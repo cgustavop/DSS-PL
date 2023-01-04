@@ -15,6 +15,39 @@ public class CampeonatoAtivo {
 	public JogadorAtivoDAO _jogadorAtivoMap;
 	public ArrayList<DadosJogador> _listOrdPos = new ArrayList<DadosJogador>();
 
+
+	public SubCampeonatosFacade get_campeonato() {
+		return _campeonato;
+	}
+
+	public JogadorAtivoDAO get_jogadorAtivoMap() {
+		return _jogadorAtivoMap;
+	}
+
+	public ArrayList<DadosJogador> get_listOrdPos() {
+		return _listOrdPos;
+	}
+
+	public int get_nCorridaAtual() {
+		return _nCorridaAtual;
+	}
+
+	public void set_campeonato(SubCampeonatosFacade _campeonato) {
+		this._campeonato = _campeonato;
+	}
+
+	public void set_jogadorAtivoMap(JogadorAtivoDAO _jogadorAtivoMap) {
+		this._jogadorAtivoMap = _jogadorAtivoMap;
+	}
+
+	public void set_listOrdPos(ArrayList<DadosJogador> _listOrdPos) {
+		this._listOrdPos = _listOrdPos;
+	}
+
+	public void set_nCorridaAtual(int _nCorridaAtual) {
+		this._nCorridaAtual = _nCorridaAtual;
+	}
+
 	public CorridaBase simularCorridaBase() {
 		throw new UnsupportedOperationException();
 	}
