@@ -1,7 +1,9 @@
 package EntregaFinal.src.UI;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import EntregaFinal.src.IRacingManager;
@@ -21,6 +23,8 @@ public class TextUI {
     // Menus da aplicação
     private Menu main_menu;
     private Menu creation_menu;
+    private String last;
+    private Map<String,Boolean> logged_in = new HashMap<>();
 
     // Scanner para leitura
     private Scanner scin;
@@ -35,12 +39,14 @@ public class TextUI {
         this.main_menu = new Menu(new String[]{
             "Login",
             "Registar",
-            "Jogar"
+            "Jogar",
+            "Menu Administrador"
         });
 
         this.main_menu.setHandler(1, this::login);
         this.main_menu.setHandler(2, this::register);
         this.main_menu.setHandler(3, this::play);
+        this.main_menu.setHandler(4, this::menuadmin);
 
         this.creation_menu = new Menu(new String[]{
                 "Adicionar Circuito",
@@ -92,8 +98,11 @@ public class TextUI {
                     type = this.scin.nextInt();
                     if (type!=1 || type!=2) System.out.println("Opção Inválida! Tente Novamente...");
                 }
-                if(type == 1)  this.model.registarConta(name,password,userType.JogadorBase);
-                else this.model.registarConta(name,password,userType.JogadorPremium);   
+                if(type == 1) this.model.registarConta(name,password,userType.JogadorBase);
+                else{ 
+                    this.model.registarConta(name,password,userType.JogadorPremium); 
+                    this.logged_in.put(name, true);
+                } 
             } else{
                 System.out.println("Esse nome de utilizador já existe!");
             }
@@ -113,11 +122,8 @@ public class TextUI {
                     System.out.println("Insira a sua palavra passe");
                     String password = this.scin.nextLine();
                     if(this.model.validarConta(name, password)){
-                        userType tipo = this.model.autenticarConta(name);
-                        if(tipo == userType.Administrador) this.creation_menu.run();
-                        else{
-                            //FIXME: It is suppose to do something?
-                        }
+                        last = name;
+                        this.logged_in.put(name, true);
                         break;
                     } else{
                         System.out.println("Palavra passe incorreta, tente novamente!\n");
@@ -131,6 +137,17 @@ public class TextUI {
         }
     }
 
+    private void menuadmin(){
+        try{
+            if(this.logged_in.get(last)==true){
+                this.creation_menu.run();
+            } else {
+                System.out.println("Não está logado como administrador, ou não é um administrador!");
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
     private void adicionarCircuito(){
         try{
             System.out.println("Bem vindo à adição de circuitos!");
