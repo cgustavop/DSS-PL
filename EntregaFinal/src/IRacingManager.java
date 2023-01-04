@@ -1,6 +1,7 @@
 package EntregaFinal.src;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import EntregaFinal.src.SubContas.*;
@@ -68,17 +69,21 @@ public interface IRacingManager{
     
     // Simulação
 
-    void registarJogador(Campeonato aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto);
+    void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto);
 
-	void jogadorPronto(Campeonato aCampeonato, String aJogadorID);
+	void jogadorPronto(int aCampeonato, String aJogadorID);
 
-	CorridaBase simularCorridaBase(Campeonato aCampeonato);
+	CorridaBase simularCorridaBase(int aCampeonato);
 
-	CorridaPremium simularCorridaPremium(Campeonato aCampeonato);
+	CorridaPremium simularCorridaPremium(int aCampeonato);
 
-	List<DadosJogador> ranking(Campeonato aCampeonato);
+	List<DadosJogador> ranking(int aCampeonato);
 
-	void afinarCarro(Campeonato aCampeonato, String aJogadorID, Consumer<Carro> aFunc);
+	void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc);
 
-	boolean temProxCorrida(Campeonato aCampeonato);
+	boolean temProxCorrida(int aCampeonato);
+
+	public int comecarCampeonato(Campeonato campeonato);
+
+	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso();
 }

@@ -2,6 +2,8 @@ package EntregaFinal.src.SubSimulacao;
 
 import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 
+import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
+
 public class Corrida {
 	public SubCampeonatosFacade _circuito;
 	public DadosJogador _dadosJogador;

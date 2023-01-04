@@ -5,7 +5,7 @@ import java.sql.*;
 
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubSimulacao.CampeonatoAtivo;
-public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
+public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> { // TODO
 
 	private static CampeonatoAtivoDAO singleton = null;
 
@@ -96,7 +96,7 @@ public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 	}
 
 	@Override
-	public CampeonatoAtivo put(Campeonato key, CampeonatoAtivo value) {
+	public CampeonatoAtivo put(Integer key, CampeonatoAtivo value) {
 		CampeonatoAtivo res = null;
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
@@ -130,9 +130,9 @@ public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 	}
 
 	@Override
-	public void putAll(Map<? extends Campeonato, ? extends CampeonatoAtivo> m) {
+	public void putAll(Map<? extends Integer, ? extends CampeonatoAtivo> m) {
 		for(CampeonatoAtivo a : m.values()) {
-            this.put(a.get_nome(), a);
+            this.put(a.getId(), a);
         }
 	}
 
@@ -150,7 +150,7 @@ public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 	}
 
 	@Override
-	public Set<Campeonato> keySet() {
+	public Set<Integer> keySet() {
 		throw new NullPointerException("Not implemented!");
 	}
 
@@ -174,7 +174,7 @@ public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 	}
 
 	@Override
-	public Set<Entry<Campeonato, CampeonatoAtivo>> entrySet() {
+	public Set<Entry<Integer, CampeonatoAtivo>> entrySet() {
 		throw new NullPointerException("public Set<Map.Entry<String,CampeonatoAtivo>> entrySet() not implemented!");
 	}
 }

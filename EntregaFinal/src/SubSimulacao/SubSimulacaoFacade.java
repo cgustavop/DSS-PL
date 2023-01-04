@@ -6,10 +6,16 @@ import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.CampeonatoAtivoDAO;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
+import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
+
+
 public class SubSimulacaoFacade implements ISubSimulacao {
-	public CampeonatoAtivoDAO _campeonatoMap;
+	public CampeonatoAtivoDAO _campeonatoMap = CampeonatoAtivoDAO.getInstance();
 	
 	public boolean equals(Object aObject) {
 		if (this == aObject) {
@@ -24,31 +30,76 @@ public class SubSimulacaoFacade implements ISubSimulacao {
 		return false;
 	}
 
-	public void registarJogador(Campeonato aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto) {
-		throw new UnsupportedOperationException();
+	public void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto) {
+		CampeonatoAtivo cAtiv;	
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+			
+		}
+		cAtiv = this._campeonatoMap.get(aCampeonato);
+		
+		cAtiv.novoJogador(aJogadorID, aCarro, aPiloto);
+		this._campeonatoMap.put(aCampeonato, cAtiv);
 	}
 
-	public void jogadorPronto(Campeonato aCampeonato, String aJogadorID) {
-		throw new UnsupportedOperationException();
+	public void jogadorPronto(int aCampeonato, String aJogadorID) {
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+		}
+		CampeonatoAtivo cAtiv = this._campeonatoMap.get(aCampeonato);
+		cAtiv.jogadorPronto(aJogadorID);
 	}
 
-	public CorridaBase simularCorridaBase(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+	public CorridaBase simularCorridaBase(int aCampeonato) {
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+		}
+		CampeonatoAtivo cAtiv = this._campeonatoMap.get(aCampeonato);
+		return cAtiv.simularCorridaBase();
 	}
 
-	public CorridaPremium simularCorridaPremium(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+	public CorridaPremium simularCorridaPremium(int aCampeonato) {
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+		}
+		CampeonatoAtivo cAtiv = this._campeonatoMap.get(aCampeonato);
+		return cAtiv.simularCorridaPremium();
 	}
 
-	public List<DadosJogador> ranking(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+	public List<DadosJogador> ranking(int aCampeonato) {
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+		}
+		CampeonatoAtivo cAtiv = this._campeonatoMap.get(aCampeonato);
+		return cAtiv.ranking();
 	}
 
-	public void afinarCarro(Campeonato aCampeonato, String aJogadorID, Consumer<Carro> aFunc) {
-		throw new UnsupportedOperationException();
+	public void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc) {
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+		}
+		CampeonatoAtivo cAtiv = this._campeonatoMap.get(aCampeonato);
+		cAtiv.afinarCarro(aJogadorID, aFunc);
 	}
 
-	public boolean temProxCorrida(Campeonato aCampeonato) {
-		throw new UnsupportedOperationException();
+	public boolean temProxCorrida(int aCampeonato) {
+		if(!this._campeonatoMap.containsKey(aCampeonato)){
+			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
+		}
+		CampeonatoAtivo cAtiv = this._campeonatoMap.get(aCampeonato);
+		return cAtiv.temProxCorrida();
+	}
+
+	@Override
+	public int comecarCampeonato(Campeonato campeonato) {
+		CampeonatoAtivo cAtiv = new CampeonatoAtivo(campeonato);
+		this._campeonatoMap.put(cAtiv.getId(), cAtiv);
+		return cAtiv.getId();
+	}
+
+	@Override
+	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

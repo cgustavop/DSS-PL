@@ -1,6 +1,7 @@
 package EntregaFinal.src;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import EntregaFinal.src.SubContas.*;
@@ -22,7 +23,7 @@ public class RacingManagerFacade implements IRacingManager{
 		this.campeonatosFacade = new SubCampeonatosFacade();
 		this.carroFacade = new SubCarroFacade();
 		this.pilotoFacade = new SubPilotoFacade();
-		this.simulacaoFacade = new SubSimulacao();
+		this.simulacaoFacade = new SubSimulacaoFacade();
 	}
 
     // Contas
@@ -79,17 +80,21 @@ public class RacingManagerFacade implements IRacingManager{
     
     // Simulação
 
-    public void registarJogador(Campeonato aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto){this.simulacaoFacade.registarJogador(aCampeonato, aJogadorID, aCarro, aPiloto);}
+    public void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto){this.simulacaoFacade.registarJogador(aCampeonato, aJogadorID, aCarro, aPiloto);}
 
-	public void jogadorPronto(Campeonato aCampeonato, String aJogadorID){this.simulacaoFacade.jogadorPronto(aCampeonato, aJogadorID);}
+	public void jogadorPronto(int aCampeonato, String aJogadorID){this.simulacaoFacade.jogadorPronto(aCampeonato, aJogadorID);}
 
-	public CorridaBase simularCorridaBase(Campeonato aCampeonato){return this.simulacaoFacade.simularCorridaBase(aCampeonato);}
+	public CorridaBase simularCorridaBase(int aCampeonato){return this.simulacaoFacade.simularCorridaBase(aCampeonato);}
 
-	public CorridaPremium simularCorridaPremium(Campeonato aCampeonato){return this.simulacaoFacade.simularCorridaPremium(aCampeonato);}
+	public CorridaPremium simularCorridaPremium(int aCampeonato){return this.simulacaoFacade.simularCorridaPremium(aCampeonato);}
 
-	public List<DadosJogador> ranking(Campeonato aCampeonato){return this.simulacaoFacade.ranking(aCampeonato);}
+	public List<DadosJogador> ranking(int aCampeonato){return this.simulacaoFacade.ranking(aCampeonato);}
 
-	public void afinarCarro(Campeonato aCampeonato, String aJogadorID, Consumer<Carro> aFunc){this.simulacaoFacade.afinarCarro(aCampeonato, aJogadorID, aFunc);}
+	public void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc){this.simulacaoFacade.afinarCarro(aCampeonato, aJogadorID, aFunc);}
 
-	public boolean temProxCorrida(Campeonato aCampeonato){return this.simulacaoFacade.temProxCorrida(aCampeonato);}
+	public boolean temProxCorrida(int aCampeonato){return this.simulacaoFacade.temProxCorrida(aCampeonato);}
+
+	public int comecarCampeonato(Campeonato campeonato){return this.simulacaoFacade.comecarCampeonato(campeonato);}
+
+	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso(){return this.simulacaoFacade.buscarCampeonatosEmProgresso();}
 }

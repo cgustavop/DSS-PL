@@ -9,14 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
+
 public class CampeonatoAtivo {
+	private static int idCount = 0;
+	private int id;
 	private int _nCorridaAtual;
-	public SubCampeonatosFacade _campeonato;
-	public JogadorAtivoDAO _jogadorAtivoMap;
-	public ArrayList<DadosJogador> _listOrdPos = new ArrayList<DadosJogador>();
+	private Campeonato _campeonato;
+	private JogadorAtivoDAO _jogadorAtivoMap;
+	private List<List<DadosJogador>> _listOrdPos = new ArrayList<>();
+
+	public CampeonatoAtivo(Campeonato camp){
+		this._campeonato = camp;
+		this._jogadorAtivoMap = JogadorAtivoDAO.getInstance();
+		this.id = idCount++;
+	}
 
 
-	public SubCampeonatosFacade get_campeonato() {
+	public Campeonato get_campeonato() {
 		return _campeonato;
 	}
 
@@ -24,7 +36,7 @@ public class CampeonatoAtivo {
 		return _jogadorAtivoMap;
 	}
 
-	public ArrayList<DadosJogador> get_listOrdPos() {
+	public List<List<DadosJogador>> get_listOrdPos() {
 		return _listOrdPos;
 	}
 
@@ -32,7 +44,7 @@ public class CampeonatoAtivo {
 		return _nCorridaAtual;
 	}
 
-	public void set_campeonato(SubCampeonatosFacade _campeonato) {
+	public void set_campeonato(Campeonato _campeonato) {
 		this._campeonato = _campeonato;
 	}
 
@@ -40,7 +52,7 @@ public class CampeonatoAtivo {
 		this._jogadorAtivoMap = _jogadorAtivoMap;
 	}
 
-	public void set_listOrdPos(ArrayList<DadosJogador> _listOrdPos) {
+	public void set_listOrdPos(List<List<DadosJogador>> _listOrdPos) {
 		this._listOrdPos = _listOrdPos;
 	}
 
@@ -78,6 +90,10 @@ public class CampeonatoAtivo {
 
 	public boolean temProxCorrida() {
 		throw new UnsupportedOperationException();
+	}
+
+	public int getId(){
+		return this.id;
 	}
 
 	public int hashCode() {
