@@ -1,23 +1,9 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
 
 public class JogadorAtivo {
 	private Boolean _pronto;
 	private int _nAfinaçoes;
 	public DadosJogador _dados;
-
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._pronto != null ) {
-			lHashCode += this._pronto.hashCode();
-		}
-		if ( this._dados != null ) {
-			lHashCode += this._dados.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
-	}
 
 	public boolean equals(Object aObject) {
 		if (this == aObject) {

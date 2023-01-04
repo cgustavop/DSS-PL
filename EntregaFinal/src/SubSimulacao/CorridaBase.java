@@ -1,4 +1,4 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +8,6 @@ public class CorridaBase extends Corrida {
 
 	public List<EstadoBase> getListaEstados() {
 		throw new UnsupportedOperationException();
-	}
-
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._listaEstados != null ) {
-			lHashCode += this._listaEstados.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
 	}
 
 	public boolean equals(Object aObject) {

@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import EntregaFinal.src.SubSimulação.JogadorAtivo;
+import EntregaFinal.src.SubSimulacao.JogadorAtivo;
 
 public class JogadorAtivoDAO implements Map<String,JogadorAtivo> {
 

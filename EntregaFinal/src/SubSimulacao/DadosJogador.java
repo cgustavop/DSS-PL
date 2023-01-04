@@ -1,4 +1,7 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
+
+import EntregaFinal.src.SubCarros.SubCarroFacade;
+import EntregaFinal.src.SubPilotos.SubPilotoFacade;
 
 public class DadosJogador {
 	private String _jogadorID;

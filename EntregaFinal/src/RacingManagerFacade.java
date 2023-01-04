@@ -7,7 +7,7 @@ import EntregaFinal.src.SubContas.*;
 import EntregaFinal.src.SubCampeonatos.*;
 import EntregaFinal.src.SubCarros.*;
 import EntregaFinal.src.SubPilotos.*;
-import EntregaFinal.src.SubSimulação.*;
+import EntregaFinal.src.SubSimulacao.*;
 
 public class RacingManagerFacade implements IRacingManager{
     
@@ -15,14 +15,14 @@ public class RacingManagerFacade implements IRacingManager{
 	private ISubCampeonatos campeonatosFacade;
 	private ISubCarro carroFacade;
 	private ISubPiloto pilotoFacade;
-	private ISubSimulaçao simulacaoFacade;
+	private ISubSimulacao simulacaoFacade;
 
     public RacingManagerFacade(){
 		this.contasFacade = new SubContasFacade();
 		this.campeonatosFacade = new SubCampeonatosFacade();
 		this.carroFacade = new SubCarroFacade();
 		this.pilotoFacade = new SubPilotoFacade();
-		this.simulacaoFacade = new SubSimulaçao();
+		this.simulacaoFacade = new SubSimulacao();
 	}
 
     // Contas

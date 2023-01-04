@@ -1,4 +1,6 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
+
+import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 
 public class Corrida {
 	public SubCampeonatosFacade _circuito;
@@ -6,20 +8,6 @@ public class Corrida {
 
 	public DadosJogador getDadosJogador(String aJogadorID) {
 		throw new UnsupportedOperationException();
-	}
-
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._circuito != null ) {
-			lHashCode += this._circuito.hashCode();
-		}
-		if ( this._dadosJogador != null ) {
-			lHashCode += this._dadosJogador.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
 	}
 
 	public boolean equals(Object aObject) {

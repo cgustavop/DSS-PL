@@ -1,9 +1,13 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
+
+import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
 
 import java.util.List;
 import java.util.function.Consumer;
 
-public interface ISubSimulaçao {
+public interface ISubSimulacao {
 
 	public void registarJogador(Campeonato aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto);
 

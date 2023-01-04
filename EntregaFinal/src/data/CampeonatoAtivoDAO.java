@@ -3,7 +3,7 @@ package EntregaFinal.src.data;
 import java.util.*;
 
 import EntregaFinal.src.SubCampeonatos.Campeonato;
-import EntregaFinal.src.SubSimulação.CampeonatoAtivo;
+import EntregaFinal.src.SubSimulacao.CampeonatoAtivo;
 public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 
 

@@ -1,4 +1,5 @@
 package EntregaFinal.src.SubCarros;
+import EntregaFinal.src.data.CarroDAO;
 
 public class SubCarroFacade implements ISubCarro {
 	private CarroDAO _carros;
@@ -40,17 +41,6 @@ public class SubCarroFacade implements ISubCarro {
 			b = true;
 
 		return b;
-	}
-
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( this._carros != null ) {
-			lHashCode += this._carros.hashCode();
-		}
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
 	}
 
 	public boolean equals(Object aObject) {

@@ -1,4 +1,4 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
 
 import java.util.ArrayList;
 import java.util.List;

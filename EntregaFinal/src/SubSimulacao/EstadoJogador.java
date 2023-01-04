@@ -1,4 +1,4 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.SubSimulacao;
 
 public class EstadoJogador {
 	private int _segmento;
