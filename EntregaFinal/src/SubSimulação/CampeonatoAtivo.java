@@ -4,11 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
+
 public class CampeonatoAtivo {
+	private static int idCount = 0;
+	private int id;
 	private int _nCorridaAtual;
-	public SubCampeonatosFacade _campeonato;
-	public JogadorAtivoDAO _jogadorAtivoMap;
-	public ArrayList<DadosJogador> _listOrdPos = new ArrayList<DadosJogador>();
+	private Campeonato _campeonato;
+	private JogadorAtivoDAO _jogadorAtivoMap;
+	private List<List<DadosJogador>> _listOrdPos = new ArrayList<>();
+
+	public CampeonatoAtivo(Campeonato camp){
+		this._campeonato = camp;
+		this._jogadorAtivoMap = JogadorAtivoDAO.getInstance();
+		this.id = idCount++;
+	}
 
 	public CorridaBase simularCorridaBase() {
 		throw new UnsupportedOperationException();
@@ -40,6 +52,10 @@ public class CampeonatoAtivo {
 
 	public boolean temProxCorrida() {
 		throw new UnsupportedOperationException();
+	}
+
+	public int getId(){
+		return this.id;
 	}
 
 	public int hashCode() {

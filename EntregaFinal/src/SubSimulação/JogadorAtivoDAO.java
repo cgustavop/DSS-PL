@@ -1,10 +1,36 @@
 package EntregaFinal.src.SubSimulação;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+import EntregaFinal.src.data.DAOconfig;
+
 public class JogadorAtivoDAO implements Map<String,JogadorAtivo> {
+	private static JogadorAtivoDAO dao = null;
+
+	private JogadorAtivoDAO(){
+		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement()) {
+			
+			conn.setAutoCommit(false); // TODO
+            String sql = "";
+            stm.executeUpdate(sql);
+			conn.commit();
+        } catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static JogadorAtivoDAO getInstance(){
+		if(dao == null)
+			dao = new JogadorAtivoDAO();
+		return dao;
+	}
 
 	public int hashCode() {
 		int lHashCode = 0;
