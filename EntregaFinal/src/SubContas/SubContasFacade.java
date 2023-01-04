@@ -1,5 +1,7 @@
 package EntregaFinal.src.SubContas;
 
+import EntregaFinal.src.data.ContasDAO;
+
 public class SubContasFacade implements ISubContas {
 	private ContasDAO _contas;
 
