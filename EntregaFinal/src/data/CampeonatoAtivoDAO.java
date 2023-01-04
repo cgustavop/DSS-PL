@@ -1,7 +1,9 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.data;
 
 import java.util.*;
-import java.util.function.Consumer;
+
+import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubSimulação.CampeonatoAtivo;
 public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 
 
@@ -71,16 +73,5 @@ public class CampeonatoAtivoDAO implements Map<Campeonato,CampeonatoAtivo> {
 	@Override
 	public Set<Entry<Campeonato, CampeonatoAtivo>> entrySet() {
 		return null;
-	}
-
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof CampeonatoAtivoDAO) {
-			CampeonatoAtivoDAO lCampeonatoAtivoDAOObject = (CampeonatoAtivoDAO) aObject;
-			boolean lEquals = true;
-			return lEquals;
-		}
-		return false;
 	}
 }

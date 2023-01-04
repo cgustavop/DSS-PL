@@ -1,8 +1,6 @@
-package EntregaFinal.src.SubCarros;
+package EntregaFinal.src.data;
 
-import EntregaFinal.src.SubCampeonatos.Campeonato;
-import EntregaFinal.src.SubCampeonatos.CampeonatoDAO;
-import EntregaFinal.src.data.DAOconfig;
+import EntregaFinal.src.SubCarros.Carro;
 
 import java.sql.*;
 import java.util.Collection;
@@ -190,16 +188,5 @@ public class CarroDAO implements Map<String,Carro> {
 	@Override
 	public Set<Entry<String, Carro>> entrySet() {
 		throw new NullPointerException("public Set<Map.Entry<String,Carro>> entrySet() not implemented!");
-	}
-
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof CarroDAO) {
-			CarroDAO lCarroDAOObject = (CarroDAO) aObject;
-			boolean lEquals = true;
-			return lEquals;
-		}
-		return false;
 	}
 }

@@ -1,8 +1,10 @@
-package EntregaFinal.src.SubSimulação;
+package EntregaFinal.src.data;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+
+import EntregaFinal.src.SubSimulação.JogadorAtivo;
 
 public class JogadorAtivoDAO implements Map<String,JogadorAtivo> {
 
@@ -72,16 +74,5 @@ public class JogadorAtivoDAO implements Map<String,JogadorAtivo> {
 	@Override
 	public Set<Entry<String, JogadorAtivo>> entrySet() {
 		return null;
-	}
-
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof JogadorAtivoDAO) {
-			JogadorAtivoDAO lJogadorAtivoDAOObject = (JogadorAtivoDAO) aObject;
-			boolean lEquals = true;
-			return lEquals;
-		}
-		return false;
 	}
 }
