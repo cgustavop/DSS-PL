@@ -3,6 +3,16 @@ package EntregaFinal.src.SubCarros;
 public class C1H extends C1 implements Hibrido {
 	private int _motor_eletrico;
 
+	public C1H(){
+		super();
+		this._motor_eletrico = 0;
+	}
+
+	public C1H(String marca, String modelo, Integer potencia, Integer cilindara, Integer fiabilidade, int _motor_eletrico){
+		super(marca,modelo,potencia,cilindara,fiabilidade);
+		this._motor_eletrico = _motor_eletrico;
+	}
+
 	@Override
 	public int getPotenciaMotorEletrico() {
 		return _motor_eletrico;
@@ -13,23 +23,4 @@ public class C1H extends C1 implements Hibrido {
 		this._motor_eletrico = potencia;
 	}
 
-	public int hashCode() {
-		int lHashCode = 0;
-		if ( lHashCode == 0 ) {
-			lHashCode = super.hashCode();
-		}
-		return lHashCode;
-	}
-
-	public boolean equals(Object aObject) {
-		if (this == aObject) {
-			return true;
-		} else if (aObject instanceof C1H) {
-			C1H lC1HObject = (C1H) aObject;
-			boolean lEquals = true;
-			lEquals &= this._motor_eletrico == lC1HObject._motor_eletrico;
-			return lEquals;
-		}
-		return false;
-	}
 }

@@ -17,14 +17,12 @@ public class Carro {
 		this._fiabilidade = 0;
 	}
 
-	public Carro(String marca, String modelo, Integer potencia, Integer cilindara, Integer fiabilidade, String iD){
+	public Carro(String marca, String modelo, Integer potencia, Integer cilindara, Integer fiabilidade){
 		this._marca = marca;
 		this._modelo = modelo;
 		this._potencia = potencia;
 		this._cilindrada = cilindara;
 		this._fiabilidade = fiabilidade;
-		this._iD = iD;
-		//FIXME: inserir a categoria ou trocar no TextUI
 	}
 
 	public void set_marca(String _marca) {
