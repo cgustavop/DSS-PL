@@ -7,6 +7,7 @@ import java.util.Scanner;
 import EntregaFinal.src.*;
 
 // Needed imports once diagrams were chosen to be like this
+import EntregaFinal.src.SubCarros.*;
 import EntregaFinal.src.SubContas.userType;
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCampeonatos.Circuito;
@@ -205,7 +206,35 @@ public class TextUI {
                 System.out.println("Insira a fiabilidade de " + marca + " " + model + "!");
                 Integer fiabilidade = this.scin.nextInt();
                 if(this.model.fiabilidadeValida(fiabilidade)){
-                    this.model.registarCarro(new Carro(marca,model,power,categoria,cilindrada,fiabilidade));
+                    String c = categoria.toUpperCase();
+                    if(c != "SC"){
+                        System.out.println("O carro é híbrido? Y/n");
+                        String hibrido = this.scin.nextLine();
+                        hibrido.toLowerCase();
+                        if(hibrido == "y"){
+                            System.out.println("Insira a potẽncia do motor elétrico de " + marca + " " + model + "!");
+                            Integer motor = this.scin.nextInt();
+                            switch(c){
+                                case "C1H":
+                                    this.model.registarCarro(new C1H(marca,model,power,cilindrada,fiabilidade,motor));
+                                case "C2H":
+                                    this.model.registarCarro(new C2H(marca,model,power,cilindrada,fiabilidade,motor));
+                                case "GTH":
+                                    this.model.registarCarro(new GTH(marca,model,power,cilindrada,fiabilidade,motor));
+
+                            }
+                        }else{
+                            switch(c){
+                                case "C1":
+                                    this.model.registarCarro(new C1(marca,model,power,cilindrada,fiabilidade));
+                                case "C2":
+                                    this.model.registarCarro(new C2(marca,model,power,cilindrada,fiabilidade));
+                                case "GT":
+                                    this.model.registarCarro(new GT(marca,model,power,cilindrada,fiabilidade));
+                            }
+                        }
+
+                    } else {this.model.registarCarro(new SC(marca,model,power,cilindrada,fiabilidade));}
                     System.out.println("Carro adicionado com sucesso!");
                 }
 
