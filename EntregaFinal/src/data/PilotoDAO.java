@@ -162,7 +162,20 @@ public class PilotoDAO implements Map<String,Piloto> {
 
 	@Override
 	public Set<String> keySet() {
-		return null;
+		Set<String> res = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT Nome FROM pilotos")) { // ResultSet com os nomes de todos os campeonatos
+             while (rs.next()) {
+                String idt = rs.getString("Nome"); // Obtemos um nome de piloto do ResultSet
+                res.add(idt);                                 // Adiciona o piloto ao resultado.
+            }
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
 	}
 
 	@Override

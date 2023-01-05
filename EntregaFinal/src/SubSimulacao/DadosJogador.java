@@ -1,15 +1,18 @@
 package EntregaFinal.src.SubSimulacao;
 
-import EntregaFinal.src.SubCarros.SubCarroFacade;
-import EntregaFinal.src.SubPilotos.SubPilotoFacade;
-
-import EntregaFinal.src.SubCarros.SubCarroFacade;
-import EntregaFinal.src.SubPilotos.SubPilotoFacade;
+import EntregaFinal.src.SubCarros.Carro;
+import EntregaFinal.src.SubPilotos.Piloto;
 
 public class DadosJogador {
 	private String _jogadorID;
-	public SubCarroFacade _carro;
-	public SubPilotoFacade _piloto;
+	private Carro _carros;
+	private Piloto _pilotos;
+
+	public DadosJogador(String id, Carro c, Piloto p){
+		this._jogadorID = id;
+		this._carros = c;
+		this._pilotos = p;
+	}
 
 	public void set_jogadorID(String _jogadorID) {
 		this._jogadorID = _jogadorID;
@@ -19,20 +22,20 @@ public class DadosJogador {
 		return _jogadorID;
 	}
 
-	public void set_carro(SubCarroFacade _carro) {
-		this._carro = _carro;
+	public void set_carro(Carro _carro) {
+		this._carros = _carro;
 	}
 
-	public void set_piloto(SubPilotoFacade _piloto) {
-		this._piloto = _piloto;
+	public void set_piloto(Piloto _piloto) {
+		this._pilotos = _piloto;
 	}
 
-	public SubCarroFacade get_carro() {
-		return _carro;
+	public Carro get_carro() {
+		return _carros;
 	}
 
-	public SubPilotoFacade get_piloto() {
-		return _piloto;
+	public Piloto get_piloto() {
+		return _pilotos;
 	}
 	
 	public int hashCode() {
@@ -40,11 +43,11 @@ public class DadosJogador {
 		if ( this._jogadorID != null ) {
 			lHashCode += this._jogadorID.hashCode();
 		}
-		if ( this._carro != null ) {
-			lHashCode += this._carro.hashCode();
+		if ( this._carros != null ) {
+			lHashCode += this._carros.hashCode();
 		}
-		if ( this._piloto != null ) {
-			lHashCode += this._piloto.hashCode();
+		if ( this._pilotos != null ) {
+			lHashCode += this._pilotos.hashCode();
 		}
 		if ( lHashCode == 0 ) {
 			lHashCode = super.hashCode();
@@ -60,10 +63,10 @@ public class DadosJogador {
 			boolean lEquals = true;
 			lEquals &= ((this._jogadorID == lDadosJogadorObject._jogadorID)
 				|| (this._jogadorID != null && this._jogadorID.equals(lDadosJogadorObject._jogadorID)));
-			lEquals &= ((this._carro == lDadosJogadorObject._carro)
-				|| (this._carro != null && this._carro.equals(lDadosJogadorObject._carro)));
-			lEquals &= ((this._piloto == lDadosJogadorObject._piloto)
-				|| (this._piloto != null && this._piloto.equals(lDadosJogadorObject._piloto)));
+			lEquals &= ((this._carros == lDadosJogadorObject._carros)
+				|| (this._carros != null && this._carros.equals(lDadosJogadorObject._carros)));
+			lEquals &= ((this._pilotos == lDadosJogadorObject._pilotos)
+				|| (this._pilotos != null && this._pilotos.equals(lDadosJogadorObject._pilotos)));
 			return lEquals;
 		}
 		return false;

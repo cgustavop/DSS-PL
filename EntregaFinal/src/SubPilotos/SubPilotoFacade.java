@@ -29,4 +29,8 @@ public class SubPilotoFacade implements ISubPiloto {
 	public void registarPiloto(Piloto aPiloto) {
 		this._pilotos.put(aPiloto.get_nome(),aPiloto);
 	}
+
+    public static SubPilotoFacade getInstance() {
+        return null;
+    }
 }

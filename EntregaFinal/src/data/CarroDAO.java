@@ -93,8 +93,7 @@ public class CarroDAO implements Map<String,Carro> {
 						rs.getString("Modelo"),
 						Integer.parseInt(rs.getString("Cilindrada")),
 						Integer.parseInt(rs.getString("Potencia")),
-						Integer.parseInt(rs.getString("Fiabilidade")),
-						rs.getString("ID"));
+						Integer.parseInt(rs.getString("Fiabilidade")));
 			}
 		} catch (SQLException e) {
 			// Database error!
@@ -109,13 +108,12 @@ public class CarroDAO implements Map<String,Carro> {
 		Carro res = null;
 		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
 			 Statement stm = conn.createStatement()) {
-			try(PreparedStatement pstm = conn.prepareStatement("INSERT INTO carros(ID,Marca,Modelo,Cilindrada,Potencia,Fiabilidade)" + "VALUES (?,?,?)")) {
-				pstm.setString(1,value.get_iD());
-				pstm.setString(2,value.get_marca());
-				pstm.setString(3,value.get_modelo());
+			try(PreparedStatement pstm = conn.prepareStatement("INSERT INTO carros(Marca,Modelo,Cilindrada,Potencia,Fiabilidade)" + "VALUES (?,?,?,?,?)")) {
+				pstm.setString(1,value.get_marca());
+				pstm.setString(2,value.get_modelo());
 				pstm.setString(3,String.valueOf(value.get_cilindrada()));
-				pstm.setString(3,String.valueOf(value.get_potencia()));
-				pstm.setString(3,String.valueOf(value.get_fiabilidade()));
+				pstm.setString(4,String.valueOf(value.get_potencia()));
+				pstm.setString(5,String.valueOf(value.get_fiabilidade()));
 				pstm.execute();
 			}
 		} catch (SQLException e) {
@@ -163,7 +161,20 @@ public class CarroDAO implements Map<String,Carro> {
 
 	@Override
 	public Set<String> keySet() {
-		throw new NullPointerException("Not implemented!");
+		Set<String> res = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT Id FROM carros")) { // ResultSet com os nomes de todos os campeonatos
+             while (rs.next()) {
+                String idt = rs.getString("Id"); // Obtemos um nome de carros do ResultSet
+                res.add(idt);                                 // Adiciona o carros ao resultado.
+            }
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
 	}
 
 	@Override

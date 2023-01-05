@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class CampeonatoDAO implements Map<String,Campeonato> {
 
@@ -173,7 +172,21 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
 
 	@Override
 	public Set<String> keySet() {
-		throw new NullPointerException("Not implemented!");
+		Set<String> res = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT Nome FROM campeonatos")) { // ResultSet com os nomes de todos os campeonatos
+             while (rs.next()) {
+                String idt = rs.getString("Nome"); // Obtemos um nome de campeonato do ResultSet
+                                   // Utilizamos o get para construir os campeonatos
+                res.add(idt);                                 // Adiciona o campeonato ao resultado.
+            }
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
 	}
 
 	@Override

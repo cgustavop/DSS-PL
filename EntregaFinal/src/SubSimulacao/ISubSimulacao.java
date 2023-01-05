@@ -6,11 +6,6 @@ import EntregaFinal.src.SubPilotos.Piloto;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
-
-import EntregaFinal.src.SubCampeonatos.Campeonato;
-import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
 
 public interface ISubSimulacao {
 
@@ -24,7 +19,7 @@ public interface ISubSimulacao {
 
 	public List<DadosJogador> ranking(int aCampeonato);
 
-	public void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc);
+	public void afinarCarro(int aCampeonato, String aJogadorID, Carro aFunc);
 
 	public boolean temProxCorrida(int aCampeonato);
 

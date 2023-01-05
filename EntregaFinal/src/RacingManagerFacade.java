@@ -2,7 +2,6 @@ package EntregaFinal.src;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import EntregaFinal.src.SubContas.*;
 import EntregaFinal.src.SubCampeonatos.*;
@@ -23,7 +22,7 @@ public class RacingManagerFacade implements IRacingManager{
 		this.campeonatosFacade = new SubCampeonatosFacade();
 		this.carroFacade = new SubCarroFacade();
 		this.pilotoFacade = new SubPilotoFacade();
-		this.simulacaoFacade = new SubSimulacaoFacade();
+		this.simulacaoFacade = new SubSimulacao();
 	}
 
     // Contas
@@ -74,27 +73,59 @@ public class RacingManagerFacade implements IRacingManager{
 
     public boolean nomePilotoDisponivel(String aNome){return this.pilotoFacade.nomePilotoDisponivel(aNome);}
 
+	@Override
 	public boolean niveisPericiaValidos(float aCts, float aSva){return this.pilotoFacade.niveisPericiaValidos(aCts, aSva);}
 
+	@Override
 	public void registarPiloto(Piloto aPiloto){this.pilotoFacade.registarPiloto(aPiloto);}
     
     // Simulação
 
-    public void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto){this.simulacaoFacade.registarJogador(aCampeonato, aJogadorID, aCarro, aPiloto);}
+	@Override
+	public void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto) {
+		this.simulacaoFacade.registarJogador(aCampeonato, aJogadorID, aCarro, aPiloto);
+		
+	}
 
-	public void jogadorPronto(int aCampeonato, String aJogadorID){this.simulacaoFacade.jogadorPronto(aCampeonato, aJogadorID);}
+	@Override
+	public void jogadorPronto(int aCampeonato, String aJogadorID) {
+		this.simulacaoFacade.jogadorPronto(aCampeonato, aJogadorID);
+		
+	}
 
-	public CorridaBase simularCorridaBase(int aCampeonato){return this.simulacaoFacade.simularCorridaBase(aCampeonato);}
+	@Override
+	public CorridaBase simularCorridaBase(int aCampeonato) {
+		return this.simulacaoFacade.simularCorridaBase(aCampeonato);
+	}
 
-	public CorridaPremium simularCorridaPremium(int aCampeonato){return this.simulacaoFacade.simularCorridaPremium(aCampeonato);}
+	@Override
+	public CorridaPremium simularCorridaPremium(int aCampeonato) {
+		return this.simulacaoFacade.simularCorridaPremium(aCampeonato);
+	}
 
-	public List<DadosJogador> ranking(int aCampeonato){return this.simulacaoFacade.ranking(aCampeonato);}
+	@Override
+	public List<DadosJogador> ranking(int aCampeonato) {
+		return this.simulacaoFacade.ranking(aCampeonato);
+	}
 
-	public void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc){this.simulacaoFacade.afinarCarro(aCampeonato, aJogadorID, aFunc);}
+	@Override
+	public void afinarCarro(int aCampeonato, String aJogadorID, Carro aFunc) {
+		this.simulacaoFacade.afinarCarro(aCampeonato, aJogadorID, aFunc);
+		
+	}
 
-	public boolean temProxCorrida(int aCampeonato){return this.simulacaoFacade.temProxCorrida(aCampeonato);}
+	@Override
+	public boolean temProxCorrida(int aCampeonato) {
+		return this.simulacaoFacade.temProxCorrida(aCampeonato);
+	}
 
-	public int comecarCampeonato(Campeonato campeonato){return this.simulacaoFacade.comecarCampeonato(campeonato);}
+	@Override
+	public int comecarCampeonato(Campeonato campeonato) {
+		return this.simulacaoFacade.comecarCampeonato(campeonato);
+	}
 
-	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso(){return this.simulacaoFacade.buscarCampeonatosEmProgresso();}
+	@Override
+	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso() {
+		return this.simulacaoFacade.buscarCampeonatosEmProgresso();
+	}
 }

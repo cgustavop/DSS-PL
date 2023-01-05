@@ -1,12 +1,23 @@
 package EntregaFinal.src.SubSimulacao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EstadoPremium {
-	public EstadoJogadorPremium _estadosJogadoresMap;
+	private Map<String,EstadoJogadorPremium> _estadosJogadoresMap = new HashMap<>();
 
 	public EstadoJogadorPremium getEstadoJogador(String aJogadorID) {
-		throw new UnsupportedOperationException();
+		return this._estadosJogadoresMap.get(aJogadorID);
 	}
 
+	public Map<String, EstadoJogadorPremium> get_estadosJogadoresMap() {
+		return _estadosJogadoresMap;
+	}
+
+	public void set_estadosJogadoresMap(Map<String, EstadoJogadorPremium> _estadosJogadoresMap) {
+		this._estadosJogadoresMap = _estadosJogadoresMap;
+	}
+	
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( this._estadosJogadoresMap != null ) {

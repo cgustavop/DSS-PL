@@ -14,7 +14,6 @@ import EntregaFinal.src.SubCarros.*;
 import EntregaFinal.src.SubContas.userType;
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCampeonatos.Circuito;
-import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 
 public class TextUI {

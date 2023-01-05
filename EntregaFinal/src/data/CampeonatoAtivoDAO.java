@@ -3,9 +3,8 @@ package EntregaFinal.src.data;
 import java.util.*;
 import java.sql.*;
 
-import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubSimulacao.CampeonatoAtivo;
-public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> { // TODO
+public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> {
 
 	private static CampeonatoAtivoDAO singleton = null;
 
@@ -73,7 +72,10 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> { // TOD
 	@Override
 	public boolean containsValue(Object value) {
 		CampeonatoAtivo a = (CampeonatoAtivo) value;
-        return true; //this.containsKey();
+        for(CampeonatoAtivo as: values()){
+            if(as.equals(a)) return true; 
+        }
+        return false;
 	}
 
 	@Override
@@ -151,7 +153,21 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> { // TOD
 
 	@Override
 	public Set<Integer> keySet() {
-		throw new NullPointerException("Not implemented!");
+		Set<Integer> res = new HashSet<>();
+        try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
+             Statement stm = conn.createStatement();
+             ResultSet rs = stm.executeQuery("SELECT Nome FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos
+             while (rs.next()) {
+                Integer idt = Integer.parseInt(rs.getString("Nome")); // Obtemos um nome de campeonato do ResultSet
+                                   // Utilizamos o get para construir os campeonatos
+                res.add(idt);                                 // Adiciona o campeonato ao resultado.
+            }
+        } catch (Exception e) {
+            // Database error!
+            e.printStackTrace();
+            throw new NullPointerException(e.getMessage());
+        }
+        return res;
 	}
 
 	@Override
@@ -159,9 +175,9 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> { // TOD
 		Collection<CampeonatoAtivo> res = new HashSet<>();
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT Nome FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos_ativos
+             ResultSet rs = stm.executeQuery("SELECT Id FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos_ativos
             while (rs.next()) {
-                String idt = rs.getString("Nome"); // Obtemos um nome de campeonato_ativo do ResultSet
+                Integer idt = Integer.parseInt(rs.getString("Id")); // Obtemos um nome de campeonato_ativo do ResultSet
                 CampeonatoAtivo a = this.get(idt);                    // Utilizamos o get para construir os campeonatos_ativos
                 res.add(a);                                 // Adiciona o campeonato_ativo ao resultado.
             }
@@ -175,6 +191,6 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> { // TOD
 
 	@Override
 	public Set<Entry<Integer, CampeonatoAtivo>> entrySet() {
-		throw new NullPointerException("public Set<Map.Entry<String,CampeonatoAtivo>> entrySet() not implemented!");
+		throw new NullPointerException("public Set<Map.Entry<Integer,CampeonatoAtivo>> entrySet() not implemented!");
 	}
 }

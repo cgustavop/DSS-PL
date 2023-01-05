@@ -2,13 +2,12 @@ package EntregaFinal.src;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import EntregaFinal.src.SubContas.*;
 import EntregaFinal.src.SubCampeonatos.*;
 import EntregaFinal.src.SubCarros.*;
 import EntregaFinal.src.SubPilotos.*;
-import EntregaFinal.src.SubSimulacao.*;;
+import EntregaFinal.src.SubSimulacao.*;
 
 /**
  * IRacingManager
@@ -79,11 +78,11 @@ public interface IRacingManager{
 
 	List<DadosJogador> ranking(int aCampeonato);
 
-	void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc);
+	void afinarCarro(int aCampeonato, String aJogadorID, Carro aFunc);
 
 	boolean temProxCorrida(int aCampeonato);
 
 	public int comecarCampeonato(Campeonato campeonato);
 
-	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso();
+	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso();
 }

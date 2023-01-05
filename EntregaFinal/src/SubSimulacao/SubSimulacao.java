@@ -5,23 +5,20 @@ import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.CampeonatoAtivoDAO;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
-import EntregaFinal.src.SubCampeonatos.Campeonato;
-import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
-
-
-public class SubSimulacaoFacade implements ISubSimulacao {
+public class SubSimulacao implements ISubSimulacao {
 	public CampeonatoAtivoDAO _campeonatoMap = CampeonatoAtivoDAO.getInstance();
 	
 	public boolean equals(Object aObject) {
 		if (this == aObject) {
 			return true;
-		} else if (aObject instanceof SubSimulacaoFacade) {
-			SubSimulacaoFacade lSubSimulaçaoObject = (SubSimulacaoFacade) aObject;
+		} else if (aObject instanceof SubSimulacao) {
+			SubSimulacao lSubSimulaçaoObject = (SubSimulacao) aObject;
 			boolean lEquals = true;
 			lEquals &= ((this._campeonatoMap == lSubSimulaçaoObject._campeonatoMap)
 				|| (this._campeonatoMap != null && this._campeonatoMap.equals(lSubSimulaçaoObject._campeonatoMap)));
@@ -74,7 +71,7 @@ public class SubSimulacaoFacade implements ISubSimulacao {
 		return cAtiv.ranking();
 	}
 
-	public void afinarCarro(int aCampeonato, String aJogadorID, Consumer<Carro> aFunc) {
+	public void afinarCarro(int aCampeonato, String aJogadorID, Carro aFunc) {
 		if(!this._campeonatoMap.containsKey(aCampeonato)){
 			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
 		}
@@ -90,16 +87,28 @@ public class SubSimulacaoFacade implements ISubSimulacao {
 		return cAtiv.temProxCorrida();
 	}
 
-	@Override
 	public int comecarCampeonato(Campeonato campeonato) {
 		CampeonatoAtivo cAtiv = new CampeonatoAtivo(campeonato);
 		this._campeonatoMap.put(cAtiv.getId(), cAtiv);
 		return cAtiv.getId();
 	}
 
-	@Override
-	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso() {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso() {
+		Map<Campeonato, List<String>> camps = new HashMap<>();
+		List<String> players = new ArrayList<>();
+		List<CampeonatoAtivo> camps_ativ = new ArrayList<>(this._campeonatoMap.values());
+		for(CampeonatoAtivo c : camps_ativ){
+			players = new ArrayList<>(c.get_jogadorAtivoMap()
+									   .values()
+									   .stream()
+									   .map(cA -> cA.get_dados().get_jogadorID())
+        							   .collect(Collectors.toList()));
+			for(String s:players){
+				if(!c.get_jogadorAtivoMap().get(s).get_idCampeonato().equals(c.get_campeonato().get_nome()))
+					players.remove(s);
+			}					
+			camps.put(c.get_campeonato(),players);
+		}
+		return camps;
 	}
 }

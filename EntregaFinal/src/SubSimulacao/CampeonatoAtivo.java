@@ -1,22 +1,17 @@
 package EntregaFinal.src.SubSimulacao;
 
-import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
+import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.JogadorAtivoDAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
-
-import EntregaFinal.src.SubCampeonatos.Campeonato;
-import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
 
 public class CampeonatoAtivo {
 	private static int idCount = 0;
 	private int id;
-	private int _nCorridaAtual;
+	private int _nCorridaAtual = 0;
 	private Campeonato _campeonato;
 	private JogadorAtivoDAO _jogadorAtivoMap;
 	private List<List<DadosJogador>> _listOrdPos = new ArrayList<>();
@@ -26,7 +21,6 @@ public class CampeonatoAtivo {
 		this._jogadorAtivoMap = JogadorAtivoDAO.getInstance();
 		this.id = idCount++;
 	}
-
 
 	public Campeonato get_campeonato() {
 		return _campeonato;
@@ -61,35 +55,61 @@ public class CampeonatoAtivo {
 	}
 
 	public CorridaBase simularCorridaBase() {
+		// TODO:
 		throw new UnsupportedOperationException();
 	}
 
 	public CorridaPremium simularCorridaPremium() {
+		// TODO:
 		throw new UnsupportedOperationException();
 	}
 
 	public List<DadosJogador> ranking() {
-		throw new UnsupportedOperationException();
+		List<DadosJogador> jogadores = new ArrayList<>();
+		for(JogadorAtivo j : this._jogadorAtivoMap.values()){
+			if(j.get_idCampeonato().equals(this._campeonato.get_nome())){
+				jogadores.add(j.get_dados());
+			}
+		}
+		return jogadores;
 	}
 
 	public void jogadorPronto(String aJogadorID) {
-		throw new UnsupportedOperationException();
+		JogadorAtivo j = this._jogadorAtivoMap.get(aJogadorID);
+		j.set_pronto(true);
+		this._jogadorAtivoMap.put(aJogadorID, j);
 	}
 
-	public void afinarCarro(String aJogadorID, Consumer<Carro> aFunc) {
-		throw new UnsupportedOperationException();
+	public void afinarCarro(String aJogadorID, Carro aFunc){
+		JogadorAtivo j = this._jogadorAtivoMap.get(aJogadorID);
+		try{
+			if(j.get_nAfinaçoes() - 1<0){ return; }
+			else{
+				j.set_nAfinaçoes(j.get_nAfinaçoes() - 1); 
+				j.get_dados().set_carro(aFunc);
+				this._jogadorAtivoMap.put(aJogadorID, j);
+
+			}
+		} catch(NullPointerException e){e.printStackTrace();}
+		this._jogadorAtivoMap.put(aJogadorID, this._jogadorAtivoMap.get(aJogadorID));
 	}
 
 	public void novoJogador(String aJogadorID, Carro aCarro, Piloto aPiloto) {
-		throw new UnsupportedOperationException();
-	}
+		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size(),this._campeonato.get_nome());
+		this._jogadorAtivoMap.put(aJogadorID,j);
+	}	
 
 	public boolean estaoJogadoresProntos() {
-		throw new UnsupportedOperationException();
+		List<JogadorAtivo> js = new ArrayList<>(this._jogadorAtivoMap.values());
+		for(JogadorAtivo j : js){
+			if(j.get_idCampeonato().equals(this._campeonato.get_nome()))
+				if(!j.get_pronto()) return false;
+		}
+		return true;
 	}
 
 	public boolean temProxCorrida() {
-		throw new UnsupportedOperationException();
+		return this._campeonato.get_nr_circuitos() > this._nCorridaAtual;
 	}
 
 	public int getId(){

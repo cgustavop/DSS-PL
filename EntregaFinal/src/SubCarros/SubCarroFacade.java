@@ -67,4 +67,8 @@ public class SubCarroFacade implements ISubCarro {
 		}
 		return false;
 	}
+
+    public static SubCarroFacade getInstance() {
+        return null;
+    }
 }

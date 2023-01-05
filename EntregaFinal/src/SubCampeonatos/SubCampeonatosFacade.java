@@ -10,6 +10,14 @@ public class SubCampeonatosFacade implements ISubCampeonatos {
 	private CampeonatoDAO _campeonatos;
 	private CircuitoDAO _circuitos;
 
+	public CircuitoDAO get_circuitos() {
+		return _circuitos;
+	}
+
+	public CampeonatoDAO get_campeonatos() {
+		return _campeonatos;
+	}
+
 	public Boolean nomeCampeonatoDisponivel(String aNome) {
 		return this._campeonatos.containsKey(aNome);
 	}

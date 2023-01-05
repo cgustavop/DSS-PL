@@ -3,8 +3,32 @@ package EntregaFinal.src.SubSimulacao;
 public class EstadoJogador {
 	private int _segmento;
 	private int _volta;
-	public EstadoCarro _estadoCarro;
+	private EstadoCarro _estadoCarro;
 
+	public EstadoCarro get_estadoCarro() {
+		return _estadoCarro;
+	}
+
+	public int get_segmento() {
+		return _segmento;
+	}
+
+	public int get_volta() {
+		return _volta;
+	}
+
+	public void set_estadoCarro(EstadoCarro _estadoCarro) {
+		this._estadoCarro = _estadoCarro;
+	}
+	
+	public void set_segmento(int _segmento) {
+		this._segmento = _segmento;
+	}
+
+	public void set_volta(int _volta) {
+		this._volta = _volta;
+	}	
+	
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( this._estadoCarro != null ) {
