@@ -25,6 +25,6 @@ public interface ISubSimulacao {
 
 	public int comecarCampeonato(Campeonato campeonato);
 
-	public Map<Campeonato, List<Integer>> buscarCampeonatosEmProgresso();
+	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso();
 
 }
