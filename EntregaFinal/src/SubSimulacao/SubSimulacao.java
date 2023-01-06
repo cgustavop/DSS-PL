@@ -27,7 +27,7 @@ public class SubSimulacao implements ISubSimulacao {
 		return false;
 	}
 
-	public void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto) {
+	public void registarJogador(int aCampeonato, String aJogadorID, String aCarro, String aPiloto) {
 		CampeonatoAtivo cAtiv;	
 		if(!this._campeonatoMap.containsKey(aCampeonato)){
 			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);
@@ -104,8 +104,11 @@ public class SubSimulacao implements ISubSimulacao {
 									   .map(cA -> cA.get_dados().get_jogadorID())
         							   .collect(Collectors.toList()));
 			for(String s:players){
+				//Este if agora n funciona :(
+				/*
 				if(!c.get_jogadorAtivoMap().get(s).get_idCampeonato().equals(c.get_campeonato().get_nome()))
 					players.remove(s);
+				 */
 			}					
 			camps.put(c.get_campeonato(),players);
 		}

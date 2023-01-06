@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import EntregaFinal.src.SubCampeonatos.Circuito;
+import EntregaFinal.src.SubCampeonatos.Segmento;
 import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 
 public class CorridaBase extends Corrida {
@@ -15,8 +16,8 @@ public class CorridaBase extends Corrida {
 
 	public List<EstadoBase> getListaEstados() {
 		//TODO:
-		throw new UnsupportedOperationException();
-	}	
+		return this._listaEstados;
+	}
 
 	@Override
 	public DadosJogador getDadosJogador(String aJogadorID) {
@@ -55,6 +56,21 @@ public class CorridaBase extends Corrida {
 	public void set_listaEstados(ArrayList<EstadoBase> _listaEstados) {
 		this._listaEstados = _listaEstados;
 	}
+
+	public void run(){
+		boolean b = true;
+		while(b) {
+			b = true;
+			for (EstadoBase estado : _listaEstados) {
+				for(EstadoJogador estadoJogador : estado.get_estadosJogadoresMap().values())
+					b = (estadoJogador.get_volta() != getCircuito().get_nr_voltas());
+			}
+
+			//mudanças dos dadosDoJogador :)
+
+		}
+	}
+
 
 	public boolean equals(Object aObject) {
 		if (this == aObject) {

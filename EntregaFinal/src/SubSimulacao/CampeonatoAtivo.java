@@ -59,20 +59,21 @@ public class CampeonatoAtivo {
 		boolean pronto = estaoJogadoresProntos();
 		boolean pCorrida = temProxCorrida();
 		if(pronto && pCorrida) return new CorridaBase();
-		return null;
+		throw new IllegalArgumentException();
 	}
 
 	public CorridaPremium simularCorridaPremium() {
 		// TODO:
-		throw new UnsupportedOperationException();
+		boolean pronto = estaoJogadoresProntos();
+		boolean pCorrida = temProxCorrida();
+		if(pronto && pCorrida) return new CorridaPremium();
+		throw new IllegalArgumentException();
 	}
 
 	public List<DadosJogador> ranking() {
 		List<DadosJogador> jogadores = new ArrayList<>();
 		for(JogadorAtivo j : this._jogadorAtivoMap.values()){
-			if(j.get_idCampeonato().equals(this._campeonato.get_nome())){
 				jogadores.add(j.get_dados());
-			}
 		}
 		return jogadores;
 	}
@@ -98,15 +99,14 @@ public class CampeonatoAtivo {
 	}
 
 	public void novoJogador(String aJogadorID, String aCarro, String aPiloto) {
-		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size(),this._campeonato.get_nome());
+		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size());
 		this._jogadorAtivoMap.put(aJogadorID,j);
 	}	
 
 	public boolean estaoJogadoresProntos() {
 		List<JogadorAtivo> js = new ArrayList<>(this._jogadorAtivoMap.values());
 		for(JogadorAtivo j : js){
-			if(j.get_idCampeonato().equals(this._campeonato.get_nome()))
-				if(!j.get_pronto()) return false;
+			if(!j.get_pronto()) return false;
 		}
 		return true;
 	}

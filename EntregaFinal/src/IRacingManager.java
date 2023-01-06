@@ -68,9 +68,9 @@ public interface IRacingManager{
     
     // Simulação
 
-    void registarJogador(int aCampeonato, String aJogadorID, Carro aCarro, Piloto aPiloto);
+    void registarJogador(int aCampeonato, String aJogadorID, String aCarro, String aPiloto);
 
-	void jogadorPronto(int aCampeonato, String aJogadorID);
+    void jogadorPronto(int aCampeonato, String aJogadorID);
 
 	CorridaBase simularCorridaBase(int aCampeonato);
 

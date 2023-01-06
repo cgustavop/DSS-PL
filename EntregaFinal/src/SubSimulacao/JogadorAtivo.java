@@ -10,10 +10,10 @@ public class JogadorAtivo{
 	private int _nAfinaçoes;
 	private DadosJogador _dados;
 
-	public JogadorAtivo(String Id, String carroid, String aPiloto, Integer nAfin){
+	public JogadorAtivo(String Id, String aCarro, String aPiloto, Integer nAfin){
 		this._pronto = false;
 		this._nAfinaçoes = nAfin;
-		this._dados = new DadosJogador(Id, CarroDAO.getInstance().get(carroid), PilotoDAO.getInstance().get(aPiloto));
+		this._dados = new DadosJogador(Id, CarroDAO.getInstance().get(aCarro), PilotoDAO.getInstance().get(aPiloto));
 	}
 	
 	public DadosJogador get_dados() {

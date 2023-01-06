@@ -6,7 +6,7 @@ import java.util.Map;
 import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 
-public class Corrida {
+public abstract class Corrida {
 	private Circuito circuito;
 	private SubCampeonatosFacade _circuito;
 	private Map<String,DadosJogador> _dadosJogador = new HashMap<>();
@@ -37,6 +37,10 @@ public class Corrida {
 
 	public void set_dadosJogador(Map<String, DadosJogador> _dadosJogador) {
 		this._dadosJogador = _dadosJogador;
+	}
+
+	public void run() {
+
 	}
 
 	public boolean equals(Object aObject) {

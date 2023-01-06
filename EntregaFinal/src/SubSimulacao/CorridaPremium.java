@@ -10,9 +10,12 @@ import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 public class CorridaPremium extends Corrida {
 	public List<EstadoPremium> _listaEstados = new ArrayList<EstadoPremium>();
 
+	public CorridaPremium() {
+	}
+
 	public List<EstadoPremium> getListaEstados() {
 		//TODO:
-		throw new UnsupportedOperationException();
+		return this._listaEstados;
 	}
 
 	@Override

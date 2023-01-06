@@ -338,7 +338,9 @@ public class TextUI {
 
     private void play(){
         try{
-            // TODO: To be implemented
+            while(true){
+
+            }
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
