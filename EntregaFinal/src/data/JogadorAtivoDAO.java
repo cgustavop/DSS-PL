@@ -86,9 +86,10 @@ public class JogadorAtivoDAO implements Map<String,JogadorAtivo> {
              Statement stm = conn.createStatement();
              ResultSet rs = stm.executeQuery("SELECT * FROM jogadores_ativos WHERE Nome='"+key+"'")) {
             if (rs.next()) {  // A chave existe na tabela
-                a = new JogadorAtivo(rs.getString("Nome"),
-                            Integer.parseInt(rs.getString("Nr_circuitos")),
-                        Boolean.parseBoolean(rs.getString("Disponibilidade")));
+                a = new JogadorAtivo(rs.getString(""),
+                        rs.getString(""),
+                        rs.getString(""),
+                        Integer.parseInt(rs.getString("")));
             }
         } catch (SQLException e) {
             // Database error!

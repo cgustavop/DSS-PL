@@ -56,7 +56,10 @@ public class CampeonatoAtivo {
 
 	public CorridaBase simularCorridaBase() {
 		// TODO:
-		throw new UnsupportedOperationException();
+		boolean pronto = estaoJogadoresProntos();
+		boolean pCorrida = temProxCorrida();
+		if(pronto && pCorrida) return new CorridaBase();
+		return null;
 	}
 
 	public CorridaPremium simularCorridaPremium() {
@@ -94,7 +97,7 @@ public class CampeonatoAtivo {
 		this._jogadorAtivoMap.put(aJogadorID, this._jogadorAtivoMap.get(aJogadorID));
 	}
 
-	public void novoJogador(String aJogadorID, Carro aCarro, Piloto aPiloto) {
+	public void novoJogador(String aJogadorID, String aCarro, String aPiloto) {
 		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size(),this._campeonato.get_nome());
 		this._jogadorAtivoMap.put(aJogadorID,j);
 	}	

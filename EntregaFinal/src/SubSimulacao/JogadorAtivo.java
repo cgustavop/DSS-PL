@@ -2,18 +2,18 @@ package EntregaFinal.src.SubSimulacao;
 
 import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
+import EntregaFinal.src.data.CarroDAO;
+import EntregaFinal.src.data.PilotoDAO;
 
 public class JogadorAtivo{
 	private Boolean _pronto;
 	private int _nAfinaçoes;
-	private String _idCampeonato;
-	private DadosJogador _dados; 
+	private DadosJogador _dados;
 
-	public JogadorAtivo(String Id, Carro carro, Piloto aPiloto, Integer nAfin, String camp){
+	public JogadorAtivo(String Id, String carroid, String aPiloto, Integer nAfin){
 		this._pronto = false;
 		this._nAfinaçoes = nAfin;
-		this._idCampeonato = camp;
-		this._dados = new DadosJogador(Id, carro, aPiloto);
+		this._dados = new DadosJogador(Id, CarroDAO.getInstance().get(carroid), PilotoDAO.getInstance().get(aPiloto));
 	}
 	
 	public DadosJogador get_dados() {
@@ -38,14 +38,6 @@ public class JogadorAtivo{
 
 	public void set_pronto(Boolean _pronto) {
 		this._pronto = _pronto;
-	}
-
-	public String get_idCampeonato() {
-		return _idCampeonato;
-	}
-
-	public void set_idCampeonato(String _idCampeonato) {
-		this._idCampeonato = _idCampeonato;
 	}
 	
 	public boolean equals(Object aObject) {

@@ -10,6 +10,9 @@ import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 public class CorridaBase extends Corrida {
 	public List<EstadoBase> _listaEstados = new ArrayList<EstadoBase>();
 
+	public CorridaBase() {
+	}
+
 	public List<EstadoBase> getListaEstados() {
 		//TODO:
 		throw new UnsupportedOperationException();
