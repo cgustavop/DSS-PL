@@ -2,7 +2,6 @@ package EntregaFinal.src.SubSimulacao;
 
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.CampeonatoAtivoDAO;
 
 import java.util.ArrayList;

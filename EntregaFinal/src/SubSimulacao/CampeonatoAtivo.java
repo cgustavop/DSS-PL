@@ -3,7 +3,6 @@ package EntregaFinal.src.SubSimulacao;
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.JogadorAtivoDAO;
 
 import java.util.*;
@@ -57,7 +56,6 @@ public class CampeonatoAtivo {
 	}
 
 	public CorridaBase simularCorridaBase() {
-		// TODO:
 		boolean pronto = estaoJogadoresProntos();
 		boolean pCorrida = temProxCorrida();
 		if(pronto && pCorrida) return new CorridaBase(null,null);
@@ -65,10 +63,9 @@ public class CampeonatoAtivo {
 	}
 
 	public CorridaPremium simularCorridaPremium() {
-		// TODO:
 		boolean pronto = estaoJogadoresProntos();
 		boolean pCorrida = temProxCorrida();
-		if(pronto && pCorrida) return new CorridaPremium();
+		if(pronto && pCorrida) return new CorridaPremium(null, null);
 		throw new IllegalArgumentException();
 	}
 

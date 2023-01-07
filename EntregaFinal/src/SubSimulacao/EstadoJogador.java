@@ -1,15 +1,13 @@
 package EntregaFinal.src.SubSimulacao;
 
-import EntregaFinal.src.SubCampeonatos.Segmento;
-
 import static EntregaFinal.src.SubSimulacao.EstadoCarro.*;
 
 public class EstadoJogador {
-	private int _segmento;
-	private int _volta;
-	private EstadoCarro _estadoCarro;
+	protected int _segmento;
+	protected int _volta;
+	protected EstadoCarro _estadoCarro;
 
-	EstadoJogador(){
+	public EstadoJogador(){
 		this._segmento = 1;
 		this._volta = 0;
 		this._estadoCarro = OK;

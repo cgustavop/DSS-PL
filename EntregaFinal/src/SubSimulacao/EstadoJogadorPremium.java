@@ -3,6 +3,14 @@ package EntregaFinal.src.SubSimulacao;
 public class  EstadoJogadorPremium extends EstadoJogador {
 	private int _tempoTotal;
 
+	public EstadoJogadorPremium(){
+		super();
+		this._segmento = 1;
+		this._volta = 0;
+		this._estadoCarro = EstadoCarro.OK;
+		this._tempoTotal = 0;
+	}
+
 	@Override
 	public EstadoCarro get_estadoCarro() {
 		return super.get_estadoCarro();

@@ -1,7 +1,5 @@
 package EntregaFinal.src.SubSimulacao;
 
-import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.CarroDAO;
 import EntregaFinal.src.data.PilotoDAO;
 

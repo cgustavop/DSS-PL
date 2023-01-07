@@ -2,12 +2,19 @@ package EntregaFinal.src.SubSimulacao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class EstadoPremium {
 	private Map<String,EstadoJogadorPremium> _estadosJogadoresMap = new HashMap<>();
 
 	public EstadoJogadorPremium getEstadoJogador(String aJogadorID) {
 		return this._estadosJogadoresMap.get(aJogadorID);
+	}
+
+	public EstadoPremium(Set<String> jogadoresID){
+		for(String jogadorID : jogadoresID){
+			_estadosJogadoresMap.put(jogadorID,new EstadoJogadorPremium());
+		}
 	}
 
 	public Map<String, EstadoJogadorPremium> get_estadosJogadoresMap() {

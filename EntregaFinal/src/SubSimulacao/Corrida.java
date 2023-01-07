@@ -2,9 +2,11 @@ package EntregaFinal.src.SubSimulacao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
+import EntregaFinal.src.SubCampeonatos.TempoMetereologico;
 
 public abstract class Corrida {
 	private Circuito circuito;
@@ -44,8 +46,6 @@ public abstract class Corrida {
 		this._dadosJogador = _dadosJogador;
 	}
 
-
-
 	public boolean equals(Object aObject) {
 		if (this == aObject) {
 			return true;
@@ -60,4 +60,28 @@ public abstract class Corrida {
 		}
 		return false;
 	}
+
+	public boolean despistou(float sva, float cts, TempoMetereologico temp){
+		int svaux = (int) (75 + (1-sva)*2*10);
+		if(temp == TempoMetereologico.Chuva) svaux = svaux - (int) ((cts*10)/2);
+		else svaux = svaux - (int) (((1-cts)*10)/2);
+		Random rand = new Random();
+		int r = rand.nextInt(100);
+		if(r > sva) return true;
+		return false;
+	}
+
+	public boolean avariou(int fiabilidade){
+		Random rand = new Random();
+		int r = rand.nextInt(100);
+		if(r > fiabilidade) return true;
+		return false;
+	}
+
+	public int probUltrapassa(int cilindrada, int potencia, float cts, float sva, TempoMetereologico temp){
+		if(temp == TempoMetereologico.Chuva) return (int) ((cilindrada/100)*0.2 + (potencia/10)*0.2 + sva*100*0.5 + (1-cts)*100*0.1);
+		else return (int) ((cilindrada/100)*0.2 + (potencia/10)*0.2 + sva*100*0.5 + cts*100*0.1);
+	}
+	
+	
 }

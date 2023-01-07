@@ -3,12 +3,9 @@ package EntregaFinal.src.SubSimulacao;
 import java.util.*;
 
 import EntregaFinal.src.SubCampeonatos.Circuito;
-import EntregaFinal.src.SubCampeonatos.Segmento;
 import EntregaFinal.src.SubCampeonatos.SubCampeonatosFacade;
 import EntregaFinal.src.SubCampeonatos.TempoMetereologico;
 
-import static EntregaFinal.src.SubCampeonatos.TempoMetereologico.Chuva;
-import static EntregaFinal.src.SubCampeonatos.TempoMetereologico.Seco;
 import static EntregaFinal.src.SubSimulacao.EstadoCarro.*;
 
 public class CorridaBase extends Corrida {
@@ -19,7 +16,6 @@ public class CorridaBase extends Corrida {
 	}
 
 	public List<EstadoBase> getListaEstados() {
-		//TODO:
 		return this._listaEstados;
 	}
 
@@ -61,31 +57,25 @@ public class CorridaBase extends Corrida {
 		this._listaEstados = _listaEstados;
 	}
 
-	public boolean despistou(float sva, float cts, TempoMetereologico temp){
-		int svaux = (int) (75 + (1-sva)*2*10);
-		if(temp == Chuva) svaux = svaux - (int) ((cts*10)/2);
-		else svaux = svaux - (int) (((1-cts)*10)/2);
-		Random rand = new Random();
-		int r = rand.nextInt(100);
-		if(r > sva) return true;
-		return false;
+	@Override
+	public int probUltrapassa(int cilindrada, int potencia, float cts, float sva, TempoMetereologico temp) {
+		return super.probUltrapassa(cilindrada, potencia, cts, sva, temp);
 	}
 
-	public boolean avariou(int fiabilidade){
-		Random rand = new Random();
-		int r = rand.nextInt(100);
-		if(r > fiabilidade) return true;
-		return false;
+	@Override
+	public boolean avariou(int fiabilidade) {
+		return super.avariou(fiabilidade);
 	}
 
-	public int probUltrapassa(int cilindrada, int potencia, float cts, float sva, TempoMetereologico temp){
-		if(temp == Chuva) return (int) ((cilindrada/100)*0.2 + (potencia/10)*0.2 + sva*100*0.5 + (1-cts)*100*0.1);
-		else return (int) ((cilindrada/100)*0.2 + (potencia/10)*0.2 + sva*100*0.5 + cts*100*0.1);
+	@Override
+	public boolean despistou(float sva, float cts, TempoMetereologico temp) {
+		return super.despistou(sva, cts, temp);
 	}
+
 	public boolean ultrapassa(DadosJogador jogador1,DadosJogador jogador2, int i,String gdu, TempoMetereologico temp){
 
 		//Dados do jogador 1
-		EstadoJogador estadoJogador1 =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador1);
+		EstadoJogador estadoJogador1 =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador1.get_jogadorID());
 		int cilindrada1 =jogador1.get_carro().get_cilindrada();
 		int potencia1 = jogador1.get_carro().get_potencia();
 		float cts1 = jogador1.get_piloto().get_cts();
@@ -94,7 +84,7 @@ public class CorridaBase extends Corrida {
 		int volta1 = estadoJogador1.get_volta();
 
 		//Dados do jogador 1
-		EstadoJogador estadoJogador2 =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador2);
+		EstadoJogador estadoJogador2 =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador2.get_jogadorID());
 		int cilindrada2 =jogador2.get_carro().get_cilindrada();
 		int potencia2 = jogador2.get_carro().get_potencia();
 		float cts2 = jogador2.get_piloto().get_cts();
@@ -152,10 +142,10 @@ public class CorridaBase extends Corrida {
 			int j = 0;
 			for(DadosJogador jogador : result){
 				//Elementos dos dados do jogador que vão influenciar a ação de andar
-				EstadoJogador estadoJogador =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador);
-				int cilindrada =jogador.get_carro().get_cilindrada();
+				EstadoJogador estadoJogador =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador.get_jogadorID());
+				//int cilindrada =jogador.get_carro().get_cilindrada();
 				int fiabilidade = jogador.get_carro().get_fiabilidade();
-				int potencia = jogador.get_carro().get_potencia();
+				//int potencia = jogador.get_carro().get_potencia();
 				float cts = jogador.get_piloto().get_cts();
 				float sva = jogador.get_piloto().get_sva();
 				int segmento = estadoJogador.get_segmento();
@@ -178,7 +168,7 @@ public class CorridaBase extends Corrida {
 
 
 			for(DadosJogador jogador : result){
-				EstadoJogador estadoJogador =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador);
+				EstadoJogador estadoJogador =_listaEstados.get(i).get_estadosJogadoresMap().get(jogador.get_jogadorID());
 				int segmento = estadoJogador.get_segmento();
 				int volta = estadoJogador.get_volta();
 				if(_listaEstados.get(i).getEstadoJogador(jogador.get_jogadorID()).get_estadoCarro() == OK)
