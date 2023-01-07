@@ -15,11 +15,31 @@ public class JogadorAtivoDAO implements Map<String,JogadorAtivo> {
 	private JogadorAtivoDAO(){
 		try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement()) {
-            String sql = "CREATE TABLE IF NOT EXISTS campeonatos (" +
-                    "Nome varchar(45) NOT NULL PRIMARY KEY," +
-                    "Nr_circuitos int DEFAULT 0," +
-                    "Disponibilidade boolean DEFAULT false)";
-            stm.executeUpdate(sql);
+            conn.setAutoCommit(false);
+
+            String sql = "CREATE TABLE IF NOT EXISTS dados_jogador (" +
+                "DadosJogadorId int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                "CampeonatoAtivoId int NOT NULL," +
+                "JogadorId varchar(45) NOT NULL," +
+                "CarroId varchar(45) NOT NULL," +
+                "PilotoId varchar(45) NOT NULL," +
+                "FOREIGN KEY (CarroId) REFERENCES carros(ID)," +
+                "FOREIGN KEY (PilotoId) REFERENCES pilotos(Nome)," +
+                "FOREIGN KEY (CampeonatoAtivoId) REFERENCES campeonatos_ativos(CampeonatoAtivoId));";
+
+            stm.execute(sql);
+
+            sql = "CREATE TABLE IF NOT EXISTS jogador_ativo (" +
+                "CampeonatoAtivoId int NOT NULL," +
+                "JogadorId varchar(45) NOT NULL," +
+                "Pronto boolean DEFAULT false," + 
+                "NrAfinacoes int DEFAULT 0," + 
+                "FOREIGN KEY (JogadorId,CampeonatoAtivoId) REFERENCES dados_jogador(JogadorId,CampeonatoAtivoId)," +
+                "PRIMARY KEY(JogadorId, CampeonatoAtivoId));";
+
+            stm.execute(sql);
+
+            conn.commit();
         } catch (SQLException e) {
             // Erro a criar tabela...
             e.printStackTrace();

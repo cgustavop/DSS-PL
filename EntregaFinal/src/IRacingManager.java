@@ -58,6 +58,12 @@ public interface IRacingManager{
 
 	boolean cilindradaValida(int aCilindrada, String aCategoria);
 
+	List<Carro> listCarros();
+	
+	boolean hasCarro(String id);
+
+	Carro getCarro(String id);
+
     // Pilotos
 
     boolean nomePilotoDisponivel(String aNome);
@@ -65,6 +71,12 @@ public interface IRacingManager{
 	boolean niveisPericiaValidos(float aCts, float aSva);
 
 	void registarPiloto(Piloto aPiloto);
+
+	List<Piloto> listPilotos();
+
+	Piloto getPiloto(String nome);
+
+	boolean hasPiloto(String nome);
     
     // Simulação
 
@@ -85,4 +97,8 @@ public interface IRacingManager{
 	public int comecarCampeonato(Campeonato campeonato);
 
 	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso();
+
+	public void run(String camp);
+
+	public List<List<DadosJogador>> getPosPorCorridaJogadores(String camp);
 }

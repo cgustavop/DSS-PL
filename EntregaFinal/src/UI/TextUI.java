@@ -10,11 +10,14 @@ import EntregaFinal.src.IRacingManager;
 import EntregaFinal.src.RacingManagerFacade;
 
 // Needed imports once diagrams were chosen to be like this
-import EntregaFinal.src.SubCarros.*;
 import EntregaFinal.src.SubContas.userType;
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubPilotos.Piloto;
+import EntregaFinal.src.SubSimulacao.DadosJogador;
+import EntregaFinal.src.SubSimulacao.JogadorAtivo;
+import EntregaFinal.src.data.JogadorAtivoDAO;
+import EntregaFinal.src.SubCarros.*;
 
 public class TextUI {
     private IRacingManager model;
@@ -22,8 +25,10 @@ public class TextUI {
     // Menus da aplicação
     private Menu main_menu;
     private Menu creation_menu;
+    private Menu play_menu;
     private String last;
     private Map<String,Boolean> logged_in = new HashMap<>();
+    private JogadorAtivoDAO ja = JogadorAtivoDAO.getInstance();
 
     // Scanner para leitura
     private Scanner scin;
@@ -48,14 +53,15 @@ public class TextUI {
         this.main_menu.setHandler(4, this::menuadmin);
 
         this.creation_menu = new Menu(new String[]{
-                "Adicionar Circuito",
-                "Adicionar Campeonato",
-                "Adicionar Carro",
-                "Adicionar Piloto",
-                "Disponibilizar Campeonato",
-                "Indisponibilizar Campeonato",
-                "Listar Campeonatos Disponíveis",
-                "Listar Campeonatos Indisponíveis",
+            "Adicionar Circuito",
+            "Adicionar Campeonato",
+            "Adicionar Carro",
+            "Adicionar Piloto",
+            "Disponibilizar Campeonato",
+            "Indisponibilizar Campeonato",
+            "Listar Campeonatos Disponíveis",
+            "Listar Campeonatos Indisponíveis",
+            "Voltar ao menu principal"
         });
 
         this.creation_menu.setHandler(1, this::adicionarCircuito);
@@ -64,7 +70,21 @@ public class TextUI {
         this.creation_menu.setHandler(4, this::adicionarPiloto);
         this.creation_menu.setHandler(5, this::disponibilizarCampeonato);
         this.creation_menu.setHandler(6, this::indisponibilizarCampeonato);
-        this.creation_menu.setHandler(7, this::voltarMenu);
+        this.creation_menu.setHandler(7, this::listaDisponivelCampeonato);
+        this.creation_menu.setHandler(8, this::listaIndisponivelCampeonato);
+        this.creation_menu.setHandler(9, this::voltarMenu);
+
+        this.play_menu = new Menu(new String[]{
+            "Inicia Campeonato",
+            "Escolher Piloto",
+            "Escolher Carro",
+            "Voltar ao menu principal"
+        });
+
+        this.play_menu.setHandler(1, this::iniciaCampeonato);
+        this.play_menu.setHandler(2, this::escolherPiloto);
+        this.play_menu.setHandler(3, this::escolherCarro);
+        this.play_menu.setHandler(5, this::voltarMenu);
 
         this.model = new RacingManagerFacade();
 
@@ -75,6 +95,9 @@ public class TextUI {
      * Executa o menu principal e invoca o método correspondente à opção seleccionada.
      */
     public void run() {
+        String id = "1";
+        this.ja.put(id,new JogadorAtivo(id));
+        id+=1;
         this.main_menu.run();
         System.out.println("Até breve!...");
     }
@@ -327,6 +350,22 @@ public class TextUI {
         }
     }
 
+    private void listaDisponivelCampeonato(){
+        try{
+            System.out.println(this.model.campeonatosDisponiveis().toString());
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void listaIndisponivelCampeonato(){
+        try{
+            System.out.println(this.model.campeonatosIndisponiveis().toString());
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
+    }
+
     private void voltarMenu(){
         try{
             System.out.println("Voltando ao menu principal, saíndo de modo administrador...");
@@ -336,11 +375,73 @@ public class TextUI {
         }
     }
 
+    private void iniciaCampeonato(){
+        try{
+            String champ;
+            do{
+                listaDisponivelCampeonato();
+                System.out.println("Escolha um campeonato!");
+                champ = this.scin.nextLine();
+            } while(!this.model.nomeCampeonatoDisponivel(champ));
+            
+            for(Campeonato c: this.model.campeonatosDisponiveis()){
+                if(c.get_nome().equals(champ)){
+                    this.model.comecarCampeonato(c);
+                    break;
+                }
+            }
+            
+            this.model.run(champ);
+            System.out.println(this.model.getPosPorCorridaJogadores(champ).toString());
+
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void escolherCarro(){
+        try{
+            String car;
+            do{
+                this.model.listCarros().toString();
+                System.out.println("Escolha um Carro inserindo um ID!");
+                car = this.scin.nextLine();
+            } while(!this.model.hasCarro(car));
+
+            Carro c = this.model.getCarro(car);
+            List<JogadorAtivo> gs = new ArrayList<>(this.ja.values());
+            JogadorAtivo j = gs.get(gs.size()-1);
+            DadosJogador d = j.get_dados();
+            d.set_carro(c);
+            j.set_dados(d);
+        } catch(NullPointerException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void escolherPiloto(){
+        try{
+            String piloto;
+            do{
+                this.model.listPilotos().toString();
+                System.out.println("Escolha um Piloto!");
+                piloto = this.scin.nextLine();
+            } while(!this.model.nomePilotoDisponivel(piloto));
+
+            Piloto p = this.model.getPiloto(piloto);
+            List<JogadorAtivo> gs = new ArrayList<>(this.ja.values());
+            JogadorAtivo j = gs.get(gs.size()-1);
+            DadosJogador d = j.get_dados();
+            d.set_piloto(p);
+            j.set_dados(d);
+        } catch(NullPointerException e){
+            e.printStackTrace(); 
+        }
+    }
+
     private void play(){
         try{
-            while(true){
-
-            }
+            this.play_menu.run();
         } catch(NullPointerException e){
             System.out.println(e.getMessage());
         }

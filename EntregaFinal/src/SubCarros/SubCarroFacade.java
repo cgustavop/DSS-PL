@@ -1,5 +1,8 @@
 package EntregaFinal.src.SubCarros;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import EntregaFinal.src.data.CarroDAO;
 
 public class SubCarroFacade implements ISubCarro {
@@ -71,4 +74,20 @@ public class SubCarroFacade implements ISubCarro {
     public static SubCarroFacade getInstance() {
         return null;
     }
+
+	@Override
+	public Carro getCarro(String id) {
+		return _carros.get(id);
+	}
+
+	@Override
+	public List<Carro> listCarros() {
+		List<Carro> carros = new ArrayList<>(_carros.values());
+		return carros;
+	}
+
+	@Override
+	public boolean hasCarro(String id) {
+		return _carros.containsKey(id);
+	}
 }

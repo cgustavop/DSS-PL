@@ -7,15 +7,31 @@ public class JogadorAtivo{
 	private Boolean _pronto;
 	private int _nAfinaçoes;
 	private DadosJogador _dados;
+	private int campeonatoAtivoId;
 
-	public JogadorAtivo(String Id, String aCarro, String aPiloto, Integer nAfin){
+	public JogadorAtivo(String id){
+		this._dados = new DadosJogador(id, null, null);
+		this.campeonatoAtivoId = 0;
+		this._pronto = false;
+		this._nAfinaçoes = 0;
+	}
+	public JogadorAtivo(String Id, String aCarro, String aPiloto, int nAfin, int campeonatoAtivoId){
 		this._pronto = false;
 		this._nAfinaçoes = nAfin;
 		this._dados = new DadosJogador(Id, CarroDAO.getInstance().get(aCarro), PilotoDAO.getInstance().get(aPiloto));
+		this.campeonatoAtivoId = campeonatoAtivoId;
 	}
 	
 	public DadosJogador get_dados() {
 		return _dados;
+	}
+
+	public int getCampeonatoAtivoId(){
+		return this.campeonatoAtivoId;
+	}
+
+	public void setCampeonatoAtivoId(int campeonatoAtivoId) {
+		this.campeonatoAtivoId = campeonatoAtivoId;
 	}
 
 	public int get_nAfinaçoes() {

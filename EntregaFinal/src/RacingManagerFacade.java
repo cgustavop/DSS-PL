@@ -69,6 +69,22 @@ public class RacingManagerFacade implements IRacingManager{
 
 	public boolean cilindradaValida(int aCilindrada, String aCategoria){return this.carroFacade.cilindradaValida(aCilindrada, aCategoria);}
 
+	@Override
+	public Carro getCarro(String id) {
+		return carroFacade.getCarro(id);
+	}
+
+	@Override
+	public boolean hasCarro(String id) {
+		return carroFacade.hasCarro(id);
+	}
+
+	@Override
+	public List<Carro> listCarros() {
+		return carroFacade.listCarros();
+	}
+
+
     // Pilotos
 
     public boolean nomePilotoDisponivel(String aNome){return this.pilotoFacade.nomePilotoDisponivel(aNome);}
@@ -78,6 +94,23 @@ public class RacingManagerFacade implements IRacingManager{
 
 	@Override
 	public void registarPiloto(Piloto aPiloto){this.pilotoFacade.registarPiloto(aPiloto);}
+
+	@Override
+	public Piloto getPiloto(String nome) {
+		return this.pilotoFacade.gePiloto(nome);
+	}
+
+	@Override
+	public boolean hasPiloto(String nome) {
+		return this.pilotoFacade.hasPiloto(nome);
+	}
+
+	@Override
+	public List<Piloto> listPilotos() {
+		return this.pilotoFacade.listPilotos();
+	}
+
+
     
     // Simulação
 
@@ -128,4 +161,15 @@ public class RacingManagerFacade implements IRacingManager{
 	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso() {
 		return this.simulacaoFacade.buscarCampeonatosEmProgresso();
 	}
+
+	@Override
+	public List<List<DadosJogador>> getPosPorCorridaJogadores(String camp) {
+		return this.simulacaoFacade.getPosPorCorridaJogadores(camp);
+	}
+
+	@Override
+	public void run(String camp) {
+		this.simulacaoFacade.run(camp);	
+	}
+
 }

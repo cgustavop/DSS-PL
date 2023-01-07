@@ -26,4 +26,8 @@ public interface ISubSimulacao {
 
 	public Map<Campeonato, List<String>> buscarCampeonatosEmProgresso();
 
+	public void run(String camp);
+
+	public List<List<DadosJogador>> getPosPorCorridaJogadores(String camp);
+
 }

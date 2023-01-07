@@ -18,7 +18,7 @@ public class PilotoDAO implements Map<String,Piloto> {
             String sql = "CREATE TABLE IF NOT EXISTS pilotos (" +
                     "Nome varchar(45) NOT NULL PRIMARY KEY," +
                     "Cts float DEFAULT 0," +
-					"Sva float DEFAULT 0)";
+					"Sva float DEFAULT 0);";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...

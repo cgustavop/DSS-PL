@@ -1,5 +1,8 @@
 package EntregaFinal.src.SubPilotos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import EntregaFinal.src.data.PilotoDAO;
 
 public class SubPilotoFacade implements ISubPiloto {
@@ -31,6 +34,22 @@ public class SubPilotoFacade implements ISubPiloto {
 	}
 
     public static SubPilotoFacade getInstance() {
-        return null;
+        return new SubPilotoFacade();
     }
+
+	@Override
+	public Piloto gePiloto(String piloto) {
+		return _pilotos.get(piloto);
+	}
+
+	@Override
+	public boolean hasPiloto(String piloto) {
+		return _pilotos.containsKey(piloto);
+	}
+
+	@Override
+	public List<Piloto> listPilotos() {
+		List<Piloto> listas = new ArrayList<>(_pilotos.values());
+		return listas;
+	}
 }

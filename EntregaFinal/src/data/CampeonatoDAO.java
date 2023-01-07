@@ -20,7 +20,7 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
             String sql = "CREATE TABLE IF NOT EXISTS campeonatos (" +
                     "Nome varchar(45) NOT NULL PRIMARY KEY," +
                     "Nr_circuitos int DEFAULT 0," +
-                    "Disponibilidade boolean DEFAULT false)";
+                    "Disponibilidade boolean DEFAULT false);";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...

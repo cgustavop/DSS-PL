@@ -4,6 +4,8 @@ import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 
 public class DadosJogador {
+	private static int idCount=0;
+	private int id;
 	private String _jogadorID;
 	private Carro _carros;
 	private Piloto _pilotos;
@@ -12,6 +14,25 @@ public class DadosJogador {
 		this._jogadorID = id;
 		this._carros = c;
 		this._pilotos = p;
+		this.id = idCount++;
+	}
+
+	public DadosJogador(String jId, Piloto p, int id){
+		this._jogadorID = jId;
+		this._carros = null;
+		this._pilotos = p;
+		this.id = id;
+	}
+
+	public DadosJogador(String jId, Carro c, Piloto p, int id){
+		this._jogadorID = jId;
+		this._carros = c;
+		this._pilotos = p;
+		this.id = id;
+	}
+
+	public int getId(){
+		return this.id;
 	}
 
 	public void set_jogadorID(String _jogadorID) {

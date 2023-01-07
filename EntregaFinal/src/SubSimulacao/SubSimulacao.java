@@ -113,4 +113,25 @@ public class SubSimulacao implements ISubSimulacao {
 		}
 		return camps;
 	}
+
+	@Override
+	public void run(String camp) {
+		CampeonatoAtivo c = this._campeonatoMap.values()
+							.stream()
+							.filter(ca -> ca.get_campeonato().get_nome().equals(camp))
+							.findFirst()
+							.get();
+		c.run();
+	}
+
+	@Override
+	public List<List<DadosJogador>> getPosPorCorridaJogadores(String camp) {
+		CampeonatoAtivo c = this._campeonatoMap.values()
+							.stream()
+							.filter(ca -> ca.get_campeonato().get_nome().equals(camp))
+							.findFirst()
+							.get();
+		return c.getPosPorCorridaJogadores();
+	}
+
 }
