@@ -21,6 +21,13 @@ public class JogadorAtivo{
 		this._dados = new DadosJogador(Id, CarroDAO.getInstance().get(aCarro), PilotoDAO.getInstance().get(aPiloto));
 		this.campeonatoAtivoId = campeonatoAtivoId;
 	}
+
+	public JogadorAtivo(DadosJogador dj, boolean pronto, int nAfinacoes, int campeonatoAtivoId){
+		this._dados = dj;
+		this._pronto = pronto;
+		this._nAfinaçoes = nAfinacoes;
+		this.campeonatoAtivoId = campeonatoAtivoId;
+	}
 	
 	public DadosJogador get_dados() {
 		return _dados;

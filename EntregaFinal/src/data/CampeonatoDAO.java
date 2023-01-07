@@ -36,6 +36,12 @@ public class CampeonatoDAO implements Map<String,Campeonato> {
         return CampeonatoDAO.singleton;
     }
 
+    public static void buildInstance(){
+        if (CampeonatoDAO.singleton == null) {
+            CampeonatoDAO.singleton = new CampeonatoDAO();
+        }
+    }
+
 	public List<Campeonato> getCampeonatosDisponiveis() {
         List<Campeonato> camps = new ArrayList<>();
         for(Campeonato c: values()){

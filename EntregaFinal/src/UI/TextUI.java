@@ -18,6 +18,7 @@ import EntregaFinal.src.SubSimulacao.DadosJogador;
 import EntregaFinal.src.SubSimulacao.JogadorAtivo;
 import EntregaFinal.src.data.JogadorAtivoDAO;
 import EntregaFinal.src.SubCarros.*;
+import EntregaFinal.src.data.JogadorAtivoKey;
 
 public class TextUI {
     private IRacingManager model;
@@ -84,7 +85,7 @@ public class TextUI {
         this.play_menu.setHandler(1, this::iniciaCampeonato);
         this.play_menu.setHandler(2, this::escolherPiloto);
         this.play_menu.setHandler(3, this::escolherCarro);
-        this.play_menu.setHandler(5, this::voltarMenu);
+        this.play_menu.setHandler(4, this::voltarMenu);
 
         this.model = new RacingManagerFacade();
 
@@ -95,9 +96,8 @@ public class TextUI {
      * Executa o menu principal e invoca o método correspondente à opção seleccionada.
      */
     public void run() {
-        String id = "1";
-        this.ja.put(id,new JogadorAtivo(id));
-        id+=1;
+        //JogadorAtivoKey key = new JogadorAtivoKey(1, "1");
+        //this.ja.put(key,new JogadorAtivo(key.jogadorId()));
         this.main_menu.run();
         System.out.println("Até breve!...");
     }
@@ -113,12 +113,12 @@ public class TextUI {
                 System.out.println("Nome válido!");
                 System.out.println("Insira uma palavra-passe!");
                 String password = this.scin.nextLine();
-                Integer type = 0;
+                int type = 0;
                 while(type == 0){
                     System.out.println("Jogador Normal -> 1");
                     System.out.println("Jogador Premium -> 2");
                     type = this.scin.nextInt();
-                    if (type!=1 || type!=2) System.out.println("Opção Inválida! Tente Novamente...");
+                    if (type>2) System.out.println("Opção Inválida! Tente Novamente...");
                 }
                 if(type == 1) this.model.registarConta(name,password,userType.JogadorBase);
                 else{ 
@@ -200,7 +200,7 @@ public class TextUI {
                 List<Circuito> circuitos = this.model.circuitosExistentes();
                 int max_nr_circuitos = circuitos.size();
                 System.out.println("Escolha o número de circuitos que pretende ter em " + name + " sendo que existem " + max_nr_circuitos + " circuitos");
-                Integer nr_circuitos = this.scin.nextInt();
+                int nr_circuitos = this.scin.nextInt();
                 int i = 0;
                 Campeonato campeonato = new Campeonato(name,false);
                 while(i<nr_circuitos){
@@ -247,13 +247,13 @@ public class TextUI {
                 Integer fiabilidade = this.scin.nextInt();
                 if(this.model.fiabilidadeValida(fiabilidade)){
                     String c = categoria.toUpperCase();
-                    if(c != "SC"){
+                    if(!c.equals("SC")){
                         System.out.println("O carro é híbrido? Y/n");
                         String hibrido = this.scin.nextLine();
-                        hibrido.toLowerCase();
-                        if(hibrido == "y"){
+                        hibrido = hibrido.toLowerCase();
+                        if(hibrido.equals("y")){
                             System.out.println("Insira a potẽncia do motor elétrico de " + marca + " " + model + "!");
-                            Integer motor = this.scin.nextInt();
+                            int motor = this.scin.nextInt();
                             switch(c){
                                 case "C1H":
                                     this.model.registarCarro(new C1H(marca,model,power,cilindrada,fiabilidade,motor));
@@ -403,7 +403,7 @@ public class TextUI {
         try{
             String car;
             do{
-                this.model.listCarros().toString();
+                System.out.println(this.model.listCarros().toString());
                 System.out.println("Escolha um Carro inserindo um ID!");
                 car = this.scin.nextLine();
             } while(!this.model.hasCarro(car));
@@ -423,7 +423,7 @@ public class TextUI {
         try{
             String piloto;
             do{
-                this.model.listPilotos().toString();
+                System.out.println(this.model.listPilotos().toString());
                 System.out.println("Escolha um Piloto!");
                 piloto = this.scin.nextLine();
             } while(!this.model.nomePilotoDisponivel(piloto));

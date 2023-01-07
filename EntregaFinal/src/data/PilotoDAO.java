@@ -34,6 +34,12 @@ public class PilotoDAO implements Map<String,Piloto> {
         return PilotoDAO.singleton;
     }
 
+    public static void buildInstance(){
+        if (PilotoDAO.singleton == null) {
+            PilotoDAO.singleton = new PilotoDAO();
+        }
+    }
+
 	public int hashCode() {
 		int lHashCode = 0;
 		if ( lHashCode == 0 ) {

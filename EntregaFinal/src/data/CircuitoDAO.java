@@ -16,7 +16,7 @@ public class CircuitoDAO implements Map<String,Circuito> {
                     "Nome varchar(45) NOT NULL PRIMARY KEY," +
                     "Nr_voltas int DEFAULT 0," +
 					"Nr_curvas int DEFAULT 0," +
-					"Nr_chicanes int DEFAULT 0)";
+					"Nr_chicanes int DEFAULT 0);";
             stm.executeUpdate(sql);
         } catch (SQLException e) {
             // Erro a criar tabela...
@@ -30,6 +30,13 @@ public class CircuitoDAO implements Map<String,Circuito> {
             CircuitoDAO.singleton = new CircuitoDAO();
         }
         return CircuitoDAO.singleton;
+    }
+
+
+    public static void buildInstance() {
+        if (CircuitoDAO.singleton == null) {
+            CircuitoDAO.singleton = new CircuitoDAO();
+        }
     }
 
 	@Override

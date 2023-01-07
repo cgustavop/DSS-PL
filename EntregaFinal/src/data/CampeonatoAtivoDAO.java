@@ -42,7 +42,7 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> {
                     "CampeonatoAtivoId int NOT NULL," +
                     "Posicao int NOT NULL," +
                     "FOREIGN KEY (DadosJogadorId) REFERENCES dados_jogador(DadosJogadorId)," +
-                    "FOREIGN KEY (CampeonatoAtivoId) REFERENCES campeonatos(CampeonatoAtivoId))," +
+                    "FOREIGN KEY (CampeonatoAtivoId) REFERENCES campeonatos_ativos(CampeonatoAtivoId)," +
                     "PRIMARY KEY(DadosJogadorId, NrCorrida, CampeonatoAtivoId));";
 
             stm.execute(sql);
@@ -309,16 +309,12 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> {
 		Set<Integer> res = new HashSet<>();
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT Nome FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos
+             ResultSet rs = stm.executeQuery("SELECT CampeonatoAtivoId FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos
              while (rs.next()) {
-                Integer idt = Integer.parseInt(rs.getString("Nome")); // Obtemos um nome de campeonato do ResultSet
-                                   // Utilizamos o get para construir os campeonatos
-                res.add(idt);                                 // Adiciona o campeonato ao resultado.
+                res.add(rs.getInt("CampeonatoAtivoId"));                                 // Adiciona o campeonato ao resultado.
             }
         } catch (Exception e) {
-            // Database error!
-            e.printStackTrace();
-            throw new NullPointerException(e.getMessage());
+            throw new RuntimeException(e);
         }
         return res;
 	}
@@ -328,16 +324,14 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> {
 		Collection<CampeonatoAtivo> res = new HashSet<>();
         try (Connection conn = DriverManager.getConnection(DAOconfig.URL, DAOconfig.USERNAME, DAOconfig.PASSWORD);
              Statement stm = conn.createStatement();
-             ResultSet rs = stm.executeQuery("SELECT Id FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos_ativos
+             ResultSet rs = stm.executeQuery("SELECT CampeonatoAtivoId FROM campeonatos_ativos")) { // ResultSet com os nomes de todos os campeonatos_ativos
             while (rs.next()) {
-                Integer idt = Integer.parseInt(rs.getString("Id")); // Obtemos um nome de campeonato_ativo do ResultSet
+                Integer idt = rs.getInt("CampeonatoAtivoId"); // Obtemos um nome de campeonato_ativo do ResultSet
                 CampeonatoAtivo a = this.get(idt);                    // Utilizamos o get para construir os campeonatos_ativos
                 res.add(a);                                 // Adiciona o campeonato_ativo ao resultado.
             }
         } catch (Exception e) {
-            // Database error!
-            e.printStackTrace();
-            throw new NullPointerException(e.getMessage());
+            throw new RuntimeException(e);
         }
         return res;
 	}

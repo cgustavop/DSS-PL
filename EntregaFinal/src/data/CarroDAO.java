@@ -21,7 +21,7 @@ public class CarroDAO implements Map<String,Carro> {
 					"Modelo varchar(45) DEFAULT ''," +
 					"Cilindrada int DEFAULT 0," +
 					"Potencia int DEFAULT 0," +
-					"Fiabilidade int DEFAULT 0)";
+					"Fiabilidade int DEFAULT 0);";
 			stm.executeUpdate(sql);
 		} catch (SQLException e) {
 			// Erro a criar tabela...
@@ -35,6 +35,12 @@ public class CarroDAO implements Map<String,Carro> {
 			CarroDAO.singleton = new CarroDAO();
 		}
 		return CarroDAO.singleton;
+	}
+
+	public static void buildInstance(){
+		if (CarroDAO.singleton == null) {
+			CarroDAO.singleton = new CarroDAO();
+		}
 	}
 
 	@Override

@@ -3,10 +3,10 @@ package EntregaFinal.src.SubContas;
 import EntregaFinal.src.data.ContasDAO;
 
 public class SubContasFacade implements ISubContas {
-	private ContasDAO _contas;
+	private ContasDAO _contas = ContasDAO.getInstance();
 
 	public boolean nomeDisponivel(String aNome) {
-		return this._contas.containsKey(aNome);
+		return !this._contas.containsKey(aNome);
 	}
 
 	public void registarConta(String aNome, String aPassword, userType aType) {

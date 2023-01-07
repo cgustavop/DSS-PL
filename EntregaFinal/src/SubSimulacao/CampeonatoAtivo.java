@@ -4,6 +4,7 @@ import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.data.JogadorAtivoDAO;
+import EntregaFinal.src.data.JogadorAtivoKey;
 
 import java.util.*;
 
@@ -62,17 +63,41 @@ public class CampeonatoAtivo {
 	}
 
 	public CorridaBase simularCorridaBase() {
-		boolean pronto = estaoJogadoresProntos();
-		boolean pCorrida = temProxCorrida();
-		if(pronto && pCorrida) return new CorridaBase(null,null);
-		throw new IllegalArgumentException();
+		Map<String,DadosJogador> dadosJogador = new HashMap<>();
+
+		for(JogadorAtivo jogador : _jogadorAtivoMap.values()){
+			dadosJogador.put(jogador.get_dados().get_jogadorID(),jogador.get_dados());
+		}
+
+		Circuito circuito = _campeonato.get_circuitos().get(this._nCorridaAtual++);
+
+		Random rand = new Random();
+		int r = rand.nextInt(2);
+		if(r == 0)circuito.set_tempo_metereologico(Seco);
+		else circuito.set_tempo_metereologico(Chuva);
+		CorridaBase corridaBase = new CorridaBase(circuito,dadosJogador);
+		_listOrdPos.add(corridaBase.run());
+
+		return corridaBase;
 	}
 
 	public CorridaPremium simularCorridaPremium() {
-		boolean pronto = estaoJogadoresProntos();
-		boolean pCorrida = temProxCorrida();
-		if(pronto && pCorrida) return new CorridaPremium(null, null);
-		throw new IllegalArgumentException();
+		Map<String,DadosJogador> dadosJogador = new HashMap<>();
+
+		for(JogadorAtivo jogador : _jogadorAtivoMap.values()){
+			dadosJogador.put(jogador.get_dados().get_jogadorID(),jogador.get_dados());
+		}
+
+		Circuito circuito = _campeonato.get_circuitos().get(this._nCorridaAtual++);
+
+		Random rand = new Random();
+		int r = rand.nextInt(2);
+		if(r == 0)circuito.set_tempo_metereologico(Seco);
+		else circuito.set_tempo_metereologico(Chuva);
+		CorridaPremium corridaPremium = new CorridaPremium(circuito,dadosJogador);
+		_listOrdPos.add(corridaPremium.run());
+
+		return corridaPremium;
 	}
 
 	public List<DadosJogador> ranking() {
@@ -84,28 +109,30 @@ public class CampeonatoAtivo {
 	}
 
 	public void jogadorPronto(String aJogadorID) {
-		JogadorAtivo j = this._jogadorAtivoMap.get(aJogadorID);
+		JogadorAtivoKey key = new JogadorAtivoKey(this.id, aJogadorID);
+		JogadorAtivo j = this._jogadorAtivoMap.get(key);
 		j.set_pronto(true);
-		this._jogadorAtivoMap.put(aJogadorID, j);
+		this._jogadorAtivoMap.put(key, j);
 	}
 
 	public void afinarCarro(String aJogadorID, Carro aFunc){
-		JogadorAtivo j = this._jogadorAtivoMap.get(aJogadorID);
+		JogadorAtivoKey key = new JogadorAtivoKey(this.id, aJogadorID);
 		try{
+			JogadorAtivo j = this._jogadorAtivoMap.get(key);
 			if(j.get_nAfinaçoes() - 1<0){ return; }
 			else{
 				j.set_nAfinaçoes(j.get_nAfinaçoes() - 1); 
 				j.get_dados().set_carro(aFunc);
-				this._jogadorAtivoMap.put(aJogadorID, j);
+				this._jogadorAtivoMap.put(key, j);
 
 			}
 		} catch(NullPointerException e){e.printStackTrace();}
-		this._jogadorAtivoMap.put(aJogadorID, this._jogadorAtivoMap.get(aJogadorID));
+		this._jogadorAtivoMap.put(key, this._jogadorAtivoMap.get(key));
 	}
 
 	public void novoJogador(String aJogadorID, String aCarro, String aPiloto) {
 		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size(), id);
-		this._jogadorAtivoMap.put(aJogadorID,j);
+		this._jogadorAtivoMap.put(new JogadorAtivoKey(this.id, aJogadorID),j);
 	}	
 
 	public boolean estaoJogadoresProntos() {

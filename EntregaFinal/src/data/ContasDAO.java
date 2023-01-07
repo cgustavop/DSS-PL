@@ -19,8 +19,8 @@ public class ContasDAO implements Map<String,Conta> {
 			String sql = "CREATE TABLE IF NOT EXISTS contas (" +
 					"Nome varchar(45) NOT NULL PRIMARY KEY," +
 					"Password varchar(45) NOT NULL," +
-					"Tipo userType DEFAULT JogadorBase)"+
-					"Pontos int DEFAULT 0,";
+					"Tipo int DEFAULT " + userType.JogadorBase.num + "," +
+					"Pontos int DEFAULT 0);";
 			stm.executeUpdate(sql);
 		} catch (SQLException e) {
 			// Erro a criar tabela...
@@ -34,6 +34,13 @@ public class ContasDAO implements Map<String,Conta> {
 			ContasDAO.singleton = new ContasDAO();
 		}
 		return ContasDAO.singleton;
+	}
+
+
+	public static void buildInstance() {
+		if (ContasDAO.singleton == null) {
+			ContasDAO.singleton = new ContasDAO();
+		}
 	}
 
 	@Override
@@ -90,8 +97,8 @@ public class ContasDAO implements Map<String,Conta> {
 			if (rs.next()) {  // A chave existe na tabela
 				a = new Conta(rs.getString("Nome"),
 						rs.getString("Password"),
-						userType.valueOf(rs.getString("Tipo")),
-						Integer.parseInt(rs.getString("Pontos")));
+						userType.fromInt(rs.getInt("Tipo")),
+						rs.getInt("Pontos"));
 			}
 		} catch (SQLException e) {
 			// Database error!
@@ -109,8 +116,8 @@ public class ContasDAO implements Map<String,Conta> {
 			try(PreparedStatement pstm = conn.prepareStatement("INSERT INTO contas(Nome,Password,Tipo,Pontos)" + "VALUES (?,?,?,?)")) {
 				pstm.setString(1,value.get_nome());
 				pstm.setString(2,value.get_password());
-				pstm.setString(3,String.valueOf(value.get_type()));
-				pstm.setString(4,String.valueOf(value.get_pontos()));
+				pstm.setInt(3, value.get_type().num);
+				pstm.setInt(4,value.get_pontos());
 				pstm.execute();
 			}
 		} catch (SQLException e) {
