@@ -11,6 +11,11 @@ public abstract class Corrida {
 	private SubCampeonatosFacade _circuito;
 	private Map<String,DadosJogador> _dadosJogador = new HashMap<>();
 
+	public Corrida(Circuito circuito, Map<String, DadosJogador> dadosJogadores) {
+		this.circuito = circuito;
+		this._dadosJogador = dadosJogadores;
+	}
+
 	public DadosJogador getDadosJogador(String aJogadorID) {
 		return this._dadosJogador.get(aJogadorID);
 	}
@@ -39,9 +44,7 @@ public abstract class Corrida {
 		this._dadosJogador = _dadosJogador;
 	}
 
-	public void run() {
 
-	}
 
 	public boolean equals(Object aObject) {
 		if (this == aObject) {

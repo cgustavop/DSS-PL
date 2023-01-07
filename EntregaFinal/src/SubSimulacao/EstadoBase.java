@@ -2,6 +2,7 @@ package EntregaFinal.src.SubSimulacao;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class EstadoBase {
 	private Map<String,EstadoJogador> _estadosJogadoresMap = new HashMap<>();
@@ -16,6 +17,12 @@ public class EstadoBase {
 
 	public void set_estadosJogadoresMap( Map<String, EstadoJogador> _estadosJogadoresMap) {
 		this._estadosJogadoresMap = _estadosJogadoresMap;
+	}
+
+	public EstadoBase(Set<String> jogadoresID){
+		for(String jogadorID : jogadoresID){
+			_estadosJogadoresMap.put(jogadorID,new EstadoJogador());
+		}
 	}
 
 	public int hashCode() {

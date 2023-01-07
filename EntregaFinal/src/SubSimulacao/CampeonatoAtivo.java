@@ -1,12 +1,14 @@
 package EntregaFinal.src.SubSimulacao;
 
 import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.JogadorAtivoDAO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static EntregaFinal.src.SubCampeonatos.TempoMetereologico.*;
 
 public class CampeonatoAtivo {
 	private static int idCount = 0;
@@ -58,7 +60,7 @@ public class CampeonatoAtivo {
 		// TODO:
 		boolean pronto = estaoJogadoresProntos();
 		boolean pCorrida = temProxCorrida();
-		if(pronto && pCorrida) return new CorridaBase();
+		if(pronto && pCorrida) return new CorridaBase(null,null);
 		throw new IllegalArgumentException();
 	}
 
@@ -117,6 +119,22 @@ public class CampeonatoAtivo {
 
 	public int getId(){
 		return this.id;
+	}
+
+	public void run(){
+		Map<String,DadosJogador> dadosJogador = new HashMap<>();
+
+		for(JogadorAtivo jogador : _jogadorAtivoMap.values()){
+			dadosJogador.put(jogador.get_dados().get_jogadorID(),jogador.get_dados());
+		}
+		for(Circuito circuito : _campeonato.get_circuitos()){
+			Random rand = new Random();
+			int r = rand.nextInt(2);
+			if(r == 0)circuito.set_tempo_metereologico(Seco);
+			else circuito.set_tempo_metereologico(Chuva);
+			CorridaBase corridaBase = new CorridaBase(circuito,dadosJogador);
+			_listOrdPos.add(corridaBase.run());
+		}
 	}
 
 	public int hashCode() {
