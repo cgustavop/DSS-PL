@@ -1,9 +1,19 @@
 package EntregaFinal.src.SubSimulacao;
 
+import EntregaFinal.src.SubCampeonatos.Segmento;
+
+import static EntregaFinal.src.SubSimulacao.EstadoCarro.*;
+
 public class EstadoJogador {
 	private int _segmento;
 	private int _volta;
 	private EstadoCarro _estadoCarro;
+
+	EstadoJogador(){
+		this._segmento = 1;
+		this._volta = 0;
+		this._estadoCarro = OK;
+	}
 
 	public EstadoCarro get_estadoCarro() {
 		return _estadoCarro;
@@ -27,7 +37,7 @@ public class EstadoJogador {
 
 	public void set_volta(int _volta) {
 		this._volta = _volta;
-	}	
+	}
 	
 	public int hashCode() {
 		int lHashCode = 0;
