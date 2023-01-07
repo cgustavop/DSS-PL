@@ -1,12 +1,15 @@
 package EntregaFinal.src.SubSimulacao;
 
 import EntregaFinal.src.SubCampeonatos.Campeonato;
+import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCarros.Carro;
 import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.JogadorAtivoDAO;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CampeonatoAtivo {
 	private static int idCount = 0;
@@ -15,6 +18,7 @@ public class CampeonatoAtivo {
 	private Campeonato _campeonato;
 	private JogadorAtivoDAO _jogadorAtivoMap;
 	private List<List<DadosJogador>> _listOrdPos = new ArrayList<>();
+	private List<Circuito> circuitosList = new ArrayList<>();
 
 	public CampeonatoAtivo(Campeonato camp){
 		this._campeonato = camp;
@@ -22,32 +26,33 @@ public class CampeonatoAtivo {
 		this.id = idCount++;
 	}
 
+	public CampeonatoAtivo(Campeonato camp, int id, int nCorridaAtual, List<List<DadosJogador>> posList, List<Circuito> circuitosList){
+		this._campeonato = camp;
+		this._jogadorAtivoMap = JogadorAtivoDAO.getInstance();
+		this.id = id;
+		this._nCorridaAtual = nCorridaAtual;
+		this._listOrdPos = posList;
+		this.circuitosList = circuitosList;
+	}
+
 	public Campeonato get_campeonato() {
 		return _campeonato;
-	}
-
-	public JogadorAtivoDAO get_jogadorAtivoMap() {
-		return _jogadorAtivoMap;
-	}
-
-	public List<List<DadosJogador>> get_listOrdPos() {
-		return _listOrdPos;
 	}
 
 	public int get_nCorridaAtual() {
 		return _nCorridaAtual;
 	}
 
+	public List<List<DadosJogador>> getCorridaMap(){
+		return this._listOrdPos;
+	}
+
+	public List<Circuito> getCircuitoMap(){
+		return this.circuitosList;
+	}
+
 	public void set_campeonato(Campeonato _campeonato) {
 		this._campeonato = _campeonato;
-	}
-
-	public void set_jogadorAtivoMap(JogadorAtivoDAO _jogadorAtivoMap) {
-		this._jogadorAtivoMap = _jogadorAtivoMap;
-	}
-
-	public void set_listOrdPos(List<List<DadosJogador>> _listOrdPos) {
-		this._listOrdPos = _listOrdPos;
 	}
 
 	public void set_nCorridaAtual(int _nCorridaAtual) {
@@ -99,7 +104,7 @@ public class CampeonatoAtivo {
 	}
 
 	public void novoJogador(String aJogadorID, String aCarro, String aPiloto) {
-		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size());
+		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size(), id);
 		this._jogadorAtivoMap.put(aJogadorID,j);
 	}	
 
