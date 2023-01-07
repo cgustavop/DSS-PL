@@ -3,7 +3,6 @@ package EntregaFinal.src.SubSimulacao;
 import EntregaFinal.src.SubCampeonatos.Campeonato;
 import EntregaFinal.src.SubCampeonatos.Circuito;
 import EntregaFinal.src.SubCarros.Carro;
-import EntregaFinal.src.SubPilotos.Piloto;
 import EntregaFinal.src.data.JogadorAtivoDAO;
 
 import java.util.*;
@@ -42,11 +41,11 @@ public class CampeonatoAtivo {
 		return _nCorridaAtual;
 	}
 
-	public List<List<DadosJogador>> getCorridaMap(){
+	public List<List<DadosJogador>> getPosPorCorridaJogadores(){
 		return this._listOrdPos;
 	}
 
-	public List<Circuito> getCircuitoMap(){
+	public List<Circuito> getListaOrdCircuitos(){
 		return this.circuitosList;
 	}
 

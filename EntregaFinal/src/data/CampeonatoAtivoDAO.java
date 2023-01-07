@@ -209,8 +209,8 @@ public class CampeonatoAtivoDAO implements Map<Integer,CampeonatoAtivo> {
             int id = value.getId();
             int nrCorridaAtual = value.get_nCorridaAtual();
             Campeonato camp = value.get_campeonato();
-            List<List<DadosJogador>> corrList = value.getCorridaMap();
-            List<Circuito> circList = value.getCircuitoMap();
+            List<List<DadosJogador>> corrList = value.getPosPorCorridaJogadores();
+            List<Circuito> circList = value.getListaOrdCircuitos();
 
             String sql = "INSERT INTO campeonatos_ativos(CampeonatoAtivoId, NrCorridaAtual, NomeCampeonato)" +
                         "VALUES (" + id + "," + nrCorridaAtual + "," + camp.get_nome() + ");";
