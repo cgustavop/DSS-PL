@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface ISubSimulacao {
 
-	public void registarJogador(int aCampeonato, String aJogadorID, String aCarro, String aPiloto);
+	public void registarJogador(int aCampeonato, String aJogadorID, int aCarro, String aPiloto);
 
 	public void jogadorPronto(int aCampeonato, String aJogadorID);
 

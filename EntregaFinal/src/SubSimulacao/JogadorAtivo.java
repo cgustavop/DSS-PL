@@ -15,7 +15,7 @@ public class JogadorAtivo{
 		this._pronto = false;
 		this._nAfinaçoes = 0;
 	}
-	public JogadorAtivo(String Id, String aCarro, String aPiloto, int nAfin, int campeonatoAtivoId){
+	public JogadorAtivo(String Id, int aCarro, String aPiloto, int nAfin, int campeonatoAtivoId){
 		this._pronto = false;
 		this._nAfinaçoes = nAfin;
 		this._dados = new DadosJogador(Id, CarroDAO.getInstance().get(aCarro), PilotoDAO.getInstance().get(aPiloto));

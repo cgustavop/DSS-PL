@@ -9,13 +9,12 @@ public class Campeonato {
 	private String _nome;
 	private Integer _nr_circuitos;
 	private Boolean _disponibilidade;
-	private List<Circuito> _circuitos;
+	private List<Circuito> _circuitos = new ArrayList<>();
 
 	public Campeonato(){
 		this._nome = "";
 		this._nr_circuitos = 0;
-		this._disponibilidade = false;
-		this._circuitos = new ArrayList<>();
+		this._disponibilidade = true;
 	}
 
 	public Campeonato(String nome, Boolean disponibilidade){

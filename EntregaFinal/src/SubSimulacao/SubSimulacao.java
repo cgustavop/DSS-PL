@@ -26,7 +26,7 @@ public class SubSimulacao implements ISubSimulacao {
 		return false;
 	}
 
-	public void registarJogador(int aCampeonato, String aJogadorID, String aCarro, String aPiloto) {
+	public void registarJogador(int aCampeonato, String aJogadorID, int aCarro, String aPiloto) {
 		CampeonatoAtivo cAtiv;	
 		if(!this._campeonatoMap.containsKey(aCampeonato)){
 			throw new IllegalArgumentException("CampeonatoAtivo não existe: " + aCampeonato);

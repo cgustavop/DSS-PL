@@ -130,7 +130,7 @@ public class CampeonatoAtivo {
 		this._jogadorAtivoMap.put(key, this._jogadorAtivoMap.get(key));
 	}
 
-	public void novoJogador(String aJogadorID, String aCarro, String aPiloto) {
+	public void novoJogador(String aJogadorID, int aCarro, String aPiloto) {
 		JogadorAtivo j = new JogadorAtivo(aJogadorID,aCarro,aPiloto,this._campeonato.get_circuitos().size(), id);
 		this._jogadorAtivoMap.put(new JogadorAtivoKey(this.id, aJogadorID),j);
 	}	

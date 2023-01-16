@@ -14,8 +14,7 @@ public class SubContasFacade implements ISubContas {
 	}
 
 	public boolean validarConta(String aNome, String aPassword) {
-		if(_contas.containsKey(aNome) && _contas.get(aNome).get_password()==aPassword) return true;
-		else return false;
+		return _contas.containsKey(aNome) && _contas.get(aNome).get_password().equals(aPassword);
 	}
 
 	public userType autenticarConta(String aNome) {

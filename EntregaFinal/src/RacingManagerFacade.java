@@ -115,7 +115,7 @@ public class RacingManagerFacade implements IRacingManager{
     // Simulação
 
 	@Override
-	public void registarJogador(int aCampeonato, String aJogadorID, String aCarro, String aPiloto) {
+	public void registarJogador(int aCampeonato, String aJogadorID, int aCarro, String aPiloto) {
 		this.simulacaoFacade.registarJogador(aCampeonato, aJogadorID, aCarro, aPiloto);
 		
 	}
